@@ -31,4 +31,4 @@ function setStatus(step, status) {
     step.status = status;
 }
 
-return { createStep, editStep }
+return { createStep, editStep, deleteStep }

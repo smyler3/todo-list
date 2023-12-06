@@ -22,6 +22,11 @@ function createProject(name, description, dueDate, priority, status) {
     )
 }
 
+/* Add a task to a project */
+function addTask(project, task) {
+    project.tasks.push(task);
+}
+
 /* Edit an exisiting project */
 function editProject(project, name, description, dueDate, priority, status) {
     setName(project, name);
@@ -60,4 +65,4 @@ function setStatus(project, status) {
     project.status = status;
 }
 
-return { createDefaultProject, createProject, editProject, setName, setDescription, setDueDate, setPriority, setStatus }
+return { createDefaultProject, createProject, addTask, editProject, deleteProject }

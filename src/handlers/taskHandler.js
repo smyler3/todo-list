@@ -5,6 +5,11 @@ function createTask(name, description, dueDate, priority, status) {
     return taskFactory(name, description, dueDate, priority, status);
 }
 
+/* Add a step to a task */
+function addStep(task, step) {
+    task.steps.push(step);
+}
+
 /* Edit an existing task */
 function editTask(task, name, description, dueDate, priority, status) {
     setName(task, name);
@@ -43,4 +48,4 @@ function setStatus(task, status) {
     task.status = status;
 }
 
-return { createTask, editTask }
+return { createTask, addStep, editTask, deleteTask }
