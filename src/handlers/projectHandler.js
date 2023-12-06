@@ -11,7 +11,7 @@ function createDefaultProject() {
     )
 }
 
-/* Creates a new project */
+/* Create a new project */
 function createProject(name, description, dueDate, priority, status) {
     return projectFactory(
         name,
@@ -22,18 +22,16 @@ function createProject(name, description, dueDate, priority, status) {
     )
 }
 
-/* Edits an exisiting project */
+/* Edit an exisiting project */
 function editProject(project, name, description, dueDate, priority, status) {
-    project = projectFactory(
-        name,
-        description,
-        dueDate,
-        priority,
-        status,
-    )
+    setName(project, name);
+    setDescription(project, description);
+    setDueDate(project, dueDate);
+    setPriority(project, priority);
+    setStatus(project, status);
 }
 
-/* Deletes an existing project */
+/* Delete an existing project */
 function deleteProject(project) {
     delete project.name;
     delete project.description;
@@ -51,7 +49,7 @@ function setDescription(project, description) {
 }
 
 function setDueDate(project, dueDate) {
-    project,dueDate = dueDate;
+    project.dueDate = dueDate;
 }
 
 function setPriority(project, priority) {
