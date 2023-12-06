@@ -1,5 +1,3 @@
-import stepFactory from "../factories/stepFactory";
-import taskFactory from "../factories/taskFactory";
 import projectFactory from "../factories/projectFactory";
 
 /* Creates the default project that stores all unassigned tasks */
