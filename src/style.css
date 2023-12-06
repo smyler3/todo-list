@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: grid;
+    grid: 1fr 5fr auto / 1fr 4fr;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.sidebar {
+    grid-area: 1 / 1 / -2 / 2;
+    background-color: rgb(0, 110, 253);
+}
+
+.header {
+    grid-area: 1 / 2 / 2 / -1;
+    background-color: white;
+}
+
+.content-body {
+    grid-area: 2 / 2 / -2 / -1;
+    background-color: grey;
+}
+
+.footer {
+    grid-area: -2 / 1 / -1 / -1;
+    text-align: center;
+    padding: 1rem 0;
+}
