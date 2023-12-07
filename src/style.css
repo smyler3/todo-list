@@ -78,6 +78,7 @@ ul {
 }
 
 .sidebar-item:hover {
+    cursor: pointer;
     background-color: rgb(0, 140, 255);
 }
 

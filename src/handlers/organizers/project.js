@@ -1,4 +1,4 @@
-import projectFactory from "../factories/projectFactory";
+import projectFactory from "../../factories/projectFactory";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
@@ -65,4 +65,4 @@ function setStatus(project, status) {
     project.status = status;
 }
 
-return { createDefaultProject, createProject, addTask, editProject, deleteProject }
+export { createDefaultProject, createProject, addTask, editProject, deleteProject }

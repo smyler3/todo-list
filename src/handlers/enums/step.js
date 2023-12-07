@@ -1,4 +1,4 @@
-import stepFactory from "../factories/stepFactory";
+import stepFactory from "../../factories/stepFactory";
 
 /* Create a new step */
 function createStep(name, dueDate, status) {
@@ -31,4 +31,4 @@ function setStatus(step, status) {
     step.status = status;
 }
 
-return { createStep, editStep, deleteStep }
+export { createStep, editStep, deleteStep }

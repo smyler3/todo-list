@@ -19,6 +19,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'template.html'),
             filename: 'index.html',
+            scriptLoading: 'defer',
         }),
     ],
     output: {

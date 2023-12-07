@@ -1,4 +1,4 @@
-import taskFactory from "../factories/taskFactory";
+import taskFactory from "../../factories/taskFactory";
 
 /* Create a new task */
 function createTask(name, description, dueDate, priority, status) {
@@ -48,4 +48,4 @@ function setStatus(task, status) {
     task.status = status;
 }
 
-return { createTask, addStep, editTask, deleteTask }
+export { createTask, addStep, editTask, deleteTask }
