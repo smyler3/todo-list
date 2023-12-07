@@ -9,3 +9,5 @@ const Status = {
 function isValidStatus(status) {
     return Object.values(Status).includes(status);
 }
+
+export { Status, isValidStatus }

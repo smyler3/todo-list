@@ -1,13 +1,15 @@
 import projectFactory from "../../factories/projectFactory";
+import { Priority } from "../enums/priority";
+import { Status } from "../enums/status";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
     return projectFactory(
         "Miscellaneous", 
         "A collection of tasks, that weren't assigned a project",
-        null,
-        null,
-        null,
+        "",
+        Priority.NONE,
+        Status.TODO,
     )
 }
 
