@@ -1,7 +1,7 @@
 :root {
-    --sidebar-background: rgb(255, 255, 255); /*rgba(255, 198, 112, 0.05)*/
+    --sidebar-background: rgba(0, 162, 255, 0.116); /*rgba(255, 198, 112, 0.05)*/
     --sidebar-text: rgb(0, 0, 0);
-    --sidebar-hover-background: rgba(255, 141, 112, 0.15); /*rgba(226, 112, 255, 0.5)*/
+    --sidebar-hover-background: rgba(191, 112, 255, 0.15); /*rgba(226, 112, 255, 0.5) rgba(255, 141, 112, 0.15)*/
 }
 
 /*
@@ -23,6 +23,25 @@ ul {
     list-style: none;
 }
 
+button {
+    cursor: pointer;
+}
+
+/* input[type="checkbox"] {
+    width: 2em;
+    height: 2em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked {
+    background-color: var(--sidebar-hover-background);
+} */
 /*
  * ------------------------------------------------------------
  * Page Layout Styling
@@ -50,6 +69,7 @@ ul {
     padding: 0 1rem;
     color: var(--sideabar-text);
     background-color: var(--sidebar-background);
+    z-index: 2;
 }
 
 .logo {
@@ -68,10 +88,6 @@ ul {
     flex-direction: column;
     gap: 0.2rem;
     padding-left: 2rem;
-}
-
-.sidebar-menu {
-
 }
 
 .sidebar-item {
@@ -110,8 +126,34 @@ ul {
 .header {
     grid-area: 1 / 2 / 2 / -1;
     background-color: white;
+    box-shadow: 10px 0 15px #00000025;
+    z-index: 1;
 }
 
+/*
+ * ----------------------
+ * Project Header Styling
+ * ----------------------
+ */
+.project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    text-align: center;
+    height: 100%;
+}
+
+.project-header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.project-header-create-task-btn {
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}
 /*
  * ------------------------------------------------------------
  * Content Body Styling
@@ -120,7 +162,58 @@ ul {
 
 .content-body {
     grid-area: 2 / 2 / -2 / -1;
-    background-color: grey;
+    background-color: rgb(241, 241, 241);
+}
+
+/*
+ * ----------------------
+ * Project Content Styling
+ * ----------------------
+ */
+.project-tasks-list,
+.task-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-left: 2rem;
+    gap: 2px;
+    margin-top: 2px;
+    background-color: black;
+}
+
+.project-task {
+    margin-top: 1rem;
+}
+
+.project-tasks-list {
+    padding-right: 2rem;
+}
+
+.project-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    font-size: large;
+    border-radius: 10px;
+    background-color: white;
+} 
+
+.project-list-item-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.project-list-task-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-list-item-btns {
+    display: flex;
+    gap: 0.5rem;
 }
 
 /*
@@ -133,4 +226,5 @@ ul {
     grid-area: -2 / 1 / -1 / -1;
     text-align: center;
     padding: 1rem 0;
+    background-color: #ffffff;
 }
