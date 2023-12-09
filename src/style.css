@@ -1,7 +1,8 @@
 :root {
-    --sidebar-background: rgba(0, 162, 255, 0.116); /*rgba(255, 198, 112, 0.05)*/
+    --sidebar-background: rgba(223, 163, 163, 0.3); /*rgba(255, 198, 112, 0.05)*/
     --sidebar-text: rgb(0, 0, 0);
     --sidebar-hover-background: rgba(191, 112, 255, 0.15); /*rgba(226, 112, 255, 0.5) rgba(255, 141, 112, 0.15)*/
+    --project-icon: rgba(177, 96, 231, 0.5);
 }
 
 /*
@@ -24,6 +25,10 @@ ul {
 }
 
 button {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
     cursor: pointer;
 }
 
@@ -114,7 +119,7 @@ input[type="checkbox"]:checked {
 }
 
 .project-icon {
-    color: rgba(177, 96, 231, 0.5);
+    color: var(--project-icon);
 }
 
 /*
@@ -125,8 +130,8 @@ input[type="checkbox"]:checked {
 
 .header {
     grid-area: 1 / 2 / 2 / -1;
-    background-color: white;
-    box-shadow: 10px 0 15px #00000025;
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px #00000025;
     z-index: 1;
 }
 
@@ -139,7 +144,7 @@ input[type="checkbox"]:checked {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0 3rem 0 3rem;
     text-align: center;
     height: 100%;
 }
@@ -162,7 +167,7 @@ input[type="checkbox"]:checked {
 
 .content-body {
     grid-area: 2 / 2 / -2 / -1;
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(226, 232, 240);
 }
 
 /*
@@ -176,9 +181,8 @@ input[type="checkbox"]:checked {
     flex-direction: column;
     gap: 0.2rem;
     padding-left: 2rem;
-    gap: 2px;
-    margin-top: 2px;
-    background-color: black;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .project-task {
@@ -186,7 +190,7 @@ input[type="checkbox"]:checked {
 }
 
 .project-tasks-list {
-    padding-right: 2rem;
+    padding: 0 2rem 1rem;
 }
 
 .project-list-item {
@@ -198,6 +202,7 @@ input[type="checkbox"]:checked {
     font-size: large;
     border-radius: 10px;
     background-color: white;
+    box-shadow: 0 10px 15px #00000025;
 } 
 
 .project-list-item-info {
@@ -211,9 +216,23 @@ input[type="checkbox"]:checked {
     flex-direction: column;
 }
 
-.project-list-item-btns {
+.project-list-step-info {
     display: flex;
-    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.organizer-btns {
+    display: flex;
+    align-items: center;
+}
+
+.organizer-btn {
+    cursor: pointer;
+    padding: 1rem;
+}
+.organizer-btn:hover {
+    background-color: var(--sidebar-hover-background);
+    border-radius: 50%;
 }
 
 /*
