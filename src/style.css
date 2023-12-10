@@ -47,6 +47,21 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
     background-color: var(--sidebar-hover-background);
 } */
+
+.action-btns {
+    display: flex;
+    align-items: center;
+}
+
+.action-btn {
+    cursor: pointer;
+    padding: 1rem;
+}
+.action-btn:hover {
+    background-color: var(--sidebar-hover-background);
+    border-radius: 50%;
+}
+
 /*
  * ------------------------------------------------------------
  * Page Layout Styling
@@ -140,7 +155,7 @@ input[type="checkbox"]:checked {
  * Project Header Styling
  * ----------------------
  */
-.project-header {
+.project-header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -149,15 +164,18 @@ input[type="checkbox"]:checked {
     height: 100%;
 }
 
-.project-header-info {
+.project-header-details {
     display: flex;
     flex-direction: column;
     align-items: start;
 }
 
-.project-header-create-task-btn {
-    padding: 1rem 2rem;
-    border-radius: 5px;
+.project-header-title {
+
+}
+
+.project-header-description {
+
 }
 /*
  * ------------------------------------------------------------
@@ -175,8 +193,8 @@ input[type="checkbox"]:checked {
  * Project Content Styling
  * ----------------------
  */
-.project-tasks-list,
-.task-steps-list {
+.task-list-container,
+.step-list {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
@@ -185,11 +203,11 @@ input[type="checkbox"]:checked {
     margin-top: 10px;
 }
 
-.project-task {
+.project-task-item {
     margin-top: 1rem;
 }
 
-.project-tasks-list {
+.task-list {
     padding: 0 2rem 1rem;
 }
 
@@ -211,7 +229,7 @@ input[type="checkbox"]:checked {
     gap: 1rem;
 }
 
-.project-list-task-info {
+.project-list-task-details {
     display: flex;
     flex-direction: column;
 }
@@ -219,20 +237,6 @@ input[type="checkbox"]:checked {
 .project-list-step-info {
     display: flex;
     flex-direction: column;
-}
-
-.organizer-btns {
-    display: flex;
-    align-items: center;
-}
-
-.organizer-btn {
-    cursor: pointer;
-    padding: 1rem;
-}
-.organizer-btn:hover {
-    background-color: var(--sidebar-hover-background);
-    border-radius: 50%;
 }
 
 /*
