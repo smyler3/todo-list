@@ -26,10 +26,12 @@ addTask(work, presentations);
 
 // School project/tasks/steps
 const school = createProject("School", "All things school related!", "2021-11-7", "High", "TODO");
+const homework = createTask("Presentation", "All work presentations", "", "High", "TODO");
+addTask(school, homework);
 
 projects.push(work);
 projects.push(school);
 
 console.log(projects);
 renderSidebarProjects(projects);
-renderProjectPage(projects[1]);
+// renderProjectPage(projects[1]);

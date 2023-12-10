@@ -1,3 +1,4 @@
+/* Create a project button on the sidebar */
 function createSidebarProject(project) {
     const sidebarItem = document.createElement("li");
     sidebarItem.classList.add("sidebar-item", "sidebar-project-button");
@@ -13,6 +14,8 @@ function createSidebarProject(project) {
 
     sidebarItem.appendChild(projectIcon);
     sidebarItem.appendChild(projectTitle);
+
+    return sidebarItem;
 }
 
 /* Display all projects on the sidebar */
