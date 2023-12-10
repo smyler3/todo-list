@@ -2,8 +2,7 @@ import "./style.css";
 import { createDefaultProject, createProject, addTask } from "./handlers/organizers/project";
 import { createTask, addStep } from "./handlers/organizers/task";
 import { createStep } from "./handlers/organizers/step";
-import { renderSidebarProjects } from "./handlers/display";
-import renderProjectPage from "./projectPage";
+import { renderSidebarProjects, renderProjectPage } from "./handlers/display";
 
 const projects = []
 projects.push(createDefaultProject());

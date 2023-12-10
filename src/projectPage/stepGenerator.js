@@ -56,6 +56,7 @@ export default function generateSteps(steps, generateActionButtons) {
     const stepList = document.createElement("ul");
     stepList.classList.add("step-list");
 
+    // Add all steps to the list
     steps.forEach(step => {
         stepList.appendChild(generateStep(step));
     });
