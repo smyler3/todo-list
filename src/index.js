@@ -17,7 +17,7 @@ addStep(meetings, mornMeeting);
 addStep(meetings, arvoMeeting);
 addTask(work, meetings);
 
-const presentations = createTask("Presentation", "All work presentations", "", "High", "TODO");
+const presentations = createTask("Presentation", "All work presentations", "", "None", "TODO");
 const graphs = createStep("Generate Financial Graphs", "2023-12-10", "TODO");
 const typos = createStep("Check report draft for typos", "2023-12-10", "TODO");
 addStep(presentations, graphs);
@@ -25,7 +25,7 @@ addStep(presentations, typos);
 addTask(work, presentations);
 
 // School project/tasks/steps
-const school = createProject("School", "All things school related!", "2021-11-7", "High", "TODO");
+const school = createProject("School", "All things school related!", "2021-11-7", "Low", "TODO");
 const homework = createTask("Presentation", "All work presentations", "", "High", "TODO");
 addTask(school, homework);
 
@@ -34,7 +34,7 @@ projects.push(school);
 
 console.log(projects);
 renderSidebarProjects(projects);
-// renderCreateProjectForm(document.querySelector(".content-body"));
+renderCreateProjectForm(document.querySelector(".content-body"));
 // renderCreateTaskForm(document.querySelector(".content-body"));
 // renderCreateStepForm(document.querySelector(".content-body"));
 // renderProjectPage(projects[1]);

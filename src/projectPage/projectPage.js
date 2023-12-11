@@ -9,10 +9,19 @@ export default function renderProjectPage(project) {
             const projectHeaderInfo = document.createElement("span");
             projectHeaderInfo.classList.add("project-header-details");
 
+            const titleContainer = document.createElement("div");
+            titleContainer.classList.add("project-title-container");
+
             // Title
             const projectTitle = document.createElement("h2");
             projectTitle.textContent = project.title;
             projectTitle.classList.add("project-header-title");
+
+            // Priority
+            const projectPriority = document.createElement("p");
+            projectPriority.textContent = project.priority;
+            const priorityClass = "priority-" + project.priority.toLowerCase();
+            projectPriority.classList.add("priority-text", priorityClass);
 
             // Description
             const projectDescription = document.createElement("p");
@@ -24,7 +33,10 @@ export default function renderProjectPage(project) {
             projectDate.textContent = project.dueDate || "No Due Date";
 
             // Append Elements
-            projectHeaderInfo.appendChild(projectTitle);
+            titleContainer.appendChild(projectTitle);
+            titleContainer.appendChild(projectPriority);
+            // projectHeaderInfo.appendChild(projectTitle);
+            projectHeaderInfo.appendChild(titleContainer);
             projectHeaderInfo.appendChild(projectDescription);
             projectHeaderInfo.appendChild(projectDate);
 

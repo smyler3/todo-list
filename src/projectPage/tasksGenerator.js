@@ -10,17 +10,31 @@ export default function generateTasks(tasks, generateActionButtons) {
             function generateTaskDetails(task) {
                 const taskDetails = document.createElement("div");
                 taskDetails.classList.add("project-list-task-details");
+                
+                const titleContainer = document.createElement("div");
+                titleContainer.classList.add("project-title-container");
 
+                // Title
                 const taskTitle = document.createElement("h3");
                 taskTitle.textContent = task.title;
 
+                // Priority
+                const taskPriority = document.createElement("p");
+                taskPriority.textContent = task.priority;
+                const priorityClass = "priority-" + task.priority.toLowerCase();
+                taskPriority.classList.add("priority-text", priorityClass);
+
+                // Description
                 const taskDescription = document.createElement("p");
                 taskDescription.textContent = task.description;
 
+                // Due date
                 const taskDate = document.createElement("p");
                 taskDate.textContent = task.dueDate || "No Due Date";;
 
-                taskDetails.appendChild(taskTitle);
+                titleContainer.appendChild(taskTitle);
+                titleContainer.appendChild(taskPriority);
+                taskDetails.appendChild(titleContainer);
                 taskDetails.appendChild(taskDescription);
                 taskDetails.appendChild(taskDate);
 

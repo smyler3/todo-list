@@ -170,6 +170,12 @@ input[type="checkbox"]:checked {
     align-items: start;
 }
 
+.project-title-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .project-header-title {
 
 }
@@ -183,7 +189,9 @@ input[type="checkbox"]:checked {
  * Form Styling
  * ------------------------------------------------------------
  */
-input:focus {
+ .title-input:focus,
+ .date-input:focus,
+ .desc-input:focus {
     outline: none;
     border: 2px solid #006eff;
 } 
@@ -224,7 +232,9 @@ input:focus {
 }
 
 .desc-input {
-    height: 40px;
+    resize: none;
+    height: 50px;
+    padding: 0.4rem 0;
 }
 
 .priority-field {
@@ -317,6 +327,41 @@ input:focus {
 .project-list-step-info {
     display: flex;
     flex-direction: column;
+}
+
+/*
+ * ----------------------
+ * Priority Icon Styling
+ * ----------------------
+ */
+ .priority-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.2rem;
+    width: 2.5rem;
+    font-weight: bold;
+    font-size: small;
+}
+
+.priority-high {
+    color: #ae2e24;
+    background-color: #ffeceb;
+}
+
+.priority-med {
+    color: #5e4db2;
+    background-color: #f3f0ff;
+}
+
+.priority-low {
+    color: #0055cc;
+    background-color: #e9f2ff;
+}
+
+.priority-none {
+    color: #000000;
+    background-color: #f0f1f4;
 }
 
 /*
