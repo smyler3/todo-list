@@ -1,7 +1,7 @@
 import { Priority, DefaultPriority } from "../handlers/enums/priority";
 
 /* Create a set of radio buttons for the priority options */
-export default function generatePriorityRadioButtons() {
+function generatePriorityRadioButtons() {
     /* Add the radio button options */
     function generatePriorityOptions() {
         Object.values(Priority).forEach(priorityValue => {
@@ -52,3 +52,9 @@ export default function generatePriorityRadioButtons() {
 
     return fieldContainer;
 }
+
+function generateColourRadioButtons() {
+    
+}
+
+export { generatePriorityRadioButtons }

@@ -1,9 +1,25 @@
 import generateTextFields from "./textFieldGenerator";
 import generatePriorityRadioButtons from "./radioFieldGenerator";
 
-/* Empties the contents of the form modal */
-function clearForm() {
-    formContainer.replaceChildren();
+/* Handles form creation and display */
+function renderForm(formFunction, parent) {
+    formContainer.replaceChildren(formFunction());
+    parent.appendChild(formContainer);
+}
+
+/* Create the form container and title */
+function generateFormBase(id, title, formClass) {
+    const form = document.createElement("form");
+    form.id = id;
+    form.classList.add(formClass);
+
+    // Title
+    const formTitle = document.createElement("h2");
+    formTitle.textContent = title;
+
+    form.appendChild(formTitle);
+
+    return form;
 }
 
 /* Create the submit and cancel form buttons */
@@ -27,9 +43,7 @@ function addFormButtons(organizerType, actionType, parent) {
 }
 
 /* Create the form for creating a new project */
-function renderCreateProjectForm(parent) {
-    clearForm();
-
+function renderCreateProjectForm() {
     // All form fields for creating a project
     const projectTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 40},
@@ -37,27 +51,18 @@ function renderCreateProjectForm(parent) {
         {labelText: "Due Date:", inputName: "date", inputType: "date", id: "project-date", classes: ["date-input"]},
     ]
 
-    const form = document.createElement("form");
-    form.id = "project-creation-form";
-    form.classList.add("creation-form");
-
-    // Title
-    const formTitle = document.createElement("h2");
-    formTitle.textContent = "New Project";
+    const form = generateFormBase("project-creation-form", "New Project", "creation-form");
 
     // Appending elements
-    form.appendChild(formTitle);
     generateTextFields(projectTextFormFields, form);
     form.appendChild(generatePriorityRadioButtons());
     addFormButtons("Project", "Create", form);
-    formContainer.appendChild(form);
-    parent.appendChild(formContainer);
+
+    return form;
 }
 
 /* Create the form for creating a new task */
 function renderCreateTaskForm(parent) {
-    clearForm();
-
     // All form fields for creating a task
     const taskTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
@@ -65,69 +70,52 @@ function renderCreateTaskForm(parent) {
         {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
     ]
 
-    const form = document.createElement("form");
-    form.id = "title-creation-form";
-    form.classList.add("creation-form");
-
-    // Title
-    const formTitle = document.createElement("h2");
-    formTitle.textContent = "New Task";
+    const form = generateFormBase("task-creation-form", "New Task","creation-form");
 
     // Appending elements
-    form.appendChild(formTitle);
     generateTextFields(taskTextFormFields, form);
     form.appendChild(generatePriorityRadioButtons());
     addFormButtons("Task", "Create", form);
-    formContainer.appendChild(form);
-    parent.appendChild(formContainer);
+
+    return form;
 }
 
 /* Create the form for creating a new step */
 function renderCreateStepForm(parent) {
-    clearForm();
-
     // All form fields for creating a task
     const stepTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
         {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
     ]
 
-    const form = document.createElement("form");
-    form.id = "title-creation-form";
-    form.classList.add("creation-form");
-
-    // Title
-    const formTitle = document.createElement("h2");
-    formTitle.textContent = "New Step";
+    const form = generateFormBase("step-creation-form", "New Step", "creation-form");
 
     // Appending elements
-    form.appendChild(formTitle);
     generateTextFields(stepTextFormFields, form);
     addFormButtons("Step", "Create", form);
-    formContainer.appendChild(form);
-    parent.appendChild(formContainer);
+
+    return form;
 }
 
 /* Create the form for confirming organizer deletion */
-function renderDeleteForm(organizerType, parent) {
-    clearForm();
-
-    const form = document.createElement("form");
-    form.id = organizerType + "-delete-form";
-    form.classList.add("delete-form");
-
-    // Title
-    const formTitle = document.createElement("h2");
-    formTitle.textContent = "Delete " + organizerType + "?";
+function renderDeleteForm() {
+    const form = generateFormBase(("confirm-delete-form"), ("Delete Item?"), "delete-form");
 
     // Appending elements
-    form.appendChild(formTitle);
-    addFormButtons(organizerType, "Delete", form);
-    formContainer.append(form);
-    parent.appendChild(formContainer);
+    addFormButtons("Organizer", "Delete", form);
+
+    
+
+    return form;
+}
+
+function renderColourPickerForm() {
+    clearForm();
+
+    const form = generateFormBase("colour-form", "Pick A Colour", "colour-form");
 }
 
 const formContainer = document.createElement("div");
 formContainer.classList.add("form-container");
 
-export { renderCreateProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm }
+export { renderForm, renderCreateProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm }
