@@ -28,7 +28,8 @@ button {
     cursor: pointer;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"] {
     cursor: pointer;
 }
 
@@ -189,9 +190,14 @@ input[type="checkbox"]:checked {
  * Form Styling
  * ------------------------------------------------------------
  */
- .title-input:focus,
- .date-input:focus,
- .desc-input:focus {
+/*
+* ----------------------
+* General Form Styling
+* ----------------------
+*/
+.title-input:focus,
+.date-input:focus,
+.desc-input:focus {
     outline: none;
     border: 2px solid #006eff;
 } 
@@ -202,20 +208,14 @@ input[type="checkbox"]:checked {
     width: 400px;
     height: auto;
     border: 2px solid black;
+    border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 10px 15px #00000025;
 } 
 
-.creation-form {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-}
-
-.delete-form {
+.creation-form,
+.delete-form,
+.colour-form {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -229,29 +229,13 @@ input[type="checkbox"]:checked {
     flex-direction: column;
     gap: 0.2rem;
     width: 80%;
-} 
-
-.form-label {
-    color: rebeccapurple;
 }
 
-.title-input,
-.date-input {
-    height: 30px;
-}
-
-.desc-input {
-    resize: none;
-    height: 50px;
-    padding: 0.4rem 0;
-}
-
-.priority-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    padding: 0.5rem;
-}
+/*
+ * ----------------------
+ * Form Button Styling
+ * ----------------------
+ */ 
 
 .form-btn-container {
     display: flex;
@@ -274,6 +258,63 @@ input[type="checkbox"]:checked {
 .form-btn {
     padding: 0.5rem 1rem;
     border: 2px solid rgb(0, 89, 255);
+}
+
+/*
+ * ----------------------
+ * Creation Form Styling
+ * ----------------------
+ */ 
+.form-label {
+    color: rebeccapurple;
+}
+
+.title-input,
+.date-input {
+    height: 30px;
+}
+
+.desc-input {
+    resize: none;
+    height: 50px;
+    padding: 0.4rem 0;
+}
+
+.priority-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.5rem;
+}
+/*
+ * ----------------------
+ * Deletion Form Styling
+ * ----------------------
+ */
+ 
+/*
+ * ----------------------
+ * Colour Picker Form Styling
+ * ----------------------
+ */ 
+.colour-fieldset {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(1fr, 50px));
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.colour-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.colour-radio-btn {
+    outline: 2px solid;
 }
 
 /*

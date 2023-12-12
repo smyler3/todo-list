@@ -1,5 +1,6 @@
 import generateTextFields from "./textFieldGenerator";
-import generatePriorityRadioButtons from "./radioFieldGenerator";
+import * as radioFieldGenerator from "./radioFieldGenerator"
+import { Organizers } from "../handlers/enums/organizer";
 
 /* Handles form creation and display */
 function renderForm(formFunction, parent) {
@@ -55,8 +56,8 @@ function renderCreateProjectForm() {
 
     // Appending elements
     generateTextFields(projectTextFormFields, form);
-    form.appendChild(generatePriorityRadioButtons());
-    addFormButtons("Project", "Create", form);
+    form.appendChild(radioFieldGenerator.generateRadioButtons(() =>radioFieldGenerator.generatePriorityRadioButtons(Organizers.PROJECT)));
+    addFormButtons(Organizers.PROJECT, "Create", form);
 
     return form;
 }
@@ -74,8 +75,9 @@ function renderCreateTaskForm(parent) {
 
     // Appending elements
     generateTextFields(taskTextFormFields, form);
-    form.appendChild(generatePriorityRadioButtons());
-    addFormButtons("Task", "Create", form);
+    console.log(Organizers.TASK);
+    form.appendChild(radioFieldGenerator.generateRadioButtons(() => radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK)));
+    addFormButtons(Organizers.TASK, "Create", form);
 
     return form;
 }
@@ -92,7 +94,7 @@ function renderCreateStepForm(parent) {
 
     // Appending elements
     generateTextFields(stepTextFormFields, form);
-    addFormButtons("Step", "Create", form);
+    addFormButtons(Organizers.STEP, "Create", form);
 
     return form;
 }
@@ -104,15 +106,16 @@ function renderDeleteForm() {
     // Appending elements
     addFormButtons("Organizer", "Delete", form);
 
-    
-
     return form;
 }
 
 function renderColourPickerForm() {
-    clearForm();
-
     const form = generateFormBase("colour-form", "Pick A Colour", "colour-form");
+
+    // Appending elements
+    form.appendChild(radioFieldGenerator.generateRadioButtons(radioFieldGenerator.generateColourRadioButtons));
+
+    return form;
 }
 
 const formContainer = document.createElement("div");
