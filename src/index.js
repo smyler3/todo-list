@@ -2,7 +2,7 @@ import "./style.css";
 import { createDefaultProject, createProject, addTask } from "./handlers/organizers/project";
 import { createTask, addStep } from "./handlers/organizers/task";
 import { createStep } from "./handlers/organizers/step";
-import { renderSidebarProjects, addSidebarProject, renderProjectPage, renderCreateProjectForm, renderCreateTaskForm, renderCreateStepForm } from "./handlers/display";
+import { renderSidebarProjects, addSidebarProject, renderProjectPage, renderCreateProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm } from "./handlers/display";
 
 const projects = []
 projects.push(createDefaultProject());
@@ -34,7 +34,8 @@ projects.push(school);
 
 console.log(projects);
 renderSidebarProjects(projects);
-renderCreateProjectForm(document.querySelector(".content-body"));
+// renderCreateProjectForm(document.querySelector(".content-body"));
 // renderCreateTaskForm(document.querySelector(".content-body"));
 // renderCreateStepForm(document.querySelector(".content-body"));
-// renderProjectPage(projects[1]);
+// renderDeleteForm("Project", document.querySelector(".content-body"));
+renderProjectPage(projects[1]);
