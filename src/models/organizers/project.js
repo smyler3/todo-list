@@ -1,4 +1,5 @@
 import projectFactory from "./factories/projectFactory";
+import { createTask } from "./task";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
@@ -29,7 +30,7 @@ function addTask(project, task) {
 
 /* Edit an exisiting project */
 function editProject(project, title, description) {
-    setName(project, title);
+    setTitle(project, title);
     setDescription(project, description);
 }
 
@@ -42,11 +43,11 @@ function deleteProject(project) {
 /* Returns project count and increments it */
 function getNextProjectCount() {
     const count = projectCount;
-    incrementProjectCount();
+    projectCount++;
     return count;
 }
 
-function setName(project, title) {
+function setTitle(project, title) {
     project.title = title;
 }
 
@@ -56,10 +57,6 @@ function setDescription(project, description) {
 
 function getProjectCount() {
     return projectCount;
-}
-
-function incrementProjectCount() {
-    projectCount++;
 }
 
 let projectCount = 0;

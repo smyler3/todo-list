@@ -1,14 +1,19 @@
 import taskFactory from "./factories/taskFactory";
 import { Status } from "../enums/status";
+import { addTask } from "./project";
 
-/* Create a new task */
-function createTask(name, description, dueDate, priority, status) {
-    return taskFactory(name, description, dueDate, priority, status);
+/* Create a new task and adds to a project */
+function createTask(project, title, description, dueDate, priority) {
+    const projectID = project.projectID;
+    const taskID = project.getNextTaskCount();
+    const newTask = taskFactory(title, description, dueDate, priority, projectID, taskID);
+
+    addTask(project, newTask);
 }
 
 /* Edit an existing task */
-function editTask(task, name, description, dueDate, priority, status) {
-    setName(task, name);
+function editTask(task, title, description, dueDate, priority, status) {
+    setTitle(task, title);
     setDescription(task, description);
     setDueDate(task, dueDate);
     setPriority(task, priority);
@@ -17,7 +22,7 @@ function editTask(task, name, description, dueDate, priority, status) {
 
 /* Delete an exisiting task */
 function deleteTask(task) {
-    delete task.name;
+    delete task.title;
     delete task.description;
     delete task.dueDate;
     delete task.priority;
@@ -38,8 +43,8 @@ function completeTask(task) {
     });
 }
 
-function setName(task, name) {
-    task.name = name;
+function setTitle(task, title) {
+    task.title = title;
 }
 
 function setDescription(task, description) {

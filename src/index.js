@@ -10,24 +10,23 @@ projects.push(createDefaultProject());
 // Work project/tasks/steps
 const work = createProject("Work Meetings", "All things work meeting related!");
 
-const meetings = createTask("Monday Meetings", "All monday work meetings", "", "Med", "TODO");
-const mornMeeting = createStep("Morning Meeting", "2023-12-10", "TODO");
-const arvoMeeting = createStep("Afternoon Meeting", "2023-12-10", "TODO");
-addStep(meetings, mornMeeting);
-addStep(meetings, arvoMeeting);
-addTask(work, meetings);
+createTask(work, "Monday Meetings", "All monday work meetings", "", "Med");
+// const mornMeeting = createStep("Morning Meeting", "2023-12-10", "TODO");
+// const arvoMeeting = createStep("Afternoon Meeting", "2023-12-10", "TODO");
+// addStep(meetings, "Morning");
+// addStep(meetings, arvoMeeting);
 
-const presentations = createTask("Presentation", "All work presentations", "", "None", "TODO");
-const graphs = createStep("Generate Financial Graphs", "2023-12-10", "TODO");
-const typos = createStep("Check report draft for typos", "2023-12-10", "TODO");
-addStep(presentations, graphs);
-addStep(presentations, typos);
-addTask(work, presentations);
+createTask(work, "Presentation", "All work presentations", "", "None");
+// const graphs = createStep("Generate Financial Graphs", "2023-12-10", "TODO");
+// const typos = createStep("Check report draft for typos", "2023-12-10", "TODO");
+// addStep(presentations, graphs);
+// addStep(presentations, typos);
+// addTask(work, presentations);
 
 // School project/tasks/steps
 const school = createProject("School", "All things school related!");
-const homework = createTask("Presentation", "All work presentations", "", "High", "TODO");
-addTask(school, homework);
+createTask(school, "Presentation", "All work presentations", "", "High");
+// addTask(school, homework);
 
 projects.push(work);
 projects.push(school);

@@ -1,8 +1,15 @@
 /* Creates a single instance of a project object */
 export default function projectFactory(title, description, projectID) {
-    const taskCount = 0;
+    let taskCount = 0;
     const tasks = [];
     const completedTasks = [];
 
-    return { title, description, projectID, taskCount, tasks, completedTasks };
+    /* Returns task count and increments it */
+    function getNextTaskCount() {
+        const count = taskCount;
+        taskCount++;
+        return count;
+    }
+
+    return { title, description, projectID, taskCount, tasks, completedTasks, getNextTaskCount };
 }

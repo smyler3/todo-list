@@ -1,4 +1,4 @@
-import generateSteps from "./stepGenerator";
+import generateSteps from "./stepsGenerator";
 import generateActionButtons from "./actionButtons";
 
 /* Create a list of tasks for a project */
@@ -45,21 +45,21 @@ export default function generateTasks(tasks) {
             const projectListItemInfo = document.createElement("span");
             projectListItemInfo.classList.add("project-list-item-info");
 
-            // Completion Checkbox
+            // Completion checkbox
             const completedCheckbox = document.createElement("input");
             completedCheckbox.classList.add("task-checkbox");
             completedCheckbox.type = "checkbox";
             completedCheckbox.name = "";
             completedCheckbox.id = "";
 
-            // Append Elements
+            // Append elements
             projectListItemInfo.appendChild(completedCheckbox);
             projectListItemInfo.appendChild(generateTaskDetails(task));
 
             return projectListItemInfo;
         }
 
-        // Task Buttons to be created
+        // Task buttons to be created
         const taskButtons = [
             {src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step"},
             {src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Task"},
@@ -67,11 +67,14 @@ export default function generateTasks(tasks) {
             {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
         ]
 
-        // Task Information
+        // Task information
         const taskItem = document.createElement("div");
         taskItem.classList.add("project-list-item");
+        // Link to task
+        taskItem.setAttribute("data-project-id", task.projectID);
+        taskItem.setAttribute("data-task-id", task.taskID);
 
-        // Append Task Information Elements
+        // Append task information elements
         taskItem.appendChild(generateTaskHeader(task));
         taskItem.appendChild(generateActionButtons(taskButtons));
 
