@@ -40,3 +40,4 @@ display.renderSidebarProjects(projects);
 // display.renderForm(display.renderDeleteForm, document.querySelector(".content-body"));
 // display.renderForm(display.renderColourPickerForm, document.querySelector(".content-body"));
 // display.renderProjectPage(projects[1]);
+display.renderAllProjectsPage(projects);

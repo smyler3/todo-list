@@ -1,5 +1,6 @@
 import { renderSidebarProjects, addSidebarProject } from "../sidebar";
-import renderProjectPage from "../projectPage/projectPage";
+import renderProjectPage from "../pages/projectPage/projectPage";
+import renderAllProjectsPage from "../pages/allProjectsPage/allProjectsPage";
 import { renderForm, renderCreateProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm } from "../forms/formGenerator";
 
 export { 
@@ -7,6 +8,7 @@ export {
     renderSidebarProjects, 
     addSidebarProject, 
     renderProjectPage, 
+    renderAllProjectsPage,
     renderCreateProjectForm, 
     renderCreateTaskForm, 
     renderCreateStepForm, 
