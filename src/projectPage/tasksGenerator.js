@@ -1,7 +1,8 @@
 import generateSteps from "./stepGenerator";
+import generateActionButtons from "./actionButtons";
 
 /* Create a list of tasks for a project */
-export default function generateTasks(tasks, generateActionButtons) {
+export default function generateTasks(tasks) {
     /* Create a task item */
     function generateTask(task) {
         /* Create the checkbox and details of the task */
@@ -88,7 +89,7 @@ export default function generateTasks(tasks, generateActionButtons) {
         // Create task
         projectTaskItem.appendChild(generateTask(task));
         // Create steps
-        projectTaskItem.appendChild(generateSteps(task.steps, generateActionButtons));
+        projectTaskItem.appendChild(generateSteps(task.steps));
 
         taskList.appendChild(projectTaskItem);
     })

@@ -1,5 +1,7 @@
+import generateActionButtons from "./actionButtons";
+
 /* Create a list of steps for a task */
-export default function generateSteps(steps, generateActionButtons) {
+export default function generateSteps(steps) {
     /* Create a step item */
     function generateStep(step) {
         // Step Buttons to be created

@@ -1,4 +1,5 @@
 import generateTasks from "./tasksGenerator";
+import generateActionButtons from "./actionButtons";
 
 /* Create the page showing all info for a selected project */
 export default function renderProjectPage(project) {
@@ -66,7 +67,17 @@ export default function renderProjectPage(project) {
         const taskListContainer = document.createElement("div");
         taskListContainer.classList.add("task-list-container");
 
-        taskListContainer.appendChild(generateTasks(project.tasks, generateActionButtons));
+        const todoSectionDivider = document.createElement("h2");
+        todoSectionDivider.textContent = "Tasks"
+        todoSectionDivider.classList.add("section-divider");
+
+        taskListContainer.appendChild(generateTasks(project.tasks));
+
+        const completedSectionDivider = document.createElement("h2");
+        todoSectionDivider.textContent = "Completed Tasks"
+        todoSectionDivider.classList.add("section-divider");
+
+        taskListContainer.appendChild(generateTasks(project.completedTasks));
 
         return taskListContainer;
     }
@@ -78,30 +89,4 @@ export default function renderProjectPage(project) {
     // Appending Body
     const body = document.querySelector(".content-body");
     body.appendChild(generateProjectPageContent(project));
-}
-
-/* Creates the action buttons for a organizer */
-function generateActionButtons(buttons) {
-    const actionBtns = document.createElement("span");
-    actionBtns.classList.add("action-btns");
-
-    // Project Buttons
-    buttons.forEach(btn => {
-        // Button Container
-        const actionButtonContainer = document.createElement("span");
-        actionButtonContainer.classList.add("icon", "action-btn");
-
-        // Button
-        const actionBtn = document.createElement("img");
-        actionBtn.src = btn.src;
-        actionBtn.alt = btn.alt;
-        actionBtn.title = btn.title;
-
-        // Append Elements
-        actionButtonContainer.appendChild(actionBtn);
-
-        actionBtns.appendChild(actionButtonContainer);
-    })
-
-    return actionBtns;
 }
