@@ -2,7 +2,7 @@ import "./style.css";
 import { createDefaultProject, createProject, addTask } from "./handlers/organizers/project";
 import { createTask, addStep } from "./handlers/organizers/task";
 import { createStep } from "./handlers/organizers/step";
-import * as display from "./handlers/display";
+import * as display from "./pages/display";
 
 const projects = []
 projects.push(createDefaultProject());

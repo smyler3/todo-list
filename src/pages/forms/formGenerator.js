@@ -1,6 +1,6 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator"
-import { Organizers } from "../handlers/enums/organizer";
+import { Organizers } from "../../handlers/enums/organizer";
 
 /* Handles form creation and display */
 function renderForm(formFunction, parent) {

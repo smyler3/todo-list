@@ -1,4 +1,4 @@
-import projectFactory from "../../factories/projectFactory";
+import projectFactory from "./factories/projectFactory";
 import { Priority } from "../enums/priority";
 import { Status } from "../enums/status";
 

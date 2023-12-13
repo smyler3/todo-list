@@ -1,4 +1,4 @@
-import stepFactory from "../../factories/stepFactory";
+import stepFactory from "./factories/stepFactory";
 import { Status } from "../enums/status";
 
 /* Create a new step */

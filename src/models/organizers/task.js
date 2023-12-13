@@ -1,4 +1,4 @@
-import taskFactory from "../../factories/taskFactory";
+import taskFactory from "./factories/taskFactory";
 import { Status } from "../enums/status";
 
 /* Create a new task */
