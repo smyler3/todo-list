@@ -33,7 +33,7 @@ projects.push(work);
 projects.push(school);
 
 console.log(projects);
-display.renderSidebarProjects(projects);
+display.renderSidebar(projects);
 // display.renderForm(display.renderCreateProjectForm, document.querySelector(".content-body"));
 // display.renderForm(display.renderCreateTaskForm, document.querySelector(".content-body"));
 // display.renderForm(display.renderCreateStepForm, document.querySelector(".content-body"));
