@@ -1,7 +1,7 @@
 /* Status ENUM */
 const Status = {
-    DONE: "Done",
-    DOING: "Doing",
+    COMPLETED: "Completed",
+    INCOMPLETE: "Incomplete",
     TODO: "To Do",
 }
 

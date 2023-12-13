@@ -36,16 +36,11 @@ export default function generateSteps(steps) {
         const stepTitle = document.createElement("h4");
         stepTitle.textContent = step.title;
 
-        // Date
-        const stepDate = document.createElement("p");
-        stepDate.textContent = step.dueDate || "No Due Date";
-
         // Action Buttons for Steps
         const stepActionButtons = generateActionButtons(stepButtons);
 
         // Append Elements
         stepDetails.appendChild(stepTitle);
-        stepDetails.appendChild(stepDate);
 
         stepInfo.appendChild(stepDetails);
 
