@@ -330,6 +330,32 @@ input[type="checkbox"]:checked {
 
 /*
  * ----------------------
+ * Today Content Styling
+ * ----------------------
+ */
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    margin-left: -2rem;
+} 
+.section-divider::before {
+    flex-grow: 1;
+    content: "";
+    height: 1px;
+    margin: 0 1rem 0 2rem;
+    background-color: #000000;
+}
+.section-divider::after {
+    flex-grow: 100;
+    content: "";
+    height: 1px;
+    margin: 0 2rem 0 1rem;
+    background-color: #000000;
+}
+
+/*
+ * ----------------------
  * Project Content Styling
  * ----------------------
  */

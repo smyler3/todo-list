@@ -67,16 +67,22 @@ export default function renderProjectPage(project) {
         const taskListContainer = document.createElement("div");
         taskListContainer.classList.add("task-list-container");
 
+        // Incomplete tasks section header
         const todoSectionDivider = document.createElement("h2");
         todoSectionDivider.textContent = "Tasks"
         todoSectionDivider.classList.add("section-divider");
 
+        // Generate incomplete tasks
+        taskListContainer.appendChild(todoSectionDivider);
         taskListContainer.appendChild(generateTasks(project.tasks));
 
+        // Completed tasks section header
         const completedSectionDivider = document.createElement("h2");
-        todoSectionDivider.textContent = "Completed Tasks"
-        todoSectionDivider.classList.add("section-divider");
+        completedSectionDivider.textContent = "Completed"
+        completedSectionDivider.classList.add("section-divider");
 
+        // Generate completed tasks
+        taskListContainer.appendChild(completedSectionDivider);
         taskListContainer.appendChild(generateTasks(project.completedTasks));
 
         return taskListContainer;
