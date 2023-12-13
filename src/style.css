@@ -153,6 +153,19 @@ input[type="checkbox"]:checked {
 
 /*
  * ----------------------
+ * All Projects Header Styling
+ * ----------------------
+ */
+.all-projects-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 100%;
+}
+
+/*
+ * ----------------------
  * Project Header Styling
  * ----------------------
  */
@@ -160,8 +173,7 @@ input[type="checkbox"]:checked {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 3rem 0 3rem;
-    text-align: center;
+    padding: 0 3rem;
     height: 100%;
 }
 
@@ -326,6 +338,38 @@ input[type="checkbox"]:checked {
 .content-body {
     grid-area: 2 / 2 / -2 / -1;
     background-color: rgb(226, 232, 240);
+}
+
+/*
+ * ----------------------
+ * All Projects Styling
+ * ----------------------
+ */
+.project-card-grid {
+    display: grid;
+    grid-auto-rows: 200px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+} 
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    height: 200px;
+    width: auto;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px #00000025;
+}
+
+.project-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 /*
