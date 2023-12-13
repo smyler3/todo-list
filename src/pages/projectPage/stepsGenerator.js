@@ -6,14 +6,16 @@ export default function generateSteps(steps) {
     function generateStep(step) {
         // Step Buttons to be created
         const stepButtons = [
-            {src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step"},
-            {src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Task"},
             {src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task"},
             {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
         ]
 
         const stepItem = document.createElement("li");
         stepItem.classList.add("project-list-item");
+        // Link to task
+        stepItem.setAttribute("data-project-id", step.projectID);
+        stepItem.setAttribute("data-task-id", step.taskID);
+        stepItem.setAttribute("data-step-id", step.stepID);
 
         // Step Information
         const stepInfo = document.createElement("span");

@@ -8,8 +8,9 @@ export default function projectFactory(title, description, projectID) {
     function getNextTaskCount() {
         const count = taskCount;
         taskCount++;
+        
         return count;
     }
 
-    return { title, description, projectID, taskCount, tasks, completedTasks, getNextTaskCount };
+    return { title, description, projectID, tasks, completedTasks, getNextTaskCount };
 }

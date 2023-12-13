@@ -5,7 +5,15 @@ export default function taskFactory(title, description, dueDate, priority, proje
     let stepCount = 0;
     const steps = [];
     const completedSteps = [];
-    let status = Status.INCOMPLETE;
+    let status = Status.TODO;
 
-    return { title, description, dueDate, priority, status, stepCount, steps, completedSteps, projectID, taskID };
+    /* Returns step count and increments it */
+    function getNextStepCount() {
+        const count = stepCount;
+        stepCount++;
+
+        return count;
+    }
+
+    return { title, description, dueDate, priority, status, steps, completedSteps, projectID, taskID, getNextStepCount };
 }

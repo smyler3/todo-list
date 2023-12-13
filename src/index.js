@@ -11,22 +11,19 @@ projects.push(createDefaultProject());
 const work = createProject("Work Meetings", "All things work meeting related!");
 
 createTask(work, "Monday Meetings", "All monday work meetings", "", "Med");
-// const mornMeeting = createStep("Morning Meeting", "2023-12-10", "TODO");
-// const arvoMeeting = createStep("Afternoon Meeting", "2023-12-10", "TODO");
-// addStep(meetings, "Morning");
-// addStep(meetings, arvoMeeting);
+createStep(work.tasks[0], "Morning Meeting");
+createStep(work.tasks[0], "Afternoon Meeting");
 
 createTask(work, "Presentation", "All work presentations", "", "None");
-// const graphs = createStep("Generate Financial Graphs", "2023-12-10", "TODO");
-// const typos = createStep("Check report draft for typos", "2023-12-10", "TODO");
-// addStep(presentations, graphs);
-// addStep(presentations, typos);
-// addTask(work, presentations);
+createStep(work.tasks[1], "Generate Financial Graphs");
+createStep(work.tasks[1], "Check report draft for typos");
 
 // School project/tasks/steps
 const school = createProject("School", "All things school related!");
-createTask(school, "Presentation", "All work presentations", "", "High");
-// addTask(school, homework);
+
+createTask(school, "Presentations", "All work presentations", "", "High");
+console.log("o", school, school.tasks[0]);
+createStep(school.tasks[0], "Homework");
 
 projects.push(work);
 projects.push(school);
@@ -38,7 +35,7 @@ display.renderSidebar(projects);
 // display.renderForm(display.renderCreateStepForm, document.querySelector(".content-body"));
 // display.renderForm(display.renderDeleteForm, document.querySelector(".content-body"));
 // display.renderForm(display.renderColourPickerForm, document.querySelector(".content-body"));
-display.renderProjectPage(projects[1]);
+display.renderProjectPage(projects[2]);
 // display.renderAllProjectsPage(projects);
 
 projects.forEach(project => {

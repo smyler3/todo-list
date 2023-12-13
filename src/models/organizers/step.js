@@ -1,23 +1,25 @@
 import stepFactory from "./factories/stepFactory";
 import { Status } from "../enums/status";
+import { addStep } from "./task";
 
-/* Create a new step */
-function createStep(name, dueDate, status) {
-    return stepFactory(name, dueDate, status);
+/* Create a new step and adds to a task */
+function createStep(task, name) {
+    const projectID = task.projectID;
+    const taskID = task.taskID;
+    const stepID = task.getNextStepCount();
+    const newStep = stepFactory(name, projectID, taskID, stepID);
+
+    addStep(task, newStep);
 }
 
 /* Edit an existing step */
-function editStep(step, name, dueDate, status) {
+function editStep(step, name) {
     setName(step, name);
-    setDueDate(step, dueDate);
-    setStatus(step, status);
 }
 
 /* Delete an exisiting step */
 function deleteStep(step) {
     delete step.name;
-    delete step.dueDate;
-    delete step.status;
 }
 
 /* Set a step to incomplete status */
@@ -29,14 +31,6 @@ function setIncomplete() {
 
 function setName(step, name) {
     step.name = name;
-}
-
-function setDueDate(step, dueDate) {
-    step.dueDate = dueDate;
-}
-
-function setStatus(step, status) {
-    step.status = status;
 }
 
 export { createStep, editStep, deleteStep, setIncomplete }
