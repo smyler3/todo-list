@@ -60,6 +60,8 @@ export default function renderAllProjectsPage(projects) {
         projects.forEach(project => {
             const projectCard = document.createElement("span");
             projectCard.classList.add("project-card");
+            // Link to project
+            projectCard.setAttribute("data-project-id", project.projectID);
 
             // Appending elements
             projectCard.appendChild(generateCardDetails(project));

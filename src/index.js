@@ -1,14 +1,14 @@
 import "./style.css";
-import { createDefaultProject, createProject, addTask } from "./handlers/organizers/project";
-import { createTask, addStep } from "./handlers/organizers/task";
-import { createStep } from "./handlers/organizers/step";
+import { createDefaultProject, createProject, addTask } from "./models/organizers/project";
+import { createTask, addStep } from "./models/organizers/task";
+import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
 
 const projects = []
 projects.push(createDefaultProject());
 
 // Work project/tasks/steps
-const work = createProject("Work Meetings", "All things work meeting related!", "", "High", "TODO");
+const work = createProject("Work Meetings", "All things work meeting related!");
 
 const meetings = createTask("Monday Meetings", "All monday work meetings", "", "Med", "TODO");
 const mornMeeting = createStep("Morning Meeting", "2023-12-10", "TODO");
@@ -25,7 +25,7 @@ addStep(presentations, typos);
 addTask(work, presentations);
 
 // School project/tasks/steps
-const school = createProject("School", "All things school related!", "2021-11-7", "Low", "TODO");
+const school = createProject("School", "All things school related!");
 const homework = createTask("Presentation", "All work presentations", "", "High", "TODO");
 addTask(school, homework);
 
@@ -39,5 +39,9 @@ display.renderSidebar(projects);
 // display.renderForm(display.renderCreateStepForm, document.querySelector(".content-body"));
 // display.renderForm(display.renderDeleteForm, document.querySelector(".content-body"));
 // display.renderForm(display.renderColourPickerForm, document.querySelector(".content-body"));
-// display.renderProjectPage(projects[1]);
-display.renderAllProjectsPage(projects);
+display.renderProjectPage(projects[1]);
+// display.renderAllProjectsPage(projects);
+
+projects.forEach(project => {
+    console.log(project);
+})

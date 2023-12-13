@@ -37,6 +37,8 @@ export default function renderProjectPage(project) {
 
         const projectHeader = document.createElement("div");
         projectHeader.classList.add("project-header-container");
+        // Link to project
+        projectHeader.setAttribute("data-project-id", project.projectID);
 
         // Append Elements
         projectHeader.appendChild(generateProjectDetails(project));

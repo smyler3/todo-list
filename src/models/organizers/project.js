@@ -1,26 +1,24 @@
 import projectFactory from "./factories/projectFactory";
-import { Priority } from "../enums/priority";
-import { Status } from "../enums/status";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
+    const projectID = getNextProjectCount();
+
     return projectFactory(
         "Miscellaneous", 
         "A collection of tasks, that weren't assigned a project",
-        "",
-        Priority.NONE,
-        Status.TODO,
+        projectID,
     )
 }
 
 /* Create a new project */
-function createProject(name, description, dueDate, priority, status) {
+function createProject(title, description) {
+    const projectID = getNextProjectCount();
+
     return projectFactory(
-        name,
+        title,
         description,
-        dueDate,
-        priority,
-        status,
+        projectID,
     )
 }
 
@@ -30,41 +28,40 @@ function addTask(project, task) {
 }
 
 /* Edit an exisiting project */
-function editProject(project, name, description, dueDate, priority, status) {
-    setName(project, name);
+function editProject(project, title, description) {
+    setName(project, title);
     setDescription(project, description);
-    setDueDate(project, dueDate);
-    setPriority(project, priority);
-    setStatus(project, status);
 }
 
 /* Delete an existing project */
 function deleteProject(project) {
-    delete project.name;
+    delete project.title;
     delete project.description;
-    delete project.dueDate;
-    delete project.priority;
-    delete project.status;
 }
 
-function setName(project, name) {
-    project.name = name;
+/* Returns project count and increments it */
+function getNextProjectCount() {
+    const count = projectCount;
+    incrementProjectCount();
+    return count;
+}
+
+function setName(project, title) {
+    project.title = title;
 }
 
 function setDescription(project, description) {
     project.description = description;
 }
 
-function setDueDate(project, dueDate) {
-    project.dueDate = dueDate;
+function getProjectCount() {
+    return projectCount;
 }
 
-function setPriority(project, priority) {
-    project.priority = priority;
+function incrementProjectCount() {
+    projectCount++;
 }
 
-function setStatus(project, status) {
-    project.status = status;
-}
+let projectCount = 0;
 
 export { createDefaultProject, createProject, addTask, editProject, deleteProject }

@@ -621,7 +621,7 @@ todo-list
 │  │  ├─ formGenerator.js
 │  │  ├─ radioFieldGenerator.js
 │  │  └─ textFieldGenerator.js
-│  ├─ handlers
+│  ├─ models
 │  │  ├─ display.js
 │  │  ├─ enums
 │  │  │  ├─ colours.js

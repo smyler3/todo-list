@@ -1,5 +1,5 @@
-import { Priority, DefaultPriority } from "../../handlers/enums/priority";
-import { Colours, DefaultColour } from "../../handlers/enums/colours";
+import { Priority, DefaultPriority } from "../../models/enums/priority";
+import { Colours, DefaultColour } from "../../models/enums/colours";
 
 function generateRadioButtons(radioFunction, organizerType) {
     const fieldContainer = document.createElement("div");
