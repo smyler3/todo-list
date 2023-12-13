@@ -1,7 +1,8 @@
 import generateActionButtons from "../projectPage/actionButtons";
 
-/* */
+/* Create the page showing all of the current projects */
 export default function renderAllProjectsPage(projects) {
+    /* Create the content for the header section */
     function generateHeader() {
         const headerContainer = document.createElement("div");
         headerContainer.classList.add("all-projects-header-container");
@@ -13,6 +14,7 @@ export default function renderAllProjectsPage(projects) {
         // Project button
         const createNewProjectButton = document.createElement("button");
         createNewProjectButton.textContent = "Create New Project";
+        createNewProjectButton.classList.add("create-project-header-btn");
 
         // Appending elements
         headerContainer.appendChild(heading);
@@ -21,8 +23,9 @@ export default function renderAllProjectsPage(projects) {
         return headerContainer;
     }
 
+    /* Create the content for the body section */
     function generateContent(projects) {
-        /* */
+        /* Create the details section of the card */
         function generateCardDetails(project) {
             // Create project card details
             const projectCardDetails = document.createElement("div");

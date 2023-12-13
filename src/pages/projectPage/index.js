@@ -4,7 +4,7 @@ import generateActionButtons from "./actionButtons";
 /* Create the page showing all info for a selected project */
 export default function renderProjectPage(project) {
     /* Create the header displaying project info and actions */
-    function generateProjectPageHeader(project) {
+    function generateHeader(project) {
         /* Display project details */
         function generateProjectDetails(project) {
             const projectHeaderInfo = document.createElement("span");
@@ -46,7 +46,7 @@ export default function renderProjectPage(project) {
     }
 
     /* Create the list of tasks and their steps */
-    function generateProjectPageContent(project) {
+    function generateContent(project) {
         const taskListContainer = document.createElement("div");
         taskListContainer.classList.add("task-list-container");
 
@@ -73,9 +73,9 @@ export default function renderProjectPage(project) {
 
     // Appending Header
     const header = document.querySelector(".header");
-    header.appendChild(generateProjectPageHeader(project));
+    header.appendChild(generateHeader(project));
 
     // Appending Body
     const body = document.querySelector(".content-body");
-    body.appendChild(generateProjectPageContent(project));
+    body.appendChild(generateContent(project));
 }
