@@ -1,13 +1,9 @@
 import taskFactory from "../../factories/taskFactory";
+import { Status } from "../enums/status";
 
 /* Create a new task */
 function createTask(name, description, dueDate, priority, status) {
     return taskFactory(name, description, dueDate, priority, status);
-}
-
-/* Add a step to a task */
-function addStep(task, step) {
-    task.steps.push(step);
 }
 
 /* Edit an existing task */
@@ -26,6 +22,20 @@ function deleteTask(task) {
     delete task.dueDate;
     delete task.priority;
     delete task.status;
+}
+
+/* Add a step to a task */
+function addStep(task, step) {
+    task.steps.push(step);
+}
+
+/* Complete a task and convert all steps to required status*/
+function completeTask(task) {
+    // Mark incomplete steps
+    task.setStatus(Status.COMPLETED);
+    task.steps.array.forEach(step => {
+        step.setIncomplete();
+    });
 }
 
 function setName(task, name) {
@@ -48,4 +58,4 @@ function setStatus(task, status) {
     task.status = status;
 }
 
-export { createTask, addStep, editTask, deleteTask }
+export { createTask, editTask, deleteTask, addStep, completeTask }

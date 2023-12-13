@@ -1,4 +1,5 @@
 import stepFactory from "../../factories/stepFactory";
+import { Status } from "../enums/status";
 
 /* Create a new step */
 function createStep(name, dueDate, status) {
@@ -19,6 +20,13 @@ function deleteStep(step) {
     delete step.status;
 }
 
+/* Set a step to incomplete status */
+function setIncomplete() {
+    if (this.status === Status.TODO) {
+        setStatus(Status.INCOMPLETE);
+    }
+}
+
 function setName(step, name) {
     step.name = name;
 }
@@ -31,4 +39,4 @@ function setStatus(step, status) {
     step.status = status;
 }
 
-export { createStep, editStep, deleteStep }
+export { createStep, editStep, deleteStep, setIncomplete }
