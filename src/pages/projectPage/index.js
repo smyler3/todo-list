@@ -12,12 +12,12 @@ export default function renderProjectPage(project) {
 
             // Title
             const projectTitle = document.createElement("h2");
-            projectTitle.textContent = project.title;
+            projectTitle.textContent = project.getTitle();
             projectTitle.classList.add("project-header-title");
 
             // Description
             const projectDescription = document.createElement("p");
-            projectDescription.textContent = project.description;
+            projectDescription.textContent = project.getDescription();
             projectDescription.classList.add("project-header-description");
 
             // Append Elements
@@ -38,7 +38,7 @@ export default function renderProjectPage(project) {
         const projectHeader = document.createElement("div");
         projectHeader.classList.add("project-header-container");
         // Link to project
-        projectHeader.setAttribute("data-project-id", project.projectID);
+        projectHeader.setAttribute("data-project-id", project.getProjectID());
 
         // Append Elements
         projectHeader.appendChild(generateProjectDetails(project));
@@ -59,7 +59,7 @@ export default function renderProjectPage(project) {
 
         // Generate incomplete tasks
         taskListContainer.appendChild(todoSectionDivider);
-        taskListContainer.appendChild(generateTasks(project.tasks));
+        taskListContainer.appendChild(generateTasks(project.getTasks()));
 
         // Completed tasks section header
         const completedSectionDivider = document.createElement("h2");
@@ -68,7 +68,7 @@ export default function renderProjectPage(project) {
 
         // Generate completed tasks
         taskListContainer.appendChild(completedSectionDivider);
-        taskListContainer.appendChild(generateTasks(project.completedTasks));
+        taskListContainer.appendChild(generateTasks(project.getCompletedTasks()));
 
         return taskListContainer;
     }

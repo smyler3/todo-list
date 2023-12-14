@@ -1,14 +1,13 @@
 import taskFactory from "./factories/taskFactory";
 import { Status } from "../enums/status";
-import { addTask } from "./project";
 
 /* Create a new task and adds to a project */
 function createTask(project, title, description, dueDate, priority) {
-    const projectID = project.projectID;
+    const projectID = project.getProjectID();
     const taskID = project.getNextTaskCount();
     const newTask = taskFactory(title, description, dueDate, priority, projectID, taskID);
 
-    addTask(project, newTask);
+    project.addTask(newTask);
 }
 
 /* Edit an existing task */
@@ -20,14 +19,14 @@ function editTask(task, title, description, dueDate, priority, status) {
     task.setStatus(task, status);
 }
 
-/* Delete an exisiting task */
-function deleteTask(task) {
-    delete task.title;
-    delete task.description;
-    delete task.dueDate;
-    delete task.priority;
-    delete task.status;
-}
+// /* Delete an exisiting task */
+// function deleteTask(task) {
+//     delete task.getTitle();
+//     delete task.getDescription();
+//     delete task.getDueDate();
+//     delete task.getPriority();
+//     delete task.getStatus();
+// }
 
 /* Complete a task and convert all steps to required status*/
 function completeTask(task) {
@@ -38,4 +37,4 @@ function completeTask(task) {
     });
 }
 
-export { createTask, editTask, deleteTask, completeTask }
+export { createTask, editTask, completeTask }

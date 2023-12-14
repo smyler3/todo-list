@@ -22,22 +22,17 @@ function createProject(title, description) {
     )
 }
 
-/* Add a task to a project */
-function addTask(project, task) {
-    project.tasks.push(task);
-}
-
 /* Edit an exisiting project */
 function editProject(project, title, description) {
-    setTitle(project, title);
-    setDescription(project, description);
+    project.setTitle(title);
+    project.setDescription(description);
 }
 
-/* Delete an existing project */
-function deleteProject(project) {
-    delete project.title;
-    delete project.description;
-}
+// /* Delete an existing project */
+// function deleteProject(project) {
+//     delete project.getTitle();
+//     delete project.getDescription();
+// }
 
 /* Returns project count and increments it */
 function getNextProjectCount() {
@@ -46,18 +41,6 @@ function getNextProjectCount() {
     return count;
 }
 
-function setTitle(project, title) {
-    project.title = title;
-}
-
-function setDescription(project, description) {
-    project.description = description;
-}
-
-function getProjectCount() {
-    return projectCount;
-}
-
 let projectCount = 0;
 
-export { createDefaultProject, createProject, addTask, editProject, deleteProject }
+export { createDefaultProject, createProject, editProject }

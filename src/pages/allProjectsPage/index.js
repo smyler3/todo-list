@@ -33,11 +33,11 @@ export default function renderAllProjectsPage(projects) {
 
             // Project name
             const projectName = document.createElement("h2");
-            projectName.textContent = project.title;
+            projectName.textContent = project.getTitle();
 
             // Project description
             const projectDescription = document.createElement("p");
-            projectDescription.textContent = project.description;
+            projectDescription.textContent = project.getDescription();
 
             // Appending elements
             projectCardDetails.appendChild(projectName);
@@ -61,7 +61,7 @@ export default function renderAllProjectsPage(projects) {
             const projectCard = document.createElement("span");
             projectCard.classList.add("project-card");
             // Link to project
-            projectCard.setAttribute("data-project-id", project.projectID);
+            projectCard.setAttribute("data-project-id", project.getProjectID());
 
             // Appending elements
             projectCard.appendChild(generateCardDetails(project));

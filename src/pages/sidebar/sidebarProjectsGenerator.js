@@ -40,7 +40,7 @@ function generateAllProjectIcon() {
 
 /* Create a project button on the sidebar */
 function generateProjectButton(project) {
-    return generateSidebarItem(project.title, generateProjectIcon);
+    return generateSidebarItem(project.getTitle(), generateProjectIcon);
 }
 
 /* Create an all projects button on the sidebar */

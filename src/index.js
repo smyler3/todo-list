@@ -1,6 +1,6 @@
 import "./style.css";
 import { createDefaultProject, createProject, addTask } from "./models/organizers/project";
-import { createTask, addStep } from "./models/organizers/task";
+import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
 
@@ -11,18 +11,18 @@ projects.push(createDefaultProject());
 const work = createProject("Work Meetings", "All things work meeting related!");
 
 createTask(work, "Monday Meetings", "All monday work meetings", "", "Med");
-// createStep(work.tasks[0], "Morning Meeting");
-// createStep(work.tasks[0], "Afternoon Meeting");
+createStep(work.getTasks()[0], "Morning Meeting");
+createStep(work.getTasks()[0], "Afternoon Meeting");
 
 createTask(work, "Presentation", "All work presentations", "", "None");
-// createStep(work.tasks[1], "Generate Financial Graphs");
-// createStep(work.tasks[1], "Check report draft for typos");
+createStep(work.getTasks()[1], "Generate Financial Graphs");
+createStep(work.getTasks()[1], "Check report draft for typos");
 
 // School project/tasks/steps
 const school = createProject("School", "All things school related!");
 
 createTask(school, "Presentations", "All work presentations", "", "High");
-console.log("o", school, school.tasks[0]);
+// console.log("o", school, school.tasks[0]);
 // createStep(school.tasks[0], "Homework");
 
 projects.push(work);

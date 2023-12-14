@@ -61,7 +61,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
 
     /* Add a step to the task */
     function addStep(step) {
-        this.steps.push(step);
+        steps.push(step);
     }
 
     /* Remove a step from the task */
@@ -74,7 +74,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
     }
 
     function getCompletedSteps() {
-        return completedStepsteps;
+        return completedSteps;
     }
 
     /* Add a completed step to the task */
@@ -99,10 +99,6 @@ export default function taskFactory(title, description, dueDate, priority, proje
         return taskID;
     }
 
-    function getStepID() {
-        return stepID;
-    }
-
     return { 
         getTitle, setTitle, 
         getDescription, setDescription, 
@@ -111,7 +107,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
         getStatus, setStatus, 
         getSteps, addStep, removeStep, 
         getCompletedSteps, addCompletedStep, removeCompletedStep, 
-        getProjectID, getTaskID, getStepID, 
+        getProjectID, getTaskID, 
         getNextStepCount 
     };
 }
