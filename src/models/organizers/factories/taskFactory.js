@@ -92,15 +92,15 @@ export default function taskFactory(title, description, dueDate, priority, proje
     }
 
     function getProjectID() {
-        return this.projectID;
+        return projectID;
     }
 
     function getTaskID() {
-        return this.taskID;
+        return taskID;
     }
 
     function getStepID() {
-        return this.stepID;
+        return stepID;
     }
 
     return { 
