@@ -2,14 +2,14 @@
 /* Create a sidebar menu item */
 function generateSidebarItem(title, iconFunction) {
     const sidebarItem = document.createElement("li");
-    sidebarItem.classList.add("sidebar-item", "sidebar-project-button");
+    sidebarItem.classList.add("sidebar-item");
 
     // Title
-    const projectTitle = document.createElement("p");
-    projectTitle.textContent = title;
+    const itemTitle = document.createElement("p");
+    itemTitle.textContent = title;
 
     sidebarItem.appendChild(iconFunction());
-    sidebarItem.appendChild(projectTitle);
+    sidebarItem.appendChild(itemTitle);
 
     return sidebarItem;
 }
@@ -40,12 +40,19 @@ function generateAllProjectIcon() {
 
 /* Create a project button on the sidebar */
 function generateProjectButton(project) {
-    return generateSidebarItem(project.getTitle(), generateProjectIcon);
+    const projectItem = generateSidebarItem(project.getTitle(), generateProjectIcon);
+    projectItem.classList.add("sidebar-project-button");
+    // Link to project
+    projectItem.setAttribute("data-project-id", project.getProjectID());
+
+    return projectItem;
 }
 
 /* Create an all projects button on the sidebar */
 function generateAllProjectsButton() {
-    return generateSidebarItem("All Projects", generateAllProjectIcon);
+    const allProjectsButton = generateSidebarItem("All Projects", generateAllProjectIcon);
+    allProjectsButton.classList.add("all-projects-button");
+    return allProjectsButton;
 }
 
 /* Display all projects on the sidebar */

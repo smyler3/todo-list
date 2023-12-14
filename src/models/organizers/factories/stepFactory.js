@@ -35,6 +35,6 @@ export default function stepFactory(title, projectID, taskID, stepID) {
     return { 
         getTitle, setTitle, 
         getStatus, setStatus, 
-        getProjectID, getTaskID, 
+        getProjectID, getTaskID, getStepID,
     }
 }

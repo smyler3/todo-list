@@ -3,6 +3,7 @@ import { createDefaultProject, createProject } from "./models/organizers/project
 import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
+import { createSidebarProjectListeners } from "./modules/eventListeners";
 
 const projects = []
 projects.push(createDefaultProject());
@@ -36,6 +37,7 @@ display.renderSidebar(projects);
 // display.renderForm(display.renderColourPickerForm, document.querySelector(".content-body"));
 display.renderProjectPage(projects[1]);
 // display.renderAllProjectsPage(projects);
+createSidebarProjectListeners(projects);
 
 projects.forEach(project => {
     console.log(project);
