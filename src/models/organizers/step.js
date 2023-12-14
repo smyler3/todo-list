@@ -1,15 +1,14 @@
 import stepFactory from "./factories/stepFactory";
 import { Status } from "../enums/status";
-import { addStep } from "./task";
 
 /* Create a new step and adds to a task */
 function createStep(task, name) {
-    const projectID = task.projectID;
-    const taskID = task.taskID;
+    const projectID = task.getProjectID();
+    const taskID = task.getTaskID();
     const stepID = task.getNextStepCount();
     const newStep = stepFactory(name, projectID, taskID, stepID);
 
-    addStep(task, newStep);
+    task.addStep(newStep);
 }
 
 /* Edit an existing step */

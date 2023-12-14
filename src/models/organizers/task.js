@@ -13,11 +13,11 @@ function createTask(project, title, description, dueDate, priority) {
 
 /* Edit an existing task */
 function editTask(task, title, description, dueDate, priority, status) {
-    setTitle(task, title);
-    setDescription(task, description);
-    setDueDate(task, dueDate);
-    setPriority(task, priority);
-    setStatus(task, status);
+    task.setTitle(title);
+    task.setDescription(task, description);
+    task.setDueDate(task, dueDate);
+    task.setPriority(task, priority);
+    task.setStatus(task, status);
 }
 
 /* Delete an exisiting task */
@@ -29,38 +29,13 @@ function deleteTask(task) {
     delete task.status;
 }
 
-/* Add a step to a task */
-function addStep(task, step) {
-    task.steps.push(step);
-}
-
 /* Complete a task and convert all steps to required status*/
 function completeTask(task) {
     // Mark incomplete steps
     task.setStatus(Status.COMPLETED);
-    task.steps.array.forEach(step => {
+    task.getSteps().array.forEach(step => {
         step.setIncomplete();
     });
 }
 
-function setTitle(task, title) {
-    task.title = title;
-}
-
-function setDescription(task, description) {
-    task.description = description;
-}
-
-function setDueDate(task, dueDate) {
-    task.dueDate = dueDate;
-}
-
-function setPriority(task, priority) {
-    task.priority = priority;
-}
-
-function setStatus(task, status) {
-    task.status = status;
-}
-
-export { createTask, editTask, deleteTask, addStep, completeTask }
+export { createTask, editTask, deleteTask, completeTask }

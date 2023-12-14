@@ -1,5 +1,4 @@
 import projectFactory from "./factories/projectFactory";
-import { createTask } from "./task";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {

@@ -11,19 +11,19 @@ projects.push(createDefaultProject());
 const work = createProject("Work Meetings", "All things work meeting related!");
 
 createTask(work, "Monday Meetings", "All monday work meetings", "", "Med");
-createStep(work.tasks[0], "Morning Meeting");
-createStep(work.tasks[0], "Afternoon Meeting");
+// createStep(work.tasks[0], "Morning Meeting");
+// createStep(work.tasks[0], "Afternoon Meeting");
 
 createTask(work, "Presentation", "All work presentations", "", "None");
-createStep(work.tasks[1], "Generate Financial Graphs");
-createStep(work.tasks[1], "Check report draft for typos");
+// createStep(work.tasks[1], "Generate Financial Graphs");
+// createStep(work.tasks[1], "Check report draft for typos");
 
 // School project/tasks/steps
 const school = createProject("School", "All things school related!");
 
 createTask(school, "Presentations", "All work presentations", "", "High");
 console.log("o", school, school.tasks[0]);
-createStep(school.tasks[0], "Homework");
+// createStep(school.tasks[0], "Homework");
 
 projects.push(work);
 projects.push(school);
