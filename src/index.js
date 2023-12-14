@@ -1,5 +1,5 @@
 import "./style.css";
-import { createDefaultProject, createProject, addTask } from "./models/organizers/project";
+import { createDefaultProject, createProject } from "./models/organizers/project";
 import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
@@ -22,8 +22,7 @@ createStep(work.getTasks()[1], "Check report draft for typos");
 const school = createProject("School", "All things school related!");
 
 createTask(school, "Presentations", "All work presentations", "", "High");
-// console.log("o", school, school.tasks[0]);
-// createStep(school.tasks[0], "Homework");
+createStep(school.getTasks()[0], "Homework");
 
 projects.push(work);
 projects.push(school);

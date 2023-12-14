@@ -13,9 +13,9 @@ export default function generateSteps(steps) {
         const stepItem = document.createElement("li");
         stepItem.classList.add("project-list-item");
         // Link to task
-        stepItem.setAttribute("data-project-id", step.projectID);
-        stepItem.setAttribute("data-task-id", step.taskID);
-        stepItem.setAttribute("data-step-id", step.stepID);
+        stepItem.setAttribute("data-project-id", step.getProjectID());
+        stepItem.setAttribute("data-task-id", step.getTaskID());
+        stepItem.setAttribute("data-step-id", step.getStepID());
 
         // Step Information
         const stepInfo = document.createElement("span");
@@ -36,7 +36,7 @@ export default function generateSteps(steps) {
 
         // Title
         const stepTitle = document.createElement("h4");
-        stepTitle.textContent = step.title;
+        stepTitle.textContent = step.getTitle();
 
         // Action Buttons for Steps
         const stepActionButtons = generateActionButtons(stepButtons);

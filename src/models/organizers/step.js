@@ -13,13 +13,13 @@ function createStep(task, name) {
 
 /* Edit an existing step */
 function editStep(step, name) {
-    setName(step, name);
+    step.setName(name);
 }
 
-/* Delete an exisiting step */
-function deleteStep(step) {
-    delete step.name;
-}
+// /* Delete an exisiting step */
+// function deleteStep(step) {
+//     delete step.name;
+// }
 
 /* Set a step to incomplete status */
 function setIncomplete() {
@@ -28,8 +28,4 @@ function setIncomplete() {
     }
 }
 
-function setName(step, name) {
-    step.name = name;
-}
-
-export { createStep, editStep, deleteStep, setIncomplete }
+export { createStep, editStep, setIncomplete }
