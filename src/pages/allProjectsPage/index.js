@@ -1,4 +1,5 @@
 import generateActionButtons from "../projectPage/actionButtons";
+import { createAllProjectsListeners } from "../../modules/eventListeners/index.js";
 
 /* Create the page showing all of the current projects */
 export default function renderAllProjectsPage(projects) {
@@ -79,4 +80,7 @@ export default function renderAllProjectsPage(projects) {
     // Appending Body
     const body = document.querySelector(".content-body");
     body.appendChild(generateContent(projects));
+
+    // Add event listeners
+    createAllProjectsListeners(projects);
 }

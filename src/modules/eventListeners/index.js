@@ -1,5 +1,7 @@
-import { createSidebarProjectListeners } from "./sidebarListeners";
+import createSidebarListeners from "./sidebarListeners";
+import createAllProjectsListeners from "./allProjectsListeners";
 
 export {
-    createSidebarProjectListeners,
+    createSidebarListeners,
+    createAllProjectsListeners,
 }
