@@ -75,7 +75,6 @@ function renderCreateTaskForm(parent) {
 
     // Appending elements
     generateTextFields(taskTextFormFields, form);
-    console.log(Organizers.TASK);
     form.appendChild(radioFieldGenerator.generateRadioButtons(() => radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK)));
     addFormButtons(Organizers.TASK, "Create", form);
 

@@ -1,5 +1,6 @@
 import generateTasks from "./tasksGenerator";
-import generateActionButtons from "./actionButtons";
+import generateActionButtons from "../utility/actionButtons";
+import { Actions } from "../../models/enums/actionButtons";
 
 /* Create the page showing all info for a selected project */
 export default function renderProjectPage(project) {
@@ -29,10 +30,10 @@ export default function renderProjectPage(project) {
 
         // Project Buttons to be created
         const projectButtons = [
-            {src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task"},
-            {src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
-            {src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
-            {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
+            {className: Actions.CREATE, src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task"},
+            {className: Actions.COLOUR, src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
+            {className: Actions.EDIT, src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
+            {className: Actions.DELETE, src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
         ]
 
         const projectHeader = document.createElement("div");

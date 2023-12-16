@@ -28,7 +28,6 @@ createStep(school.getTasks()[0], "Homework");
 projects.push(work);
 projects.push(school);
 
-console.log(projects);
 display.renderSidebar(projects);
 // display.renderForm(display.renderCreateProjectForm, document.querySelector(".content-body"));
 // display.renderForm(display.renderCreateTaskForm, document.querySelector(".content-body"));
@@ -38,7 +37,3 @@ display.renderSidebar(projects);
 display.renderProjectPage(projects[1]);
 // display.renderAllProjectsPage(projects);
 createSidebarListeners(projects);
-
-projects.forEach(project => {
-    console.log(project);
-})

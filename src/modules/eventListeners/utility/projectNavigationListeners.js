@@ -1,4 +1,5 @@
-import { renderProjectPage, clearPage } from "../../pages/display.js";
+import { renderProjectPage, clearPage, renderDeleteForm } from "../../../pages/display.js";
+import { Actions } from "../../../models/enums/actionButtons.js";
 
 /* Make a group of project navigation DOM elements link to their project page */
 function createProjectPageNavigationListeners(projects, className) {
@@ -15,6 +16,10 @@ function createProjectPageNavigationListeners(projects, className) {
             }
         })
     })
+}
+
+function createActionButtonListeners() {
+
 }
 
 export { createProjectPageNavigationListeners }

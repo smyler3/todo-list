@@ -1,5 +1,6 @@
-import generateActionButtons from "../projectPage/actionButtons";
+import generateActionButtons from "../utility/actionButtons.js";
 import { createAllProjectsListeners } from "../../modules/eventListeners/index.js";
+import { Actions } from "../../models/enums/actionButtons.js";
 
 /* Create the page showing all of the current projects */
 export default function renderAllProjectsPage(projects) {
@@ -49,9 +50,9 @@ export default function renderAllProjectsPage(projects) {
 
         // Project Buttons to be created
         const projectCardButtons = [
-            {src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
-            {src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
-            {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
+            {className: Actions.COLOUR, src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
+            {className: Actions.EDIT, src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
+            {className: Actions.DELETE, src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
         ]
 
         const projectCardGrid = document.createElement("div");

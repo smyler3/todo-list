@@ -1,5 +1,6 @@
 import generateSteps from "./stepsGenerator";
-import generateActionButtons from "./actionButtons";
+import generateActionButtons from "../utility/actionButtons";
+import { Actions } from "../../models/enums/actionButtons";
 
 /* Create a list of tasks for a project */
 export default function generateTasks(tasks) {
@@ -61,9 +62,9 @@ export default function generateTasks(tasks) {
 
         // Task buttons to be created
         const taskButtons = [
-            {src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step"},
-            {src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task"},
-            {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
+            {className: Actions.CREATE, src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step"},
+            {className: Actions.EDIT, src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task"},
+            {className: Actions.DELETE, src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
         ]
 
         // Task information

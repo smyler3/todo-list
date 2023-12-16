@@ -8,6 +8,7 @@ export default function generateActionButtons(buttons) {
         // Button Container
         const actionButtonContainer = document.createElement("span");
         actionButtonContainer.classList.add("icon", "action-btn");
+        actionButtonContainer.classList.add(btn.className);
 
         // Button
         const actionBtn = document.createElement("img");
