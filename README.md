@@ -1,9 +1,5 @@
 Notes:
 -
-Will need a file to handle display logic and code logic
-e.g. When rendering a form, the submit button listeners need to be created 
-
--
 The action buttons can have duplicate code removed into another function
 
 -
@@ -24,6 +20,12 @@ Add DOM manipulation post-project creation
 
 -
 Check all imports for missing ;
+
+-
+Add creation logic for tasks and steps
+
+-
+Font in textarea is weird
 ```
 todo-list
 ├─ .git

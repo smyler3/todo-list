@@ -64,7 +64,7 @@ export default function generateTasks(tasks) {
         // Task buttons to be created
         const taskButtons = [
             {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step", event: forms.renderCreateStepForm},
-            {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task", event: forms.renderCreateTaskForm},
+            {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task", event: () => {forms.renderCreateTaskForm(project)}},
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: forms.renderDeleteForm},
         ]
 

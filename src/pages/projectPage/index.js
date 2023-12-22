@@ -31,7 +31,7 @@ export default function renderProjectPage(project) {
 
         // Project Buttons to be created
         const projectButtons = [
-            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task", event: forms.renderCreateTaskForm},
+            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task", event: () => {forms.renderCreateTaskForm(project)}},
             {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project", event: forms.renderColourPickerForm},
             {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project", event: forms.renderCreateProjectForm},
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project", event: forms.renderDeleteForm},

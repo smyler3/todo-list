@@ -20,7 +20,6 @@ export default function generateActionButtons(buttons) {
 
         // Button action
         actionBtn.addEventListener("click", (e) => {
-            console
             btn.event();
             e.stopPropagation();
         })

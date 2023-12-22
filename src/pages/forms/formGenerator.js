@@ -1,7 +1,8 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
-import { createProjectFromForm } from "../../models/organizers/project";
+import { createProjectFromForm } from "../../models/organizers/project.js";
+import { createTaskFromForm } from "../../models/organizers/task.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -87,7 +88,7 @@ function renderCreateProjectForm() {
 }
 
 /* Create the form for creating a new task */
-function renderCreateTaskForm() {
+function renderCreateTaskForm(project) {
     // All form fields for creating a task
     const taskTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
@@ -95,12 +96,12 @@ function renderCreateTaskForm() {
         {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
     ]
 
-    const form = generateFormBase("task-creation-form", "New Task","creation-form");
+    const form = generateFormBase("task-creation-form", "New Task", "creation-form");
 
     // Appending elements
     generateTextFields(taskTextFormFields, form);
     form.appendChild(radioFieldGenerator.generateRadioButtons(() => radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK)));
-    addFormButtons(Organizers.TASK, "Create", form, );
+    addFormButtons(Organizers.TASK, "Create", form, createTaskFromForm);
 
     renderForm(form);
 }

@@ -5,8 +5,6 @@ import { renderAllProjectsPage, clearPage } from "../../pages/display.js";
 function createDefaultProject() {
     const projectID = getNextProjectCount();
 
-    console.log("yip");
-
     const defaultProject = projectFactory(
         "Miscellaneous", 
         "Default project",
@@ -14,8 +12,6 @@ function createDefaultProject() {
     )
 
     projects.push(defaultProject);
-
-    console.log("here", projects[0].getProjectID());
 }
 
 /* Create a new project */
@@ -64,7 +60,16 @@ function getProjects() {
     return projects;
 }
 
+function getCurrentProject() {
+    return currentProject;
+}
+
+function setCurrentProject(newProject) {
+    currentProject = newProject;
+}
+
 let projectCount = 0;
 const projects = [];
+let currentProject = null;
 
-export { createDefaultProject, createProject, editProject, createProjectFromForm, getProjects }
+export { createDefaultProject, createProject, editProject, createProjectFromForm, getProjects, getCurrentProject, setCurrentProject }

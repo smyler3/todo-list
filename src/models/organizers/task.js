@@ -1,5 +1,7 @@
 import taskFactory from "./factories/taskFactory";
 import { Status } from "../enums/status";
+import { getCurrentProject } from "./project";
+import { renderProjectPage, clearPage } from "../../pages/display.js";
 
 /* Create a new task and adds to a project */
 function createTask(project, title, description, dueDate, priority) {
@@ -28,6 +30,19 @@ function editTask(task, title, description, dueDate, priority, status) {
 //     delete task.getStatus();
 // }
 
+/* Creates a task from creation form */
+function createTaskFromForm() {
+    const title = document.querySelector("#task-title").value;
+    const desc = document.querySelector("#task-desc").value;
+    const date = document.querySelector("#task-date").value;
+    const priority = document.querySelector('input[name="priority"]:checked').value;
+    const project = getCurrentProject();
+
+    createTask(project, title, desc, date, priority);
+    clearPage();
+    renderProjectPage(project);
+}
+
 /* Complete a task and convert all steps to required status*/
 function completeTask(task) {
     // Mark incomplete steps
@@ -37,4 +52,4 @@ function completeTask(task) {
     });
 }
 
-export { createTask, editTask, completeTask }
+export { createTask, editTask, completeTask, createTaskFromForm }
