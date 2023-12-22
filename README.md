@@ -12,7 +12,18 @@ Can use a function to call all action buttons on loading
 -
 Add colour picker to create project form
 
+-
+Create edit forms
 
+- 
+Add form sanatisation to creation forms
+Add form sanatisation to edit forms
+
+- 
+Add DOM manipulation post-project creation
+
+-
+Check all imports for missing ;
 ```
 todo-list
 ├─ .git

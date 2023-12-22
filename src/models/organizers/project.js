@@ -1,4 +1,5 @@
 import projectFactory from "./factories/projectFactory";
+import { renderAllProjectsPage, clearPage } from "../../pages/display.js";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
@@ -8,7 +9,7 @@ function createDefaultProject() {
 
     const defaultProject = projectFactory(
         "Miscellaneous", 
-        "A collection of tasks, that weren't assigned a project",
+        "Default project",
         projectID,
     )
 
@@ -55,6 +56,8 @@ function createProjectFromForm() {
     const desc = document.querySelector("#project-desc").value;
 
     createProject(title, desc);
+    clearPage();
+    renderAllProjectsPage(projects);
 }
 
 function getProjects() {

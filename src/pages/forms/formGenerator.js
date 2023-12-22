@@ -1,5 +1,5 @@
 import generateTextFields from "./textFieldGenerator";
-import * as radioFieldGenerator from "./radioFieldGenerator"
+import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
 import { createProjectFromForm } from "../../models/organizers/project";
 
