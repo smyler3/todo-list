@@ -13,8 +13,6 @@ function generateFormModal(parent) {
 function renderForm(form) {
     const modal = document.querySelector(".modal");
     modal.style.display = "flex";
-    modal.style.justifyContent = "center";
-    modal.style.alignItems = "center";
     formContainer.replaceChildren(form);
     modal.replaceChildren(formContainer);
 }
@@ -36,6 +34,7 @@ function generateFormBase(id, title, formClass) {
 
 /* Create the submit and cancel form buttons */
 function addFormButtons(organizerType, actionType, parent) {
+    const modal = document.querySelector(".modal");
     const btnIDPrefix = actionType.toLowerCase() + "-" + organizerType.toLowerCase();
 
     // Submit button
@@ -44,11 +43,23 @@ function addFormButtons(organizerType, actionType, parent) {
     submitBtn.id =  btnIDPrefix + "-submit-btn";
     submitBtn.classList.add("form-btn", "submit-btn");
 
+    // Submit event
+    submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "none";
+    });
+
     // Cancel button
     const cancelBtn = document.createElement("button");
     cancelBtn.textContent = "Cancel";
     cancelBtn.id =  btnIDPrefix + "-cancel-btn";
     cancelBtn.classList.add("form-btn", "cancel-btn");
+
+    // Cancel event
+    cancelBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "none";
+    });
 
     parent.appendChild(submitBtn);
     parent.appendChild(cancelBtn);

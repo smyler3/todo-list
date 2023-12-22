@@ -224,6 +224,8 @@ input[type="checkbox"]:checked {
 
 .modal {
     display: none;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     z-index: 2;
     width: 100%;
