@@ -19,6 +19,11 @@ export default function renderAllProjectsPage(projects) {
         createNewProjectButton.textContent = "Create New Project";
         createNewProjectButton.classList.add("create-project-header-btn");
 
+        // project button event
+        createNewProjectButton.addEventListener("click", () => {
+            forms.renderCreateProjectForm();
+        });
+
         // Appending elements
         headerContainer.appendChild(heading);
         headerContainer.appendChild(createNewProjectButton);
