@@ -1,6 +1,7 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator"
 import { Organizers } from "../../models/enums/organizer";
+import { createProjectFromForm } from "../../models/organizers/project";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -33,7 +34,7 @@ function generateFormBase(id, title, formClass) {
 }
 
 /* Create the submit and cancel form buttons */
-function addFormButtons(organizerType, actionType, parent) {
+function addFormButtons(organizerType, actionType, parent, submitFunction) {
     const modal = document.querySelector(".modal");
     const btnIDPrefix = actionType.toLowerCase() + "-" + organizerType.toLowerCase();
 
@@ -46,6 +47,7 @@ function addFormButtons(organizerType, actionType, parent) {
     // Submit event
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
+        submitFunction();
         modal.style.display = "none";
     });
 
@@ -72,15 +74,14 @@ function renderCreateProjectForm() {
     const projectTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 40},
         {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , maxLength: 80, rows: 40},
-        {labelText: "Due Date:", inputName: "date", inputType: "date", id: "project-date", classes: ["date-input"]},
     ]
 
     const form = generateFormBase("project-creation-form", "New Project", "creation-form");
 
     // Appending elements
     generateTextFields(projectTextFormFields, form);
-    form.appendChild(radioFieldGenerator.generateRadioButtons(() =>radioFieldGenerator.generatePriorityRadioButtons(Organizers.PROJECT)));
-    addFormButtons(Organizers.PROJECT, "Create", form);
+    // form.appendChild(radioFieldGenerator.generateRadioButtons(() =>radioFieldGenerator.generatePriorityRadioButtons(Organizers.PROJECT)));
+    addFormButtons(Organizers.PROJECT, "Create", form, createProjectFromForm);
 
     renderForm(form);
 }
@@ -99,7 +100,7 @@ function renderCreateTaskForm() {
     // Appending elements
     generateTextFields(taskTextFormFields, form);
     form.appendChild(radioFieldGenerator.generateRadioButtons(() => radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK)));
-    addFormButtons(Organizers.TASK, "Create", form);
+    addFormButtons(Organizers.TASK, "Create", form, );
 
     renderForm(form);
 }

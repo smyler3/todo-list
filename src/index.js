@@ -1,40 +1,43 @@
 import "./style.css";
-import { createDefaultProject, createProject } from "./models/organizers/project";
+import { createDefaultProject, createProject, getProjects } from "./models/organizers/project";
 import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
 import { createSidebarListeners } from "./modules/eventListeners/index.js";
 
-const projects = []
-projects.push(createDefaultProject());
+console.log(getProjects());
+
+createDefaultProject();
+
+console.log(getProjects());
 
 // Work project/tasks/steps
-const work = createProject("Work Meetings", "All things work meeting related!");
+createProject("Work Meetings", "All things work meeting related!");
 
-createTask(work, "Monday Meetings", "All monday work meetings", "", "Med");
-createStep(work.getTasks()[0], "Morning Meeting");
-createStep(work.getTasks()[0], "Afternoon Meeting");
+console.log("Yooo", getProjects());
 
-createTask(work, "Presentation", "All work presentations", "", "None");
-createStep(work.getTasks()[1], "Generate Financial Graphs");
-createStep(work.getTasks()[1], "Check report draft for typos");
+createTask(getProjects()[0], "Monday Meetings", "All monday work meetings", "", "Med");
+console.log("Yoo000000000000000o", getProjects());
+createStep(getProjects()[0].getTasks()[0], "Morning Meeting");
+createStep(getProjects()[0].getTasks()[0], "Afternoon Meeting");
+
+createTask(getProjects()[0], "Presentation", "All work presentations", "", "None");
+createStep(getProjects()[0].getTasks()[1], "Generate Financial Graphs");
+createStep(getProjects()[0].getTasks()[1], "Check report draft for typos");
 
 // School project/tasks/steps
-const school = createProject("School", "All things school related!");
+createProject("School", "All things school related!");
 
-createTask(school, "Presentations", "All work presentations", "", "High");
-createStep(school.getTasks()[0], "Homework");
+createTask(getProjects()[1], "Presentations", "All work presentations", "", "High");
+createStep(getProjects()[1].getTasks()[0], "Homework");
 
-projects.push(work);
-projects.push(school);
-
-display.renderSidebar(projects);
+display.renderSidebar(getProjects());
 display.forms.generateFormModal(document.querySelector(".content"));
 // display.forms.renderCreateProjectForm();
 // display.forms.renderCreateTaskForm();
 // display.forms.renderCreateStepForm();
 // display.forms.renderDeleteForm();
 // display.forms.renderColourPickerForm();
-display.renderAllProjectsPage(projects);
+display.renderAllProjectsPage(getProjects());
 // display.renderProjectPage(projects[1]);
-createSidebarListeners(projects);
+createSidebarListeners(getProjects());

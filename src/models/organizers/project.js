@@ -4,22 +4,30 @@ import projectFactory from "./factories/projectFactory";
 function createDefaultProject() {
     const projectID = getNextProjectCount();
 
-    return projectFactory(
+    console.log("yip");
+
+    const defaultProject = projectFactory(
         "Miscellaneous", 
         "A collection of tasks, that weren't assigned a project",
         projectID,
     )
+
+    projects.push(defaultProject);
+
+    console.log("here", projects[0].getProjectID());
 }
 
 /* Create a new project */
 function createProject(title, description) {
     const projectID = getNextProjectCount();
 
-    return projectFactory(
+    const newProject = projectFactory(
         title,
         description,
         projectID,
     )
+
+    projects.push(newProject);
 }
 
 /* Edit an exisiting project */
@@ -41,6 +49,19 @@ function getNextProjectCount() {
     return count;
 }
 
-let projectCount = 0;
+/* Creates a project from creation form */
+function createProjectFromForm() {
+    const title = document.querySelector("#project-title").value;
+    const desc = document.querySelector("#project-desc").value;
 
-export { createDefaultProject, createProject, editProject }
+    createProject(title, desc);
+}
+
+function getProjects() {
+    return projects;
+}
+
+let projectCount = 0;
+const projects = [];
+
+export { createDefaultProject, createProject, editProject, createProjectFromForm, getProjects }

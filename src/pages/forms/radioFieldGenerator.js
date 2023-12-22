@@ -18,7 +18,7 @@ function generatePriorityRadioButtons(organizerType) {
             const radioContainer = document.createElement("div");
     
             // ID
-            const optionID = organizerType.toLowerCase() + "-" + String.prototype.toLowerCase(priorityValue);
+            const optionID = organizerType.toLowerCase() + "-" + priorityValue.toLowerCase();
     
             // Input
             const radioInput = document.createElement("input");
