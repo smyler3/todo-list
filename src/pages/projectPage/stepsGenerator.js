@@ -7,8 +7,8 @@ export default function generateSteps(steps) {
     function generateStep(step) {
         // Step Buttons to be created
         const stepButtons = [
-            {className: Actions.EDIT, src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task"},
-            {className: Actions.DELETE, src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
+            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task"},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
         ]
 
         const stepItem = document.createElement("li");

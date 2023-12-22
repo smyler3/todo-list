@@ -223,7 +223,7 @@ input[type="checkbox"]:checked {
 } 
 
 .modal {
-    /* display: none; Hidden by default */
+    display: none;
     position: fixed;
     z-index: 2;
     width: 100%;
@@ -233,9 +233,6 @@ input[type="checkbox"]:checked {
 }
 
 .form-container {
-    position: fixed;
-    left: calc((100vw - 400px) / 2);
-    top: 20%;
     display: flex;
     align-items: center;
     width: 400px;

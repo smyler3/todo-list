@@ -30,10 +30,10 @@ export default function renderProjectPage(project) {
 
         // Project Buttons to be created
         const projectButtons = [
-            {className: Actions.CREATE, src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task"},
-            {className: Actions.COLOUR, src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
-            {className: Actions.EDIT, src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
-            {className: Actions.DELETE, src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
+            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task"},
+            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
+            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
         ]
 
         const projectHeader = document.createElement("div");

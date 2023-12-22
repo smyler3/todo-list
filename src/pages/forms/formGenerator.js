@@ -12,7 +12,9 @@ function generateFormModal(parent) {
 /* Handles form creation and display */
 function renderForm(form) {
     const modal = document.querySelector(".modal");
-    console.log("hey");
+    modal.style.display = "flex";
+    modal.style.justifyContent = "center";
+    modal.style.alignItems = "center";
     formContainer.replaceChildren(form);
     modal.replaceChildren(formContainer);
 }

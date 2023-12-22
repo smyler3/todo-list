@@ -1,3 +1,16 @@
+Notes:
+-
+Will need a file to handle display logic and code logic
+e.g. When rendering a form, the submit button listeners need to be created 
+
+-
+The action buttons can have duplicate code removed into another function
+
+-
+Can use a function to call all action buttons on loading
+
+-
+Colour picker needs a confirm.cancel button pair
 
 ```
 todo-list
