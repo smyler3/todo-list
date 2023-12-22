@@ -61,6 +61,7 @@ function addFormButtons(organizerType, actionType, parent) {
         modal.style.display = "none";
     });
 
+    // Append elements
     parent.appendChild(submitBtn);
     parent.appendChild(cancelBtn);
 }
@@ -135,6 +136,7 @@ function renderColourPickerForm() {
 
     // Appending elements
     form.appendChild(radioFieldGenerator.generateRadioButtons(radioFieldGenerator.generateColourRadioButtons));
+    addFormButtons(Organizers.PROJECT, "Colour", form);
 
     renderForm(form);
 }

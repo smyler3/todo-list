@@ -52,15 +52,17 @@ input[type="checkbox"]:checked {
 .action-btns {
     display: flex;
     align-items: center;
+    gap: 0.2rem;
 }
 
 .action-btn {
     cursor: pointer;
     padding: 1rem;
+    border: 2px solid #00000010;
+    border-radius: 50%;
 }
 .action-btn:hover {
     background-color: var(--sidebar-hover-background);
-    border-radius: 50%;
 }
 
 /*
