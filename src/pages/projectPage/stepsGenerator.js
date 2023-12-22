@@ -1,5 +1,6 @@
 import generateActionButtons from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
+import * as forms from "../forms/formGenerator.js";
 
 /* Create a list of steps for a task */
 export default function generateSteps(steps) {
@@ -7,8 +8,8 @@ export default function generateSteps(steps) {
     function generateStep(step) {
         // Step Buttons to be created
         const stepButtons = [
-            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task"},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
+            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task", event: forms.renderCreateStepForm},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: forms.renderDeleteForm},
         ]
 
         const stepItem = document.createElement("li");

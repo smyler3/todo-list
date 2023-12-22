@@ -10,7 +10,7 @@ The action buttons can have duplicate code removed into another function
 Can use a function to call all action buttons on loading
 
 -
-Colour picker needs a confirm.cancel button pair
+Colour picker needs a confirm/cancel button pair
 
 ```
 todo-list

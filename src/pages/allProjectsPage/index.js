@@ -1,6 +1,7 @@
 import generateActionButtons from "../utility/actionButtons.js";
 import { createAllProjectsListeners } from "../../modules/eventListeners/index.js";
 import { Actions } from "../../models/enums/actionButtons.js";
+import * as forms from "../forms/formGenerator.js";
 
 /* Create the page showing all of the current projects */
 export default function renderAllProjectsPage(projects) {
@@ -50,9 +51,9 @@ export default function renderAllProjectsPage(projects) {
 
         // Project Buttons to be created
         const projectCardButtons = [
-            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
-            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
+            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project", event: forms.renderColourPickerForm},
+            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project", event: forms.renderCreateProjectForm},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project", event: forms.renderDeleteForm},
         ]
 
         const projectCardGrid = document.createElement("div");

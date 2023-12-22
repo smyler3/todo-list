@@ -1,6 +1,7 @@
 import generateTasks from "./tasksGenerator";
 import generateActionButtons from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
+import * as forms from "../forms/formGenerator.js";
 
 /* Create the page showing all info for a selected project */
 export default function renderProjectPage(project) {
@@ -30,10 +31,10 @@ export default function renderProjectPage(project) {
 
         // Project Buttons to be created
         const projectButtons = [
-            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task"},
-            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
-            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
+            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task", event: forms.renderCreateProjectForm},
+            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project", event: forms.renderColourPickerForm},
+            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project", event: forms.renderCreateProjectForm},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project", event: forms.renderDeleteForm},
         ]
 
         const projectHeader = document.createElement("div");
