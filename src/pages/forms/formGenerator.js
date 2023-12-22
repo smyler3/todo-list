@@ -2,10 +2,19 @@ import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator"
 import { Organizers } from "../../models/enums/organizer";
 
+/* Create the modal which will store all forms */
+function generateFormModal(parent) {
+    const formModal = document.createElement("div");
+    formModal.classList.add("modal");
+    parent.appendChild(formModal);
+}
+
 /* Handles form creation and display */
-function renderForm(formFunction, parent) {
-    formContainer.replaceChildren(formFunction());
-    parent.appendChild(formContainer);
+function renderForm(form) {
+    const modal = document.querySelector(".modal");
+    console.log("hey");
+    formContainer.replaceChildren(form);
+    modal.replaceChildren(formContainer);
 }
 
 /* Create the form container and title */
@@ -59,11 +68,11 @@ function renderCreateProjectForm() {
     form.appendChild(radioFieldGenerator.generateRadioButtons(() =>radioFieldGenerator.generatePriorityRadioButtons(Organizers.PROJECT)));
     addFormButtons(Organizers.PROJECT, "Create", form);
 
-    return form;
+    renderForm(form);
 }
 
 /* Create the form for creating a new task */
-function renderCreateTaskForm(parent) {
+function renderCreateTaskForm() {
     // All form fields for creating a task
     const taskTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
@@ -78,11 +87,11 @@ function renderCreateTaskForm(parent) {
     form.appendChild(radioFieldGenerator.generateRadioButtons(() => radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK)));
     addFormButtons(Organizers.TASK, "Create", form);
 
-    return form;
+    renderForm(form);
 }
 
 /* Create the form for creating a new step */
-function renderCreateStepForm(parent) {
+function renderCreateStepForm() {
     // All form fields for creating a task
     const stepTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
@@ -95,7 +104,7 @@ function renderCreateStepForm(parent) {
     generateTextFields(stepTextFormFields, form);
     addFormButtons(Organizers.STEP, "Create", form);
 
-    return form;
+    renderForm(form);
 }
 
 /* Create the form for confirming organizer deletion */
@@ -105,7 +114,7 @@ function renderDeleteForm() {
     // Appending elements
     addFormButtons("Organizer", "Delete", form);
 
-    return form;
+    renderForm(form);
 }
 
 function renderColourPickerForm() {
@@ -114,10 +123,10 @@ function renderColourPickerForm() {
     // Appending elements
     form.appendChild(radioFieldGenerator.generateRadioButtons(radioFieldGenerator.generateColourRadioButtons));
 
-    return form;
+    renderForm(form);
 }
 
 const formContainer = document.createElement("div");
 formContainer.classList.add("form-container");
 
-export { renderForm, renderCreateProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm }
+export { generateFormModal, renderCreateProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm }

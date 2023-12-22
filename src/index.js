@@ -29,11 +29,12 @@ projects.push(work);
 projects.push(school);
 
 display.renderSidebar(projects);
-// display.renderForm(display.renderCreateProjectForm, document.querySelector(".content-body"));
-// display.renderForm(display.renderCreateTaskForm, document.querySelector(".content-body"));
-// display.renderForm(display.renderCreateStepForm, document.querySelector(".content-body"));
-// display.renderForm(display.renderDeleteForm, document.querySelector(".content-body"));
-// display.renderForm(display.renderColourPickerForm, document.querySelector(".content-body"));
-display.renderProjectPage(projects[1]);
+display.forms.generateFormModal(document.querySelector(".content"));
+// display.forms.renderCreateProjectForm();
+// display.forms.renderCreateTaskForm();
+// display.forms.renderCreateStepForm();
+display.forms.renderDeleteForm();
+// display.forms.renderColourPickerForm();
+// display.renderProjectPage(projects[1]);
 // display.renderAllProjectsPage(projects);
 createSidebarListeners(projects);
