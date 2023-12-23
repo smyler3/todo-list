@@ -81,7 +81,7 @@ function renderCreateProjectForm() {
 
     // Appending elements
     generateTextFields(projectTextFormFields, form);
-    // form.appendChild(radioFieldGenerator.generateRadioButtons(() =>radioFieldGenerator.generatePriorityRadioButtons(Organizers.PROJECT)));
+    form.appendChild(radioFieldGenerator.generateColourRadioButtons());
     addFormButtons(Organizers.PROJECT, "Create", form, createProjectFromForm);
 
     renderForm(form);
@@ -100,7 +100,7 @@ function renderCreateTaskForm(project) {
 
     // Appending elements
     generateTextFields(taskTextFormFields, form);
-    form.appendChild(radioFieldGenerator.generateRadioButtons(() => radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK)));
+    form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
     addFormButtons(Organizers.TASK, "Create", form, createTaskFromForm);
 
     renderForm(form);
@@ -137,7 +137,7 @@ function renderColourPickerForm() {
     const form = generateFormBase("colour-form", "Pick A Colour", "colour-form");
 
     // Appending elements
-    form.appendChild(radioFieldGenerator.generateRadioButtons(radioFieldGenerator.generateColourRadioButtons));
+    form.appendChild(radioFieldGenerator.generateColourRadioButtons());
     addFormButtons(Organizers.PROJECT, "Colour", form);
 
     renderForm(form);

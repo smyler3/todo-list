@@ -1,5 +1,8 @@
 Notes:
 -
+Check for double capitaised comments
+
+-
 The action buttons can have duplicate code removed into another function
 
 -
@@ -15,17 +18,17 @@ Create edit forms
 Add form sanatisation to creation forms
 Add form sanatisation to edit forms
 
-- 
-Add DOM manipulation post-project creation
-
 -
 Check all imports for missing ;
 
 -
-Add creation logic for tasks and steps
+Add creation logic for steps
 
 -
 Font in textarea is weird
+
+-
+Radio field generator has heaps of duplicate code
 ```
 todo-list
 ├─ .git

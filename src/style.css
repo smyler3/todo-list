@@ -338,6 +338,8 @@ input[type="checkbox"]:checked {
     gap: 0.6rem;
     width: 100%;
     padding: 0.5rem;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 3px;
 }
 
 .colour-field {

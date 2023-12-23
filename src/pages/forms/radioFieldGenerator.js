@@ -1,11 +1,12 @@
 import { Priority, DefaultPriority } from "../../models/enums/priority";
 import { Colours, DefaultColour } from "../../models/enums/colours";
 
-function generateRadioButtons(radioFunction, organizerType) {
+function generateRadioButtons(legend, fieldset) {
     const fieldContainer = document.createElement("div");
     fieldContainer.classList.add("field-container");
 
-    fieldContainer.appendChild(radioFunction(organizerType));
+    fieldContainer.appendChild(legend);
+    fieldContainer.appendChild(fieldset);
 
     return fieldContainer;
 }
@@ -43,7 +44,7 @@ function generatePriorityRadioButtons(organizerType) {
         })
     }
 
-    // Fieldset
+    // Fieldcontainer
     const fieldset = document.createElement("fieldset");
     fieldset.classList.add("priority-field");
 
@@ -53,10 +54,10 @@ function generatePriorityRadioButtons(organizerType) {
     legend.classList.add("form-label");
 
     // Appending elements
-    fieldset.appendChild(legend);
     generatePriorityOptions(organizerType);
+    const field = generateRadioButtons(legend, fieldset);
 
-    return fieldset;
+    return field;
 }
 
 function generateColourRadioButtons() {
@@ -95,18 +96,24 @@ function generateColourRadioButtons() {
             // Append elements
             radioContainer.appendChild(radioInput);
             radioContainer.appendChild(radioLabel);
-            colourField.appendChild(radioContainer);
+            fieldset.appendChild(radioContainer);
         })
     }
 
     // Fieldset
-    const colourField = document.createElement("div");
-    colourField.classList.add("colour-fieldset");
+    const fieldset = document.createElement("div");
+    fieldset.classList.add("colour-fieldset");
+
+    // Legend
+    const legend = document.createElement("legend");
+    legend.textContent = "Colour:";
+    legend.classList.add("form-label");
 
     // Appending elements
     generateColourOptions();
+    const field = generateRadioButtons(legend, fieldset);
 
-    return colourField;
+    return field;
 }
 
-export { generateRadioButtons, generatePriorityRadioButtons, generateColourRadioButtons }
+export { generatePriorityRadioButtons, generateColourRadioButtons }
