@@ -19,40 +19,40 @@ export default function taskFactory(title, description, dueDate, priority, proje
         return title;
     }
 
-    function setTitle(title) {
-        this.title = title;
+    function setTitle(newTitle) {
+        title = newTitle;
     }
 
     function getDescription() {
         return description;
     }
     
-    function setDescription(description) {
-        this.description = description;
+    function setDescription(newDescription) {
+        description = newDescription;
     }
 
     function getDueDate() {
         return dueDate;
     }
     
-    function setDueDate(dueDate) {
-        this.dueDate = dueDate;
+    function setDueDate(newDueDate) {
+        dueDate = newDueDate;
     }
 
     function getPriority() {
         return priority;
     }
     
-    function setPriority(priority) {
-        this.priority = priority;
+    function setPriority(newPriority) {
+        priority = newPriority;
     }
 
     function getStatus() {
         return status;
     }
     
-    function setStatus(status) {
-        this.status = status;
+    function setStatus(newStatus) {
+        status = newStatus;
     }
 
     function getSteps() {

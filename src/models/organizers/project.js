@@ -33,6 +33,16 @@ function editProject(project, title, description) {
     project.setDescription(description);
 }
 
+// /* Replace an existing project with a new one */
+// function replaceProject(project) {
+//     projects.forEach(element => {
+//         if (element.getProjectID() === project.getProjectID()) {
+//             element = project;
+//             setCurrentProject(project);
+//         }
+//     })
+// }
+
 // /* Delete an existing project */
 // function deleteProject(project) {
 //     delete project.getTitle();

@@ -3,6 +3,7 @@ import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
 import { createProjectFromForm } from "../../models/organizers/project.js";
 import { createTaskFromForm } from "../../models/organizers/task.js";
+import { createStepFromForm } from "../../models/organizers/step.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -110,15 +111,14 @@ function renderCreateTaskForm(project) {
 function renderCreateStepForm() {
     // All form fields for creating a task
     const stepTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
-        {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
+        {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
     ]
 
     const form = generateFormBase("step-creation-form", "New Step", "creation-form");
 
     // Appending elements
     generateTextFields(stepTextFormFields, form);
-    addFormButtons(Organizers.STEP, "Create", form);
+    addFormButtons(Organizers.STEP, "Create", form, createStepFromForm);
 
     renderForm(form);
 }

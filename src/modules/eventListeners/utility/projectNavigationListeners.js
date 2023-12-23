@@ -12,8 +12,8 @@ function createProjectPageNavigationListeners(projects, className) {
             if (String(project.getProjectID()) === element.getAttribute("data-project-id")) {
                 element.addEventListener("click", () => {
                     clearPage();
-                    renderProjectPage(project);
                     setCurrentProject(project);
+                    renderProjectPage(project);
                 })
             }
         })

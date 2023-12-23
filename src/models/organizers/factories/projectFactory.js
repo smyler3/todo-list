@@ -3,6 +3,7 @@ export default function projectFactory(title, description, projectID) {
     let taskCount = 0;
     const tasks = [];
     const completedTasks = [];
+    let currentTask = null;
 
     /* Returns task count and increments it */
     function getNextTaskCount() {
@@ -16,8 +17,8 @@ export default function projectFactory(title, description, projectID) {
         return title;
     }
 
-    function setTitle(title) {
-        this.title = title;
+    function setTitle(newTitle) {
+        title = newTitle;
     }
 
     function getDescription() {
@@ -25,7 +26,7 @@ export default function projectFactory(title, description, projectID) {
     }
     
     function setDescription(description) {
-        this.description = description;
+        description = description;
     }
 
     function getTasks() {
@@ -68,12 +69,21 @@ export default function projectFactory(title, description, projectID) {
         return projectID;
     }
 
+    function getCurrentTask() {
+        return currentTask;
+    }
+
+    function setCurrentTask(newTask) {
+        currentTask = newTask;
+    }
+
     return { 
         getTitle, setTitle, 
         getDescription, setDescription, 
-        getTasks, addTask, removeTask, 
+        getTasks, addTask, removeTask,
         getCompletedTasks, addCompletedTask, removeCompletedTask, 
         getProjectID,
-        getNextTaskCount, 
+        getNextTaskCount,
+        getCurrentTask, setCurrentTask, 
     };
 }

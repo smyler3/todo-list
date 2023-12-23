@@ -1,6 +1,7 @@
 import { Priority, DefaultPriority } from "../../models/enums/priority";
 import { Colours, DefaultColour } from "../../models/enums/colours";
 
+/* Add the designated legend and fieldset to a container */
 function generateRadioButtons(legend, fieldset) {
     const fieldContainer = document.createElement("div");
     fieldContainer.classList.add("field-container");

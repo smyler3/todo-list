@@ -1,15 +1,12 @@
 Notes:
 -
-Check for double capitaised comments
+Check for double capitalised comments
 
 -
 The action buttons can have duplicate code removed into another function
 
 -
 Can use a function to call all action buttons on loading
-
--
-Add colour picker to create project form
 
 -
 Create edit forms
@@ -19,16 +16,16 @@ Add form sanatisation to creation forms
 Add form sanatisation to edit forms
 
 -
-Check all imports for missing ;
-
--
-Add creation logic for steps
+Check all imports for missing ; and .js
 
 -
 Font in textarea is weird
 
 -
 Radio field generator has heaps of duplicate code
+
+-
+Add max and min values to form fields (or just required)
 ```
 todo-list
 ├─ .git

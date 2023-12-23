@@ -8,16 +8,16 @@ export default function stepFactory(title, projectID, taskID, stepID) {
         return title;
     }
 
-    function setTitle(title) {
-        this.title = title;
+    function setTitle(newTitle) {
+        title = newTitle;
     }
 
     function getStatus() {
         return status;
     }
     
-    function setStatus(status) {
-        this.status = status;
+    function setStatus(newStatus) {
+        status = newStatus;
     }
 
     function getProjectID() {
