@@ -1,6 +1,7 @@
 import renderSidebar from "./sidebar";
-import renderProjectPage from "./projectPage";
-import renderAllProjectsPage from "./allProjectsPage";
+import { editSidebarProjectColour } from "./sidebar/sidebarProjectsGenerator";
+import { renderProjectPage, editProjectPageColour} from "./projectPage";
+import { renderAllProjectsPage, editProjectCardColour } from "./allProjectsPage";
 import * as forms from "./forms/formGenerator";
 
 function clearHeader() {
@@ -25,8 +26,11 @@ function clearSidebar() {
 
 export { 
     renderSidebar, 
-    renderProjectPage, 
+    editSidebarProjectColour,
+    renderProjectPage,
+    editProjectPageColour, 
     renderAllProjectsPage,
+    editProjectCardColour,
     forms,
     clearPage,
     clearSidebar,

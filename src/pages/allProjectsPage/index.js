@@ -2,10 +2,10 @@ import generateActionButtons from "../utility/actionButtons.js";
 import { createAllProjectsListeners } from "../../modules/eventListeners/index.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
-import { setCurrentProject } from "../../models/organizers/project.js";
+import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
 
 /* Create the page showing all of the current projects */
-export default function renderAllProjectsPage(projects) {
+function renderAllProjectsPage(projects) {
     /* Create the content for the header section */
     function generateHeader() {
         const headerContainer = document.createElement("div");
@@ -88,6 +88,7 @@ export default function renderAllProjectsPage(projects) {
             projectCard.classList.add("project-card");
             // Link to project
             projectCard.setAttribute("data-project-id", project.getProjectID());
+            projectCard.style.borderColor = project.getColour();
 
             // Appending elements
             projectCard.appendChild(generateCardDetails(project));
@@ -109,3 +110,17 @@ export default function renderAllProjectsPage(projects) {
     // Add event listeners
     createAllProjectsListeners(projects);
 }
+
+/* Updates the project card if project colour is altered */
+function editProjectCardColour() {
+    const project = getCurrentProject();
+
+    document.querySelectorAll(".project-card").forEach(card => {
+        if (card.getAttribute("data-project-id") === String(project.getProjectID())) {
+            console.log("Found");
+            card.style.borderColor = project.getColour();
+        }
+    });
+}
+
+export { renderAllProjectsPage, editProjectCardColour }

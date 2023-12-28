@@ -4,7 +4,7 @@ import { Organizers } from "../../models/enums/organizer";
 import { createProjectFromForm, editProjectColour, getProjects } from "../../models/organizers/project.js";
 import { createTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm } from "../../models/organizers/step.js";
-import { editSidebarProjectColour } from "../sidebar/sidebarProjectsGenerator.js";
+import { editSidebarProjectColour, editProjectPageColour, editProjectCardColour } from "../display.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -142,6 +142,13 @@ function renderColourPickerForm() {
     addFormButtons(Organizers.PROJECT, "Colour", form, () => {
         editProjectColour();
         editSidebarProjectColour();
+        if (document.querySelector(".project-header-container") !== null) {
+            console.log("Yipee");
+            editProjectPageColour();
+        }
+        else {
+            editProjectCardColour();
+        }
     });
 
     renderForm(form);

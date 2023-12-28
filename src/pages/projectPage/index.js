@@ -2,10 +2,10 @@ import generateTasks from "./tasksGenerator";
 import generateActionButtons from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
 import * as forms from "../forms/formGenerator.js";
-import { setCurrentProject } from "../../models/organizers/project.js";
+import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
 
 /* Create the page showing all info for a selected project */
-export default function renderProjectPage(project) {
+function renderProjectPage(project) {
     /* Create the header displaying project info and actions */
     function generateHeader(project) {
         /* Display project details */
@@ -38,18 +38,18 @@ export default function renderProjectPage(project) {
             }},
             {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
             event: () => {
-                forms.renderColourPickerForm(); 
                 setCurrentProject(project);
+                forms.renderColourPickerForm(); 
             }},
             {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
             event: () => {
-                forms.renderCreateProjectForm();
                 setCurrentProject(project);
+                forms.renderCreateProjectForm();
             }},
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
             event: () => {
-                forms.renderDeleteForm();
                 setCurrentProject(project);
+                forms.renderDeleteForm();
             }},
         ]
 
@@ -100,3 +100,13 @@ export default function renderProjectPage(project) {
     const body = document.querySelector(".content-body");
     body.appendChild(generateContent(project));
 }
+
+/* Updates the project page if project colour is altered */
+function editProjectPageColour() {
+    const projectHeader = document.querySelector(".project-header-container");
+    if (projectHeader !== null) {
+        projectHeader.style.borderColor = getCurrentProject().getColour();
+    }
+}
+
+export { renderProjectPage, editProjectPageColour }
