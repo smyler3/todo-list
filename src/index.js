@@ -1,43 +1,36 @@
 import "./style.css";
-import { createDefaultProject, createProject, addTask } from "./models/organizers/project";
-import { createTask, addStep } from "./models/organizers/task";
+import { createDefaultProject, createProject, getProjects } from "./models/organizers/project";
+import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
+import { createSidebarListeners } from "./modules/eventListeners/index.js";
 
-const projects = []
-projects.push(createDefaultProject());
+createDefaultProject();
 
 // Work project/tasks/steps
-const work = createProject("Work Meetings", "All things work meeting related!");
+createProject("Work Meetings", "All things work meeting related!");
 
-createTask(work, "Monday Meetings", "All monday work meetings", "", "Med");
-createStep(work.tasks[0], "Morning Meeting");
-createStep(work.tasks[0], "Afternoon Meeting");
+createTask(getProjects()[1], "Monday Meetings", "All monday work meetings", "", "Med");
+createStep(getProjects()[1].getTasks()[0], "Morning Meeting");
+createStep(getProjects()[1].getTasks()[0], "Afternoon Meeting");
 
-createTask(work, "Presentation", "All work presentations", "", "None");
-createStep(work.tasks[1], "Generate Financial Graphs");
-createStep(work.tasks[1], "Check report draft for typos");
+createTask(getProjects()[1], "Presentation", "All work presentations", "", "None");
+createStep(getProjects()[1].getTasks()[1], "Generate Financial Graphs");
+createStep(getProjects()[1].getTasks()[1], "Check report draft for typos");
 
 // School project/tasks/steps
-const school = createProject("School", "All things school related!");
+createProject("School", "All things school related!");
 
-createTask(school, "Presentations", "All work presentations", "", "High");
-console.log("o", school, school.tasks[0]);
-createStep(school.tasks[0], "Homework");
+createTask(getProjects()[2], "Presentations", "All work presentations", "", "High");
+createStep(getProjects()[2].getTasks()[0], "Homework");
 
-projects.push(work);
-projects.push(school);
-
-console.log(projects);
-display.renderSidebar(projects);
-// display.renderForm(display.renderCreateProjectForm, document.querySelector(".content-body"));
-// display.renderForm(display.renderCreateTaskForm, document.querySelector(".content-body"));
-// display.renderForm(display.renderCreateStepForm, document.querySelector(".content-body"));
-// display.renderForm(display.renderDeleteForm, document.querySelector(".content-body"));
-// display.renderForm(display.renderColourPickerForm, document.querySelector(".content-body"));
-display.renderProjectPage(projects[2]);
-// display.renderAllProjectsPage(projects);
-
-projects.forEach(project => {
-    console.log(project);
-})
+display.renderSidebar(getProjects());
+display.forms.generateFormModal(document.querySelector(".content"));
+// display.forms.renderCreateProjectForm();
+// display.forms.renderCreateTaskForm();
+// display.forms.renderCreateStepForm();
+// display.forms.renderDeleteForm();
+// display.forms.renderColourPickerForm();
+display.renderAllProjectsPage(getProjects());
+// display.renderProjectPage(projects[1]);
+createSidebarListeners(getProjects());

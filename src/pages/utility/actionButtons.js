@@ -3,11 +3,14 @@ export default function generateActionButtons(buttons) {
     const actionBtns = document.createElement("span");
     actionBtns.classList.add("action-btns");
 
-    // Project Buttons
+    // Project buttons
     buttons.forEach(btn => {
-        // Button Container
+        // Button container
         const actionButtonContainer = document.createElement("span");
         actionButtonContainer.classList.add("icon", "action-btn");
+        btn.classNames.forEach(className => {
+            actionButtonContainer.classList.add(className);
+        })
 
         // Button
         const actionBtn = document.createElement("img");
@@ -15,7 +18,13 @@ export default function generateActionButtons(buttons) {
         actionBtn.alt = btn.alt;
         actionBtn.title = btn.title;
 
-        // Append Elements
+        // Button action
+        actionBtn.addEventListener("click", (e) => {
+            btn.event();        
+            e.stopPropagation();
+        })
+
+        // Append elements
         actionButtonContainer.appendChild(actionBtn);
 
         actionBtns.appendChild(actionButtonContainer);

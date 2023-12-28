@@ -1,66 +1,55 @@
 import taskFactory from "./factories/taskFactory";
 import { Status } from "../enums/status";
-import { addTask } from "./project";
+import { getCurrentProject } from "./project";
+import { renderProjectPage, clearPage } from "../../pages/display.js";
 
 /* Create a new task and adds to a project */
 function createTask(project, title, description, dueDate, priority) {
-    const projectID = project.projectID;
+    const projectID = project.getProjectID();
     const taskID = project.getNextTaskCount();
     const newTask = taskFactory(title, description, dueDate, priority, projectID, taskID);
 
-    addTask(project, newTask);
+    project.addTask(newTask);
 }
 
 /* Edit an existing task */
 function editTask(task, title, description, dueDate, priority, status) {
-    setTitle(task, title);
-    setDescription(task, description);
-    setDueDate(task, dueDate);
-    setPriority(task, priority);
-    setStatus(task, status);
+    task.setTitle(title);
+    task.setDescription(task, description);
+    task.setDueDate(task, dueDate);
+    task.setPriority(task, priority);
+    task.setStatus(task, status);
 }
 
-/* Delete an exisiting task */
-function deleteTask(task) {
-    delete task.title;
-    delete task.description;
-    delete task.dueDate;
-    delete task.priority;
-    delete task.status;
-}
+// /* Delete an exisiting task */
+// function deleteTask(task) {
+//     delete task.getTitle();
+//     delete task.getDescription();
+//     delete task.getDueDate();
+//     delete task.getPriority();
+//     delete task.getStatus();
+// }
 
-/* Add a step to a task */
-function addStep(task, step) {
-    task.steps.push(step);
+/* Creates a task from creation form */
+function createTaskFromForm() {
+    const title = document.querySelector("#task-title").value;
+    const desc = document.querySelector("#task-desc").value;
+    const date = document.querySelector("#task-date").value;
+    const priority = document.querySelector('input[name="priority"]:checked').value;
+    const project = getCurrentProject();
+
+    createTask(project, title, desc, date, priority);
+    clearPage();
+    renderProjectPage(project);
 }
 
 /* Complete a task and convert all steps to required status*/
 function completeTask(task) {
     // Mark incomplete steps
     task.setStatus(Status.COMPLETED);
-    task.steps.array.forEach(step => {
+    task.getSteps().array.forEach(step => {
         step.setIncomplete();
     });
 }
 
-function setTitle(task, title) {
-    task.title = title;
-}
-
-function setDescription(task, description) {
-    task.description = description;
-}
-
-function setDueDate(task, dueDate) {
-    task.dueDate = dueDate;
-}
-
-function setPriority(task, priority) {
-    task.priority = priority;
-}
-
-function setStatus(task, status) {
-    task.status = status;
-}
-
-export { createTask, editTask, deleteTask, addStep, completeTask }
+export { createTask, editTask, completeTask, createTaskFromForm }

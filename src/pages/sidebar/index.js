@@ -22,7 +22,6 @@ export default function renderSidebar(projects) {
     // All projects button
     const allProjects = document.createElement("li");
 
-
     // Appending elements
     sidebar.appendChild(logo);
     listContainer.appendChild(projectHeader);
@@ -30,29 +29,3 @@ export default function renderSidebar(projects) {
     listContainer.appendChild(projectsList);
     sidebar.appendChild(listContainer);
 }
-{/* 
-<h1 class="logo">TODO</h1>
-<div>
-    <h3 class="sidebar-heading">MY PROJECTS</h3>
-    <ul class="sidebar-projects-menu">
-    </ul>
-</div>
-*/}
-
-// <div>
-//     <h3 class="sidebar-heading">OPTIONS</h3>
-//     <ul class="sidebar-menu">
-//         <li class="sidebar-item">
-//             <span class="icon organizer-btn"><img src="../src/assets/icons/today.svg" alt="" title="Add New Task"></span>
-//             <p>Today</p>
-//         </li>
-//         <li class="sidebar-item">
-//             <span class="icon organizer-btn"><img src="../src/assets/icons/upcoming.svg" alt="" title="Add New Task"></span>
-//             <p>Upcoming</p>
-//         </li>
-//         <li class="sidebar-item">
-//             <span class="icon organizer-btn"><img src="../src/assets/icons/completed.svg" alt="" title="Add New Task"></span>
-//             <p>Completed</p>
-//         </li>
-//     </ul>
-// </div>

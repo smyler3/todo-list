@@ -1,5 +1,8 @@
 import generateSteps from "./stepsGenerator";
-import generateActionButtons from "./actionButtons";
+import generateActionButtons from "../utility/actionButtons";
+import { Actions } from "../../models/enums/actionButtons";
+import * as forms from "../forms/formGenerator.js";
+import { getCurrentProject } from "../../models/organizers/project.js";
 
 /* Create a list of tasks for a project */
 export default function generateTasks(tasks) {
@@ -17,21 +20,21 @@ export default function generateTasks(tasks) {
 
                 // Title
                 const taskTitle = document.createElement("h3");
-                taskTitle.textContent = task.title;
+                taskTitle.textContent = task.getTitle();
 
                 // Priority
                 const taskPriority = document.createElement("p");
-                taskPriority.textContent = task.priority;
-                const priorityClass = "priority-" + task.priority.toLowerCase();
+                taskPriority.textContent = task.getPriority();
+                const priorityClass = "priority-" + task.getPriority().toLowerCase();
                 taskPriority.classList.add("priority-text", priorityClass);
 
                 // Description
                 const taskDescription = document.createElement("p");
-                taskDescription.textContent = task.description;
+                taskDescription.textContent = task.getDescription();
 
                 // Due date
                 const taskDate = document.createElement("p");
-                taskDate.textContent = task.dueDate || "No Due Date";;
+                taskDate.textContent = task.getDueDate() || "No Due Date";;
 
                 titleContainer.appendChild(taskTitle);
                 titleContainer.appendChild(taskPriority);
@@ -61,17 +64,25 @@ export default function generateTasks(tasks) {
 
         // Task buttons to be created
         const taskButtons = [
-            {src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step"},
-            {src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task"},
-            {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
+            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step",
+            event: () => {
+                forms.renderCreateStepForm();
+                console.log("bruh", getCurrentProject().getTitle(), task.getTitle());
+                getCurrentProject().setCurrentTask(task);
+            }},
+            {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task",
+            event: () => {
+                forms.renderCreateTaskForm(project)
+            }},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: forms.renderDeleteForm},
         ]
 
         // Task information
         const taskItem = document.createElement("div");
         taskItem.classList.add("project-list-item");
         // Link to task
-        taskItem.setAttribute("data-project-id", task.projectID);
-        taskItem.setAttribute("data-task-id", task.taskID);
+        taskItem.setAttribute("data-project-id", task.getProjectID());
+        taskItem.setAttribute("data-task-id", task.getTaskID());
 
         // Append task information elements
         taskItem.appendChild(generateTaskHeader(task));
@@ -91,7 +102,7 @@ export default function generateTasks(tasks) {
         // Create task
         projectTaskItem.appendChild(generateTask(task));
         // Create steps
-        projectTaskItem.appendChild(generateSteps(task.steps));
+        projectTaskItem.appendChild(generateSteps(task.getSteps()));
 
         taskList.appendChild(projectTaskItem);
     })

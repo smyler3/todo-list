@@ -1,8 +1,11 @@
 import generateTasks from "./tasksGenerator";
-import generateActionButtons from "./actionButtons";
+import generateActionButtons from "../utility/actionButtons";
+import { Actions } from "../../models/enums/actionButtons";
+import * as forms from "../forms/formGenerator.js";
+import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
 
 /* Create the page showing all info for a selected project */
-export default function renderProjectPage(project) {
+function renderProjectPage(project) {
     /* Create the header displaying project info and actions */
     function generateHeader(project) {
         /* Display project details */
@@ -12,12 +15,12 @@ export default function renderProjectPage(project) {
 
             // Title
             const projectTitle = document.createElement("h2");
-            projectTitle.textContent = project.title;
+            projectTitle.textContent = project.getTitle();
             projectTitle.classList.add("project-header-title");
 
             // Description
             const projectDescription = document.createElement("p");
-            projectDescription.textContent = project.description;
+            projectDescription.textContent = project.getDescription();
             projectDescription.classList.add("project-header-description");
 
             // Append Elements
@@ -29,16 +32,32 @@ export default function renderProjectPage(project) {
 
         // Project Buttons to be created
         const projectButtons = [
-            {src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task"},
-            {src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
-            {src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
-            {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
+            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task",
+            event: () => {
+                forms.renderCreateTaskForm(project);
+            }},
+            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
+            event: () => {
+                setCurrentProject(project);
+                forms.renderColourPickerForm(); 
+            }},
+            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
+            event: () => {
+                setCurrentProject(project);
+                forms.renderCreateProjectForm();
+            }},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
+            event: () => {
+                setCurrentProject(project);
+                forms.renderDeleteForm();
+            }},
         ]
 
         const projectHeader = document.createElement("div");
         projectHeader.classList.add("project-header-container");
         // Link to project
-        projectHeader.setAttribute("data-project-id", project.projectID);
+        projectHeader.setAttribute("data-project-id", project.getProjectID());
+        projectHeader.style.borderColor = project.getColour();
 
         // Append Elements
         projectHeader.appendChild(generateProjectDetails(project));
@@ -59,7 +78,7 @@ export default function renderProjectPage(project) {
 
         // Generate incomplete tasks
         taskListContainer.appendChild(todoSectionDivider);
-        taskListContainer.appendChild(generateTasks(project.tasks));
+        taskListContainer.appendChild(generateTasks(project.getTasks()));
 
         // Completed tasks section header
         const completedSectionDivider = document.createElement("h2");
@@ -68,7 +87,7 @@ export default function renderProjectPage(project) {
 
         // Generate completed tasks
         taskListContainer.appendChild(completedSectionDivider);
-        taskListContainer.appendChild(generateTasks(project.completedTasks));
+        taskListContainer.appendChild(generateTasks(project.getCompletedTasks()));
 
         return taskListContainer;
     }
@@ -81,3 +100,13 @@ export default function renderProjectPage(project) {
     const body = document.querySelector(".content-body");
     body.appendChild(generateContent(project));
 }
+
+/* Updates the project page if project colour is altered */
+function editProjectPageColour() {
+    const projectHeader = document.querySelector(".project-header-container");
+    if (projectHeader !== null) {
+        projectHeader.style.borderColor = getCurrentProject().getColour();
+    }
+}
+
+export { renderProjectPage, editProjectPageColour }

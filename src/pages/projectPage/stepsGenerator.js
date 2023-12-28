@@ -1,4 +1,6 @@
-import generateActionButtons from "./actionButtons";
+import generateActionButtons from "../utility/actionButtons";
+import { Actions } from "../../models/enums/actionButtons";
+import * as forms from "../forms/formGenerator.js";
 
 /* Create a list of steps for a task */
 export default function generateSteps(steps) {
@@ -6,16 +8,16 @@ export default function generateSteps(steps) {
     function generateStep(step) {
         // Step Buttons to be created
         const stepButtons = [
-            {src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task"},
-            {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task"},
+            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task", event: forms.renderCreateStepForm},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: forms.renderDeleteForm},
         ]
 
         const stepItem = document.createElement("li");
         stepItem.classList.add("project-list-item");
         // Link to task
-        stepItem.setAttribute("data-project-id", step.projectID);
-        stepItem.setAttribute("data-task-id", step.taskID);
-        stepItem.setAttribute("data-step-id", step.stepID);
+        stepItem.setAttribute("data-project-id", step.getProjectID());
+        stepItem.setAttribute("data-task-id", step.getTaskID());
+        stepItem.setAttribute("data-step-id", step.getStepID());
 
         // Step Information
         const stepInfo = document.createElement("span");
@@ -36,7 +38,7 @@ export default function generateSteps(steps) {
 
         // Title
         const stepTitle = document.createElement("h4");
-        stepTitle.textContent = step.title;
+        stepTitle.textContent = step.getTitle();
 
         // Action Buttons for Steps
         const stepActionButtons = generateActionButtons(stepButtons);

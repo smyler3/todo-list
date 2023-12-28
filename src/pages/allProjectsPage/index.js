@@ -1,7 +1,11 @@
-import generateActionButtons from "../projectPage/actionButtons";
+import generateActionButtons from "../utility/actionButtons.js";
+import { createAllProjectsListeners } from "../../modules/eventListeners/index.js";
+import { Actions } from "../../models/enums/actionButtons.js";
+import * as forms from "../forms/formGenerator.js";
+import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
 
 /* Create the page showing all of the current projects */
-export default function renderAllProjectsPage(projects) {
+function renderAllProjectsPage(projects) {
     /* Create the content for the header section */
     function generateHeader() {
         const headerContainer = document.createElement("div");
@@ -15,6 +19,11 @@ export default function renderAllProjectsPage(projects) {
         const createNewProjectButton = document.createElement("button");
         createNewProjectButton.textContent = "Create New Project";
         createNewProjectButton.classList.add("create-project-header-btn");
+
+        // project button event
+        createNewProjectButton.addEventListener("click", () => {
+            forms.renderCreateProjectForm();
+        });
 
         // Appending elements
         headerContainer.appendChild(heading);
@@ -33,11 +42,11 @@ export default function renderAllProjectsPage(projects) {
 
             // Project name
             const projectName = document.createElement("h2");
-            projectName.textContent = project.title;
+            projectName.textContent = project.getTitle();
 
             // Project description
             const projectDescription = document.createElement("p");
-            projectDescription.textContent = project.description;
+            projectDescription.textContent = project.getDescription();
 
             // Appending elements
             projectCardDetails.appendChild(projectName);
@@ -46,12 +55,29 @@ export default function renderAllProjectsPage(projects) {
             return projectCardDetails;
         }
 
-        // Project Buttons to be created
-        const projectCardButtons = [
-            {src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project"},
-            {src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project"},
-            {src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project"},
-        ]
+        /* Creates the logic for the project card action buttons */
+        function generateProjectCardButtons(project) {
+            // Project Buttons to be created
+            const projectCardButtons = [
+                {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
+                event: () => {
+                    forms.renderColourPickerForm(); 
+                    setCurrentProject(project);
+                }},
+                {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
+                event: () => {
+                    forms.renderCreateProjectForm();
+                    setCurrentProject(project);
+                }},
+                {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
+                event: () => {
+                    forms.renderDeleteForm();
+                    setCurrentProject(project);
+                }},
+            ]
+
+            return projectCardButtons;
+        }
 
         const projectCardGrid = document.createElement("div");
         projectCardGrid.classList.add("project-card-grid");
@@ -61,11 +87,12 @@ export default function renderAllProjectsPage(projects) {
             const projectCard = document.createElement("span");
             projectCard.classList.add("project-card");
             // Link to project
-            projectCard.setAttribute("data-project-id", project.projectID);
+            projectCard.setAttribute("data-project-id", project.getProjectID());
+            projectCard.style.borderColor = project.getColour();
 
             // Appending elements
             projectCard.appendChild(generateCardDetails(project));
-            projectCard.appendChild(generateActionButtons(projectCardButtons));
+            projectCard.appendChild(generateActionButtons(generateProjectCardButtons(project)));
             projectCardGrid.appendChild(projectCard);
         });
 
@@ -79,4 +106,21 @@ export default function renderAllProjectsPage(projects) {
     // Appending Body
     const body = document.querySelector(".content-body");
     body.appendChild(generateContent(projects));
+
+    // Add event listeners
+    createAllProjectsListeners(projects);
 }
+
+/* Updates the project card if project colour is altered */
+function editProjectCardColour() {
+    const project = getCurrentProject();
+
+    document.querySelectorAll(".project-card").forEach(card => {
+        if (card.getAttribute("data-project-id") === String(project.getProjectID())) {
+            console.log("Found");
+            card.style.borderColor = project.getColour();
+        }
+    });
+}
+
+export { renderAllProjectsPage, editProjectCardColour }

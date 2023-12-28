@@ -4,5 +4,37 @@ import { Status } from "../../enums/status";
 export default function stepFactory(title, projectID, taskID, stepID) {
     let status = Status.TODO;
 
-    return { title, status, projectID, taskID, stepID }
+    function getTitle() {
+        return title;
+    }
+
+    function setTitle(newTitle) {
+        title = newTitle;
+    }
+
+    function getStatus() {
+        return status;
+    }
+    
+    function setStatus(newStatus) {
+        status = newStatus;
+    }
+
+    function getProjectID() {
+        return projectID;
+    }
+
+    function getTaskID() {
+        return taskID;
+    }
+
+    function getStepID() {
+        return stepID;
+    }
+
+    return { 
+        getTitle, setTitle, 
+        getStatus, setStatus, 
+        getProjectID, getTaskID, getStepID,
+    }
 }

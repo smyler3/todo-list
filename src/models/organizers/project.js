@@ -1,44 +1,53 @@
 import projectFactory from "./factories/projectFactory";
-import { createTask } from "./task";
+import { renderAllProjectsPage, clearPage } from "../../pages/display.js";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
     const projectID = getNextProjectCount();
 
-    return projectFactory(
+    const defaultProject = projectFactory(
         "Miscellaneous", 
-        "A collection of tasks, that weren't assigned a project",
+        "Default project",
         projectID,
     )
+
+    projects.push(defaultProject);
 }
 
 /* Create a new project */
 function createProject(title, description) {
     const projectID = getNextProjectCount();
 
-    return projectFactory(
+    const newProject = projectFactory(
         title,
         description,
         projectID,
     )
-}
 
-/* Add a task to a project */
-function addTask(project, task) {
-    project.tasks.push(task);
+    projects.push(newProject);
 }
 
 /* Edit an exisiting project */
 function editProject(project, title, description) {
-    setTitle(project, title);
-    setDescription(project, description);
+    project.setTitle(title);
+    project.setDescription(description);
 }
 
-/* Delete an existing project */
-function deleteProject(project) {
-    delete project.title;
-    delete project.description;
-}
+// /* Replace an existing project with a new one */
+// function replaceProject(project) {
+//     projects.forEach(element => {
+//         if (element.getProjectID() === project.getProjectID()) {
+//             element = project;
+//             setCurrentProject(project);
+//         }
+//     })
+// }
+
+// /* Delete an existing project */
+// function deleteProject(project) {
+//     delete project.getTitle();
+//     delete project.getDescription();
+// }
 
 /* Returns project count and increments it */
 function getNextProjectCount() {
@@ -47,18 +56,36 @@ function getNextProjectCount() {
     return count;
 }
 
-function setTitle(project, title) {
-    project.title = title;
+/* Creates a project from creation form */
+function createProjectFromForm() {
+    const title = document.querySelector("#project-title").value;
+    const desc = document.querySelector("#project-desc").value;
+
+    createProject(title, desc);
+    clearPage();
+    renderAllProjectsPage(projects);
 }
 
-function setDescription(project, description) {
-    project.description = description;
+function editProjectColour() {
+    const newColour = document.querySelector("input[type='radio']:checked").value;
+
+    getCurrentProject().setColour(newColour);
 }
 
-function getProjectCount() {
-    return projectCount;
+function getProjects() {
+    return projects;
+}
+
+function getCurrentProject() {
+    return currentProject;
+}
+
+function setCurrentProject(newProject) {
+    currentProject = newProject;
 }
 
 let projectCount = 0;
+const projects = [];
+let currentProject = null;
 
-export { createDefaultProject, createProject, addTask, editProject, deleteProject }
+export { createDefaultProject, createProject, editProject, createProjectFromForm, editProjectColour, getProjects, getCurrentProject, setCurrentProject }
