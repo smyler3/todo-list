@@ -1,7 +1,7 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
-import { createProjectFromForm } from "../../models/organizers/project.js";
+import { createProjectFromForm, editProjectColour } from "../../models/organizers/project.js";
 import { createTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm } from "../../models/organizers/step.js";
 
@@ -138,7 +138,7 @@ function renderColourPickerForm() {
 
     // Appending elements
     form.appendChild(radioFieldGenerator.generateColourRadioButtons());
-    addFormButtons(Organizers.PROJECT, "Colour", form);
+    addFormButtons(Organizers.PROJECT, "Colour", form, editProjectColour);
 
     renderForm(form);
 }

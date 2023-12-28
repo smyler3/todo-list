@@ -2,6 +2,7 @@ import generateTasks from "./tasksGenerator";
 import generateActionButtons from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
 import * as forms from "../forms/formGenerator.js";
+import { setCurrentProject } from "../../models/organizers/project.js";
 
 /* Create the page showing all info for a selected project */
 export default function renderProjectPage(project) {
@@ -31,16 +32,32 @@ export default function renderProjectPage(project) {
 
         // Project Buttons to be created
         const projectButtons = [
-            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task", event: () => {forms.renderCreateTaskForm(project)}},
-            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project", event: forms.renderColourPickerForm},
-            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project", event: forms.renderCreateProjectForm},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project", event: forms.renderDeleteForm},
+            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task",
+            event: () => {
+                forms.renderCreateTaskForm(project);
+            }},
+            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
+            event: () => {
+                forms.renderColourPickerForm; 
+                setCurrentProject(project);
+            }},
+            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
+            event: () => {
+                forms.renderCreateProjectForm;
+                setCurrentProject(project);
+            }},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
+            event: () => {
+                forms.renderDeleteForm;
+                setCurrentProject(project);
+            }},
         ]
 
         const projectHeader = document.createElement("div");
         projectHeader.classList.add("project-header-container");
         // Link to project
         projectHeader.setAttribute("data-project-id", project.getProjectID());
+        projectHeader.style.borderColor = project.getColour();
 
         // Append Elements
         projectHeader.appendChild(generateProjectDetails(project));

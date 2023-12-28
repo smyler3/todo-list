@@ -26,6 +26,9 @@ Radio field generator has heaps of duplicate code
 
 -
 Add max and min values to form fields (or just required)
+
+-
+Re-render sidebar and page on recolouring
 ```
 todo-list
 ├─ .git

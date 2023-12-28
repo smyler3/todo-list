@@ -1,5 +1,8 @@
+import { DefaultColour, isValidColour } from "../../enums/colours.js";
+
 /* Creates a single instance of a project object */
 export default function projectFactory(title, description, projectID) {
+    let colour = DefaultColour;
     let taskCount = 0;
     const tasks = [];
     const completedTasks = [];
@@ -25,8 +28,18 @@ export default function projectFactory(title, description, projectID) {
         return description;
     }
     
-    function setDescription(description) {
-        description = description;
+    function setDescription(newDescription) {
+        description = newDescription;
+    }
+
+    function getColour() {
+        return colour;
+    }
+
+    function setColour(newColour) {
+        if (isValidColour(newColour)) {
+            colour = newColour;
+        }
     }
 
     function getTasks() {
@@ -80,6 +93,7 @@ export default function projectFactory(title, description, projectID) {
     return { 
         getTitle, setTitle, 
         getDescription, setDescription, 
+        getColour, setColour,
         getTasks, addTask, removeTask,
         getCompletedTasks, addCompletedTask, removeCompletedTask, 
         getProjectID,

@@ -66,6 +66,12 @@ function createProjectFromForm() {
     renderAllProjectsPage(projects);
 }
 
+function editProjectColour() {
+    const newColour = document.querySelector("input[type='radio']:checked").value;
+
+    getCurrentProject().setColour(newColour);
+}
+
 function getProjects() {
     return projects;
 }
@@ -82,4 +88,4 @@ let projectCount = 0;
 const projects = [];
 let currentProject = null;
 
-export { createDefaultProject, createProject, editProject, createProjectFromForm, getProjects, getCurrentProject, setCurrentProject }
+export { createDefaultProject, createProject, editProject, createProjectFromForm, editProjectColour, getProjects, getCurrentProject, setCurrentProject }

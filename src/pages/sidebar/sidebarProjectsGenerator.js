@@ -15,10 +15,11 @@ function generateSidebarItem(title, iconFunction) {
 }
 
 /* Create the icon for a project */
-function generateProjectIcon() {
+function generateProjectIcon(iconColour) {
     const projectIcon = document.createElement("span");
     projectIcon.textContent = "●";
     projectIcon.classList.add("icon", "project-icon");
+    projectIcon.style.color = iconColour;
 
     return projectIcon;
 }
@@ -40,7 +41,7 @@ function generateAllProjectIcon() {
 
 /* Create a project button on the sidebar */
 function generateProjectButton(project) {
-    const projectItem = generateSidebarItem(project.getTitle(), generateProjectIcon);
+    const projectItem = generateSidebarItem(project.getTitle(), () => generateProjectIcon(project.getColour()));
     projectItem.classList.add("sidebar-project-button");
     // Link to project
     projectItem.setAttribute("data-project-id", project.getProjectID());
