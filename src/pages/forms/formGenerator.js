@@ -1,9 +1,10 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
-import { createProjectFromForm, editProjectColour } from "../../models/organizers/project.js";
+import { createProjectFromForm, editProjectColour, getProjects } from "../../models/organizers/project.js";
 import { createTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm } from "../../models/organizers/step.js";
+import { editSidebarProjectColour } from "../sidebar/sidebarProjectsGenerator.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -138,7 +139,10 @@ function renderColourPickerForm() {
 
     // Appending elements
     form.appendChild(radioFieldGenerator.generateColourRadioButtons());
-    addFormButtons(Organizers.PROJECT, "Colour", form, editProjectColour);
+    addFormButtons(Organizers.PROJECT, "Colour", form, () => {
+        editProjectColour();
+        editSidebarProjectColour();
+    });
 
     renderForm(form);
 }

@@ -29,6 +29,15 @@ Add max and min values to form fields (or just required)
 
 -
 Re-render sidebar and page on recolouring
+
+-
+Should be a way to reduce duplicate project action button code
+
+-
+Re-render page on colour edit if in projectPage
+
+-
+When rendering a page, store the function and then create reRender function that redoes it all
 ```
 todo-list
 ├─ .git

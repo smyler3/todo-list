@@ -1,3 +1,4 @@
+import { getCurrentProject } from "../../models/organizers/project";
 
 /* Create a sidebar menu item */
 function generateSidebarItem(title, iconFunction) {
@@ -69,12 +70,18 @@ function addSidebarProject(project) {
     sidebar.appendChild(createSidebarProject(project));
 }
 
-function editSidebarProject() {
-
+/* Edit the colour of a sidebar project button */
+function editSidebarProjectColour() {
+    const project = getCurrentProject();
+    document.querySelectorAll(".sidebar-project-button").forEach(sidebarItem => {
+        if (sidebarItem.getAttribute("data-project-id") === String(project.getProjectID())) {
+            sidebarItem.firstChild.style.color = project.getColour();
+        }
+    })
 }
 
 function removeSidebarProject() {
 
 }
 
-export { renderSidebarProjects, addSidebarProject, editSidebarProject, removeSidebarProject }
+export { renderSidebarProjects, addSidebarProject, editSidebarProjectColour, removeSidebarProject }

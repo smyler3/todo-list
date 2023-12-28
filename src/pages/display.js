@@ -18,10 +18,16 @@ function clearPage() {
     clearBody();
 }
 
+function clearSidebar() {
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.replaceChildren();
+}
+
 export { 
     renderSidebar, 
     renderProjectPage, 
     renderAllProjectsPage,
     forms,
     clearPage,
+    clearSidebar,
 }

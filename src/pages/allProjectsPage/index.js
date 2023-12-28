@@ -2,6 +2,7 @@ import generateActionButtons from "../utility/actionButtons.js";
 import { createAllProjectsListeners } from "../../modules/eventListeners/index.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
+import { setCurrentProject } from "../../models/organizers/project.js";
 
 /* Create the page showing all of the current projects */
 export default function renderAllProjectsPage(projects) {
@@ -54,12 +55,29 @@ export default function renderAllProjectsPage(projects) {
             return projectCardDetails;
         }
 
-        // Project Buttons to be created
-        const projectCardButtons = [
-            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project", event: forms.renderColourPickerForm},
-            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project", event: forms.renderCreateProjectForm},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project", event: forms.renderDeleteForm},
-        ]
+        /* Creates the logic for the project card action buttons */
+        function generateProjectCardButtons(project) {
+            // Project Buttons to be created
+            const projectCardButtons = [
+                {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
+                event: () => {
+                    forms.renderColourPickerForm(); 
+                    setCurrentProject(project);
+                }},
+                {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
+                event: () => {
+                    forms.renderCreateProjectForm();
+                    setCurrentProject(project);
+                }},
+                {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
+                event: () => {
+                    forms.renderDeleteForm();
+                    setCurrentProject(project);
+                }},
+            ]
+
+            return projectCardButtons;
+        }
 
         const projectCardGrid = document.createElement("div");
         projectCardGrid.classList.add("project-card-grid");
@@ -73,7 +91,7 @@ export default function renderAllProjectsPage(projects) {
 
             // Appending elements
             projectCard.appendChild(generateCardDetails(project));
-            projectCard.appendChild(generateActionButtons(projectCardButtons));
+            projectCard.appendChild(generateActionButtons(generateProjectCardButtons(project)));
             projectCardGrid.appendChild(projectCard);
         });
 

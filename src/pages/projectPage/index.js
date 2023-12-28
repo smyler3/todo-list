@@ -38,17 +38,17 @@ export default function renderProjectPage(project) {
             }},
             {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
             event: () => {
-                forms.renderColourPickerForm; 
+                forms.renderColourPickerForm(); 
                 setCurrentProject(project);
             }},
             {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
             event: () => {
-                forms.renderCreateProjectForm;
+                forms.renderCreateProjectForm();
                 setCurrentProject(project);
             }},
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
             event: () => {
-                forms.renderDeleteForm;
+                forms.renderDeleteForm();
                 setCurrentProject(project);
             }},
         ]
