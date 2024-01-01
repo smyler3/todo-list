@@ -8,9 +8,6 @@ The action buttons can have duplicate code removed into another function
 -
 Can use a function to call all action buttons on loading
 
--
-Create edit forms
-
 - 
 Add form sanatisation to creation forms
 Add form sanatisation to edit forms
@@ -34,10 +31,20 @@ Re-render sidebar and page on recolouring
 Should be a way to reduce duplicate project action button code
 
 -
-Re-render page on colour edit if in projectPage
+Remove colour picker form and create edit forms
 
 -
-When rendering a page, store the function and then create reRender function that redoes it all
+Make a function to grab current project from a given id?
+
+-
+Code reuse for edit and creation forms
+
+-
+Colour picker should have default in it
+
+-
+Edit forms should have current info in them
+
 ```
 todo-list
 ├─ .git

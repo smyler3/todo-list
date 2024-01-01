@@ -61,18 +61,18 @@ function renderAllProjectsPage(projects) {
             const projectCardButtons = [
                 {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
                 event: () => {
-                    forms.renderColourPickerForm(); 
                     setCurrentProject(project);
+                    forms.renderColourPickerForm(); 
                 }},
                 {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
                 event: () => {
-                    forms.renderCreateProjectForm();
                     setCurrentProject(project);
+                    forms.renderEditProjectForm();
                 }},
                 {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
                 event: () => {
-                    forms.renderDeleteForm();
                     setCurrentProject(project);
+                    forms.renderDeleteForm();
                 }},
             ]
 

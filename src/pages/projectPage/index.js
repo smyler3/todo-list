@@ -44,7 +44,7 @@ function renderProjectPage(project) {
             {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
             event: () => {
                 setCurrentProject(project);
-                forms.renderCreateProjectForm();
+                forms.renderEditProjectForm();
             }},
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
             event: () => {

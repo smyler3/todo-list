@@ -1,7 +1,7 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
-import { createProjectFromForm, editProjectColour, getProjects } from "../../models/organizers/project.js";
+import { createProjectFromForm, editProjectColour, getCurrentProject, getProjects } from "../../models/organizers/project.js";
 import { createTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm } from "../../models/organizers/step.js";
 import { editSidebarProjectColour, editProjectPageColour, editProjectCardColour } from "../display.js";
@@ -89,6 +89,32 @@ function renderCreateProjectForm() {
     renderForm(form);
 }
 
+/* Create the form for creating a new project */
+function renderEditProjectForm() {
+    // All form fields for creating a project
+    const projectTextFormFields = [
+        {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 40},
+        {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , maxLength: 80, rows: 40},
+    ]
+
+    const form = generateFormBase("project-edit-form", "Edit Project", "creation-form");
+
+    // Appending elements
+    generateTextFields(projectTextFormFields, form);
+    form.appendChild(radioFieldGenerator.generateColourRadioButtons());
+    addFormButtons(Organizers.PROJECT, "Edit", form, createProjectFromForm);
+
+    renderForm(form);
+
+    // Fill the form fields with current information
+    console.log(document.querySelector("#project-title"));
+    document.querySelector("#project-title").placeholder = getCurrentProject().getTitle();
+    document.querySelector("#project-desc").placeholder = getCurrentProject().getDescription();
+
+    // TODO: Go through all of the radio buttons, if their colour matches the current project colour, add the checked status
+    console.log(getCurrentProject().getColour());
+}
+
 /* Create the form for creating a new task */
 function renderCreateTaskForm(project) {
     // All form fields for creating a task
@@ -157,4 +183,4 @@ function renderColourPickerForm() {
 const formContainer = document.createElement("div");
 formContainer.classList.add("form-container");
 
-export { generateFormModal, renderCreateProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm }
+export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm }
