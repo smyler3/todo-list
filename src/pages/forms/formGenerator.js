@@ -107,12 +107,20 @@ function renderEditProjectForm() {
     renderForm(form);
 
     // Fill the form fields with current information
-    console.log(document.querySelector("#project-title"));
     document.querySelector("#project-title").placeholder = getCurrentProject().getTitle();
+    document.querySelector("#project-title").value = getCurrentProject().getTitle();
     document.querySelector("#project-desc").placeholder = getCurrentProject().getDescription();
-
-    // TODO: Go through all of the radio buttons, if their colour matches the current project colour, add the checked status
-    console.log(getCurrentProject().getColour());
+    document.querySelector("#project-desc").value = getCurrentProject().getDescription();
+    // Highlight the currently selected colour
+    document.querySelectorAll(".colour-radio-btn").forEach(colourBtn => {
+        const btnColour = colourBtn.id.replace("colour-", "");
+        if (btnColour.toLowerCase() === getCurrentProject().getColour().toLowerCase()) {
+            colourBtn.checked = true;
+        }
+        else {
+            colourBtn.checked = false;
+        }
+    })
 }
 
 /* Create the form for creating a new task */

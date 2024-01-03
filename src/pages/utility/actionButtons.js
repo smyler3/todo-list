@@ -19,7 +19,7 @@ export default function generateActionButtons(buttons) {
         actionBtn.title = btn.title;
 
         // Button action
-        actionBtn.addEventListener("click", (e) => {
+        actionButtonContainer.addEventListener("click", (e) => {
             btn.event();        
             e.stopPropagation();
         })
