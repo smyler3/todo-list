@@ -1,15 +1,38 @@
 import generateActionButtons from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
 import * as forms from "../forms/formGenerator.js";
+import { getCurrentProject } from "../../models/organizers/project.js";
 
 /* Create a list of steps for a task */
 export default function generateSteps(steps) {
     /* Create a step item */
     function generateStep(step) {
+
+        /* Gets the current task from current step ids */
+        function setCurrentTaskFromID() {
+            getCurrentProject().getTasks().forEach(task => {
+                console.log(String(task.getTaskID()) === String(step.getTaskID()));
+                if (String(task.getTaskID()) === String(step.getTaskID())) {
+                    console.log(task.getTitle());
+                    console.log(task);
+                    getCurrentProject().setCurrentTask(task);
+                    return;
+                }
+            })
+        }
+
         // Step Buttons to be created
         const stepButtons = [
-            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task", event: forms.renderCreateStepForm},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: forms.renderDeleteForm},
+            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task", event: () => {
+                setCurrentTaskFromID();
+                getCurrentProject().getCurrentTask().setCurrentStep(step);
+                forms.renderEditStepForm();
+            }},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: () => {
+                setCurrentTaskFromID();
+                getCurrentProject().getCurrentTask().setCurrentStep(step);
+                forms.renderDeleteForm();
+            }},
         ]
 
         const stepItem = document.createElement("li");

@@ -6,6 +6,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
     const steps = [];
     const completedSteps = [];
     let status = Status.TODO;
+    let currentStep = null;
 
     /* Returns step count and increments it */
     function getNextStepCount() {
@@ -99,6 +100,14 @@ export default function taskFactory(title, description, dueDate, priority, proje
         return taskID;
     }
 
+    function getCurrentStep() {
+        return currentStep;
+    }
+
+    function setCurrentStep(newStep) {
+        currentStep = newStep;
+    }
+
     return { 
         getTitle, setTitle, 
         getDescription, setDescription, 
@@ -108,6 +117,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
         getSteps, addStep, removeStep, 
         getCompletedSteps, addCompletedStep, removeCompletedStep, 
         getProjectID, getTaskID, 
-        getNextStepCount 
+        getNextStepCount,
+        getCurrentStep, setCurrentStep, 
     };
 }

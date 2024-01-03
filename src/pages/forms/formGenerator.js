@@ -107,10 +107,8 @@ function renderEditProjectForm() {
     renderForm(form);
 
     // Fill the form fields with current information
-    document.querySelector("#project-title").placeholder = getCurrentProject().getTitle();
-    document.querySelector("#project-title").value = getCurrentProject().getTitle();
-    document.querySelector("#project-desc").placeholder = getCurrentProject().getDescription();
-    document.querySelector("#project-desc").value = getCurrentProject().getDescription();
+    document.querySelector("#project-title").placeholder = document.querySelector("#project-title").value = getCurrentProject().getTitle();
+    document.querySelector("#project-desc").placeholder = document.querySelector("#project-desc").value = getCurrentProject().getDescription();
     // Highlight the currently selected colour
     document.querySelectorAll(".colour-radio-btn").forEach(colourBtn => {
         const btnColour = colourBtn.id.replace("colour-", "");
@@ -162,10 +160,8 @@ function renderEditTaskForm() {
 
     // Fill the form fields with current information
     const currentTask = getCurrentProject().getCurrentTask();
-    document.querySelector("#task-title").placeholder = currentTask.getTitle();
-    document.querySelector("#task-title").value = currentTask.getTitle();
-    document.querySelector("#task-desc").placeholder = currentTask.getDescription();
-    document.querySelector("#task-desc").value = currentTask.getDescription();
+    document.querySelector("#task-title").placeholder = document.querySelector("#task-title").value = currentTask.getTitle();
+    document.querySelector("#task-desc").placeholder = document.querySelector("#task-desc").value = currentTask.getDescription();
     document.querySelector("#task-date").value = currentTask.getDueDate();
     // Highlight the currently selected colour
     document.querySelectorAll(".colour-radio-btn").forEach(colourBtn => {
@@ -193,6 +189,25 @@ function renderCreateStepForm() {
     addFormButtons(Organizers.STEP, "Create", form, createStepFromForm);
 
     renderForm(form);
+}
+
+/* Create the form for editing a step */
+function renderEditStepForm() {
+    // All form fields for creating a task
+    const stepTextFormFields = [
+        {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
+    ]
+
+    const form = generateFormBase("step-edit-form", "Edit Step", "creation-form");
+
+    // Appending elements
+    generateTextFields(stepTextFormFields, form);
+    addFormButtons(Organizers.STEP, "Edit", form, createStepFromForm);
+
+    renderForm(form);
+
+    // Fill the form fields with current information
+    document.querySelector("#step-title").placeholder = document.querySelector("#step-title").value = getCurrentProject().getCurrentTask().getCurrentStep().getTitle();
 }
 
 /* Create the form for confirming organizer deletion */
@@ -228,4 +243,4 @@ function renderColourPickerForm() {
 const formContainer = document.createElement("div");
 formContainer.classList.add("form-container");
 
-export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderEditTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm }
+export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderEditTaskForm, renderCreateStepForm, renderEditStepForm, renderDeleteForm, renderColourPickerForm }
