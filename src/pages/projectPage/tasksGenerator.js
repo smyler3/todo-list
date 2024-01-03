@@ -66,15 +66,19 @@ export default function generateTasks(tasks) {
         const taskButtons = [
             {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step",
             event: () => {
+                getCurrentProject().setCurrentTask(task);
                 forms.renderCreateStepForm();
                 console.log("bruh", getCurrentProject().getTitle(), task.getTitle());
-                getCurrentProject().setCurrentTask(task);
             }},
             {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task",
             event: () => {
-                forms.renderCreateTaskForm(project)
+                getCurrentProject().setCurrentTask(task);
+                forms.renderEditTaskForm();
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: forms.renderDeleteForm},
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: () => {
+                getCurrentProject().setCurrentTask(task);
+                forms.renderDeleteForm();
+            }},
         ]
 
         // Task information

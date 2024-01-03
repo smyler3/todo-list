@@ -89,9 +89,9 @@ function renderCreateProjectForm() {
     renderForm(form);
 }
 
-/* Create the form for creating a new project */
+/* Create the form for editing a project */
 function renderEditProjectForm() {
-    // All form fields for creating a project
+    // All form fields for a project
     const projectTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 40},
         {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , maxLength: 80, rows: 40},
@@ -124,7 +124,7 @@ function renderEditProjectForm() {
 }
 
 /* Create the form for creating a new task */
-function renderCreateTaskForm(project) {
+function renderCreateTaskForm() {
     // All form fields for creating a task
     const taskTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
@@ -140,6 +140,43 @@ function renderCreateTaskForm(project) {
     addFormButtons(Organizers.TASK, "Create", form, createTaskFromForm);
 
     renderForm(form);
+}
+
+/* Create the form for editing a task */
+function renderEditTaskForm() {
+    // All form fields for a task
+    const taskTextFormFields = [
+        {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
+        {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "task-desc", classes: ["desc-input"], maxLength: 80},
+        {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
+    ]
+
+    const form = generateFormBase("task-edit-form", "Edit Task", "creation-form");
+
+    // Appending elements
+    generateTextFields(taskTextFormFields, form);
+    form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
+    addFormButtons(Organizers.TASK, "Edit", form, createTaskFromForm);
+
+    renderForm(form);
+
+    // Fill the form fields with current information
+    const currentTask = getCurrentProject().getCurrentTask();
+    document.querySelector("#task-title").placeholder = currentTask.getTitle();
+    document.querySelector("#task-title").value = currentTask.getTitle();
+    document.querySelector("#task-desc").placeholder = currentTask.getDescription();
+    document.querySelector("#task-desc").value = currentTask.getDescription();
+    document.querySelector("#task-date").value = currentTask.getDueDate();
+    // Highlight the currently selected colour
+    document.querySelectorAll(".colour-radio-btn").forEach(colourBtn => {
+        const btnColour = colourBtn.id.replace("colour-", "");
+        if (btnColour.toLowerCase() === currentTask.getColour().toLowerCase()) {
+            colourBtn.checked = true;
+        }
+        else {
+            colourBtn.checked = false;
+        }
+    })
 }
 
 /* Create the form for creating a new step */
@@ -191,4 +228,4 @@ function renderColourPickerForm() {
 const formContainer = document.createElement("div");
 formContainer.classList.add("form-container");
 
-export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm }
+export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderEditTaskForm, renderCreateStepForm, renderDeleteForm, renderColourPickerForm }
