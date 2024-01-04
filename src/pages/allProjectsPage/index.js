@@ -111,15 +111,26 @@ function renderAllProjectsPage(projects) {
     createAllProjectsListeners(projects);
 }
 
-/* Updates the project card if project colour is altered */
-function editProjectCardColour() {
-    const project = getCurrentProject();
-
+/* Updates the project card if project information is edited */
+function editProjectCardInformation(project) {
     document.querySelectorAll(".project-card").forEach(card => {
         if (card.getAttribute("data-project-id") === String(project.getProjectID())) {
-            card.style.borderColor = project.getColour();
+            const cardDetails = card.firstChild;
+            cardDetails.firstChild.textContent = project.getTitle();
+            cardDetails.lastChild.textContent = project.getDescription();
+            return;
         }
     });
 }
 
-export { renderAllProjectsPage, editProjectCardColour }
+/* Updates the project card if project colour is edited */
+function editProjectCardColour(project) {
+    document.querySelectorAll(".project-card").forEach(card => {
+        if (card.getAttribute("data-project-id") === String(project.getProjectID())) {
+            card.style.borderColor = project.getColour();
+            return;
+        }
+    });
+}
+
+export { renderAllProjectsPage, editProjectCardInformation, editProjectCardColour }

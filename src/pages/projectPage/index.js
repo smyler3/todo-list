@@ -101,12 +101,18 @@ function renderProjectPage(project) {
     body.appendChild(generateContent(project));
 }
 
-/* Updates the project page if project colour is altered */
-function editProjectPageColour() {
+/* Updates the project page if project information is edited */
+function editProjectPageInformation(project) {
+    document.querySelector(".project-header-title").textContent = project.getTitle();
+    document.querySelector(".project-header-description").textContent = project.getDescription();
+}
+
+/* Updates the project page if project colour is edited */
+function editProjectPageColour(project) {
     const projectHeader = document.querySelector(".project-header-container");
     if (projectHeader !== null) {
-        projectHeader.style.borderColor = getCurrentProject().getColour();
+        projectHeader.style.borderColor = project.getColour();
     }
 }
 
-export { renderProjectPage, editProjectPageColour }
+export { renderProjectPage, editProjectPageInformation, editProjectPageColour }

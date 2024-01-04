@@ -29,12 +29,6 @@ function createProject(title, description) {
     setCurrentProject(newProject);
 }
 
-/* Edit an exisiting project */
-function editProject(project, title, description) {
-    project.setTitle(title);
-    project.setDescription(description);
-}
-
 // /* Replace an existing project with a new one */
 // function replaceProject(project) {
 //     projects.forEach(element => {
@@ -69,10 +63,20 @@ function createProjectFromForm() {
     addSidebarProject(getCurrentProject());
 }
 
-function editProjectColour() {
+/* Edits a project based on information in edit form */
+function editProjectFromForm(project) {
+    const newTitle = document.querySelector("#project-title").value;
+    const newDesc = document.querySelector("#project-desc").value;
+
+    project.setTitle(newTitle);
+    project.setDescription(newDesc);
+}
+
+/* Edits the colour of a project based on colour picker form */
+function editProjectColourFromForm(project) {
     const newColour = document.querySelector("input[type='radio']:checked").value;
 
-    getCurrentProject().setColour(newColour);
+    project.setColour(newColour);
 }
 
 function getProjects() {
@@ -91,4 +95,4 @@ let projectCount = 0;
 const projects = [];
 let currentProject = null;
 
-export { createDefaultProject, createProject, editProject, createProjectFromForm, editProjectColour, getProjects, getCurrentProject, setCurrentProject }
+export { createDefaultProject, createProject, createProjectFromForm, editProjectFromForm, editProjectColourFromForm, getProjects, getCurrentProject, setCurrentProject }

@@ -74,9 +74,17 @@ function addSidebarProject(project) {
     addProjectNavigationListener(getProjects(), newProjectBtn);
 }
 
+/* Edit the title of a sidebar project button */
+function editSidebarProjectTitle(project) {
+    document.querySelectorAll(".sidebar-project-button").forEach(sidebarItem => {
+        if (sidebarItem.getAttribute("data-project-id") === String(project.getProjectID())) {
+            sidebarItem.lastChild.textContent = project.getTitle();
+        }
+    })
+}
+
 /* Edit the colour of a sidebar project button */
-function editSidebarProjectColour() {
-    const project = getCurrentProject();
+function editSidebarProjectColour(project) {
     document.querySelectorAll(".sidebar-project-button").forEach(sidebarItem => {
         if (sidebarItem.getAttribute("data-project-id") === String(project.getProjectID())) {
             sidebarItem.firstChild.style.color = project.getColour();
@@ -88,4 +96,4 @@ function removeSidebarProject() {
 
 }
 
-export { renderSidebarProjects, addSidebarProject, editSidebarProjectColour, removeSidebarProject }
+export { renderSidebarProjects, addSidebarProject, editSidebarProjectTitle, editSidebarProjectColour, removeSidebarProject }

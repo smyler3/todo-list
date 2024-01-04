@@ -1,10 +1,12 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
-import { createProjectFromForm, editProjectColour, getCurrentProject, getProjects } from "../../models/organizers/project.js";
+import { createProjectFromForm, editProjectColourFromForm, editProjectFromForm, getCurrentProject, getProjects } from "../../models/organizers/project.js";
 import { createTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm } from "../../models/organizers/step.js";
-import { editSidebarProjectColour, editProjectPageColour, editProjectCardColour } from "../display.js";
+import { editSidebarProjectColour, editSidebarProjectTitle, editProjectPageColour, editProjectCardColour } from "../display.js";
+import { editProjectPageInformation } from "../projectPage/index.js";
+import { editProjectCardInformation } from "../allProjectsPage/index.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -100,7 +102,17 @@ function renderEditProjectForm() {
 
     // Appending elements
     generateTextFields(projectTextFormFields, form);
-    addFormButtons(Organizers.PROJECT, "Edit", form, createProjectFromForm);
+    addFormButtons(Organizers.PROJECT, "Edit", form, () => {
+        editProjectFromForm(getCurrentProject());
+        editSidebarProjectTitle(getCurrentProject());
+        // TODO: Change These
+        if (document.querySelector(".project-header-container") !== null) {
+            editProjectPageInformation(getCurrentProject());
+        }
+        else {
+            editProjectCardInformation(getCurrentProject());
+        }
+    });
 
     renderForm(form);
 
@@ -204,13 +216,13 @@ function renderColourPickerForm() {
     // Appending elements
     form.appendChild(radioFieldGenerator.generateColourRadioButtons());
     addFormButtons(Organizers.PROJECT, "Colour", form, () => {
-        editProjectColour();
-        editSidebarProjectColour();
+        editProjectColourFromForm(getCurrentProject());
+        editSidebarProjectColour(getCurrentProject());
         if (document.querySelector(".project-header-container") !== null) {
-            editProjectPageColour();
+            editProjectPageColour(getCurrentProject());
         }
         else {
-            editProjectCardColour();
+            editProjectCardColour(getCurrentProject());
         }
     });
 

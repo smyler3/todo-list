@@ -1,5 +1,5 @@
 import renderSidebar from "./sidebar";
-import { editSidebarProjectColour } from "./sidebar/sidebarProjectsGenerator";
+import { editSidebarProjectTitle, editSidebarProjectColour } from "./sidebar/sidebarProjectsGenerator";
 import { renderProjectPage, editProjectPageColour} from "./projectPage";
 import { renderAllProjectsPage, editProjectCardColour } from "./allProjectsPage";
 import * as forms from "./forms/formGenerator";
@@ -27,6 +27,7 @@ function clearSidebar() {
 export { 
     renderSidebar, 
     editSidebarProjectColour,
+    editSidebarProjectTitle,
     renderProjectPage,
     editProjectPageColour, 
     renderAllProjectsPage,
