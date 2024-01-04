@@ -83,7 +83,6 @@ function renderCreateProjectForm() {
 
     // Appending elements
     generateTextFields(projectTextFormFields, form);
-    form.appendChild(radioFieldGenerator.generateColourRadioButtons());
     addFormButtons(Organizers.PROJECT, "Create", form, createProjectFromForm);
 
     renderForm(form);
@@ -101,7 +100,6 @@ function renderEditProjectForm() {
 
     // Appending elements
     generateTextFields(projectTextFormFields, form);
-    form.appendChild(radioFieldGenerator.generateColourRadioButtons());
     addFormButtons(Organizers.PROJECT, "Edit", form, createProjectFromForm);
 
     renderForm(form);
@@ -109,16 +107,6 @@ function renderEditProjectForm() {
     // Fill the form fields with current information
     document.querySelector("#project-title").placeholder = document.querySelector("#project-title").value = getCurrentProject().getTitle();
     document.querySelector("#project-desc").placeholder = document.querySelector("#project-desc").value = getCurrentProject().getDescription();
-    // Highlight the currently selected colour
-    document.querySelectorAll(".colour-radio-btn").forEach(colourBtn => {
-        const btnColour = colourBtn.id.replace("colour-", "");
-        if (btnColour.toLowerCase() === getCurrentProject().getColour().toLowerCase()) {
-            colourBtn.checked = true;
-        }
-        else {
-            colourBtn.checked = false;
-        }
-    })
 }
 
 /* Create the form for creating a new task */
@@ -163,16 +151,6 @@ function renderEditTaskForm() {
     document.querySelector("#task-title").placeholder = document.querySelector("#task-title").value = currentTask.getTitle();
     document.querySelector("#task-desc").placeholder = document.querySelector("#task-desc").value = currentTask.getDescription();
     document.querySelector("#task-date").value = currentTask.getDueDate();
-    // Highlight the currently selected colour
-    document.querySelectorAll(".colour-radio-btn").forEach(colourBtn => {
-        const btnColour = colourBtn.id.replace("colour-", "");
-        if (btnColour.toLowerCase() === currentTask.getColour().toLowerCase()) {
-            colourBtn.checked = true;
-        }
-        else {
-            colourBtn.checked = false;
-        }
-    })
 }
 
 /* Create the form for creating a new step */
@@ -229,7 +207,6 @@ function renderColourPickerForm() {
         editProjectColour();
         editSidebarProjectColour();
         if (document.querySelector(".project-header-container") !== null) {
-            console.log("Yipee");
             editProjectPageColour();
         }
         else {
@@ -238,6 +215,17 @@ function renderColourPickerForm() {
     });
 
     renderForm(form);
+
+    // Highlight the currently selected colour
+    document.querySelectorAll(".colour-radio-btn").forEach(colourBtn => {
+        const btnColour = colourBtn.id.replace("colour-", "");
+        if (btnColour.toLowerCase() === getCurrentProject().getColour().toLowerCase()) {
+            colourBtn.checked = true;
+        }
+        else {
+            colourBtn.checked = false;
+        }
+    })
 }
 
 const formContainer = document.createElement("div");

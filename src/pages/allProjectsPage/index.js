@@ -117,7 +117,6 @@ function editProjectCardColour() {
 
     document.querySelectorAll(".project-card").forEach(card => {
         if (card.getAttribute("data-project-id") === String(project.getProjectID())) {
-            console.log("Found");
             card.style.borderColor = project.getColour();
         }
     });

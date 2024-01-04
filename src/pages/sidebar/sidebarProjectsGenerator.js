@@ -1,4 +1,5 @@
-import { getCurrentProject } from "../../models/organizers/project";
+import { getCurrentProject, getProjects } from "../../models/organizers/project";
+import { addProjectNavigationListener } from "../../modules/eventListeners/utility/projectNavigationListeners";
 
 /* Create a sidebar menu item */
 function generateSidebarItem(title, iconFunction) {
@@ -67,7 +68,10 @@ function renderSidebarProjects(projects, parent) {
 
 /* Add a project to the sidebar display */
 function addSidebarProject(project) {
-    sidebar.appendChild(createSidebarProject(project));
+    const newProjectBtn = generateProjectButton(project);
+
+    document.querySelector(".sidebar-projects-menu").appendChild(newProjectBtn);
+    addProjectNavigationListener(getProjects(), newProjectBtn);
 }
 
 /* Edit the colour of a sidebar project button */

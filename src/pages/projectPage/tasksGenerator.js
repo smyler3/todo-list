@@ -68,7 +68,6 @@ export default function generateTasks(tasks) {
             event: () => {
                 getCurrentProject().setCurrentTask(task);
                 forms.renderCreateStepForm();
-                console.log("bruh", getCurrentProject().getTitle(), task.getTitle());
             }},
             {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task",
             event: () => {

@@ -11,10 +11,7 @@ export default function generateSteps(steps) {
         /* Gets the current task from current step ids */
         function setCurrentTaskFromID() {
             getCurrentProject().getTasks().forEach(task => {
-                console.log(String(task.getTaskID()) === String(step.getTaskID()));
                 if (String(task.getTaskID()) === String(step.getTaskID())) {
-                    console.log(task.getTitle());
-                    console.log(task);
                     getCurrentProject().setCurrentTask(task);
                     return;
                 }

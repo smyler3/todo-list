@@ -40,13 +40,23 @@ Make a function to grab current project from a given id?
 Code reuse for edit and creation forms
 
 -
-Colour picker should have default in it
-
--
 Edit forms should have current info in them
 
 -
 Rename creation-form to something else as used by edit forms too
+
+-
+Make edit forms use a function to change organizers
+
+-
+New project aren't being added to sidebar
+
+-
+Instead of re-rendering whole page just render new project? (Could be reverted when sorting implemented)
+Or maybe instead of adding project sorting we just allow click dragging to rearrange?
+
+-
+Check forEach loops to see if you can return after success for efficiency
 
 ```
 todo-list

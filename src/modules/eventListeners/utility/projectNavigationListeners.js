@@ -20,4 +20,18 @@ function createProjectPageNavigationListeners(projects, className) {
     })
 }
 
-export { createProjectPageNavigationListeners }
+/* Make a single project navigation DOM element like to a project page */
+function addProjectNavigationListener(projects, item) {
+    projects.forEach(project => {
+        if (String(project.getProjectID()) === item.getAttribute("data-project-id")) {
+            item.addEventListener("click", () => {
+                clearPage();
+                setCurrentProject(project);
+                renderProjectPage(project);
+                return;
+            })
+        }
+    })
+}
+
+export { createProjectPageNavigationListeners, addProjectNavigationListener }
