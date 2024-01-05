@@ -2,10 +2,10 @@ import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
 import { createProjectFromForm, editProjectColourFromForm, editProjectFromForm, getCurrentProject, getProjects } from "../../models/organizers/project.js";
-import { createTaskFromForm } from "../../models/organizers/task.js";
+import { createTaskFromForm, editTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm } from "../../models/organizers/step.js";
 import { editSidebarProjectColour, editSidebarProjectTitle, editProjectPageColour, editProjectCardColour } from "../display.js";
-import { editProjectPageInformation } from "../projectPage/index.js";
+import { editProjectPageInformation, editTaskCardInformation } from "../projectPage/index.js";
 import { editProjectCardInformation } from "../allProjectsPage/index.js";
 
 /* Create the modal which will store all forms */
@@ -135,7 +135,7 @@ function renderCreateTaskForm() {
     // Appending elements
     generateTextFields(taskTextFormFields, form);
     form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
-    addFormButtons(Organizers.TASK, "Create", form, createTaskFromForm);
+    addFormButtons(Organizers.TASK, "Edit", form, createTaskFromForm);
 
     renderForm(form);
 }
@@ -154,7 +154,11 @@ function renderEditTaskForm() {
     // Appending elements
     generateTextFields(taskTextFormFields, form);
     form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
-    addFormButtons(Organizers.TASK, "Edit", form, createTaskFromForm);
+    addFormButtons(Organizers.TASK, "EDit", form, () => {
+        editTaskFromForm(getCurrentProject().getCurrentTask());
+        alert("yo");
+        editTaskCardInformation(getCurrentProject().getCurrentTask());
+    });
 
     renderForm(form);
 

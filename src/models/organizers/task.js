@@ -43,6 +43,21 @@ function createTaskFromForm() {
     renderProjectPage(project);
 }
 
+/* Edits a task based on information in edit form */
+function editTaskFromForm(task) {
+    const newTitle = document.querySelector("#task-title").value;
+    const newDesc = document.querySelector("#task-desc").value;
+    const newDate = document.querySelector("#task-date").value;
+    const newPriority = document.querySelector("input[name='priority']:checked").value;
+
+    console.log(newTitle, newDesc, newDate, newPriority);
+
+    task.setTitle(newTitle);
+    task.setDescription(newDesc);
+    task.setDueDate(newDate);
+    task.setPriority(newPriority);
+}
+
 /* Complete a task and convert all steps to required status*/
 function completeTask(task) {
     // Mark incomplete steps
@@ -52,4 +67,4 @@ function completeTask(task) {
     });
 }
 
-export { createTask, editTask, completeTask, createTaskFromForm }
+export { createTask, editTask, completeTask, createTaskFromForm, editTaskFromForm }

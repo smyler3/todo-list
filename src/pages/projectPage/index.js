@@ -115,4 +115,29 @@ function editProjectPageColour(project) {
     }
 }
 
-export { renderProjectPage, editProjectPageInformation, editProjectPageColour }
+function editTaskCardInformation(task) {
+    document.querySelectorAll(".task-card").forEach(taskCard => {
+        if (String(taskCard.getAttribute("data-task-id")) === String(task.getTaskID())) {
+            // Grabbing information to edit
+            const taskInformation = taskCard.firstChild.lastChild;
+            const taskTitle = taskInformation.firstChild.firstChild;
+            const taskPriority = taskInformation.firstChild.lastChild;
+            const taskDesc = taskInformation.firstChild.nextSibling;
+            const taskDueDate = taskInformation.lastChild;
+            
+            // Editing information
+            console.log(taskTitle);
+            taskTitle.textContent = task.getTitle();
+            taskPriority.textContent = task.getPriority();
+            taskDesc.textContent = task.getDescription();
+            taskDueDate.textContent = task.getDueDate() || "No Due Date";
+
+            // Replacing priority classlist
+            taskPriority.className = "";
+            const priorityClass = "priority-" + task.getPriority().toLowerCase();
+            taskPriority.classList.add("priority-text", priorityClass);
+        }
+    })
+}
+
+export { renderProjectPage, editProjectPageInformation, editProjectPageColour, editTaskCardInformation }

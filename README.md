@@ -60,7 +60,8 @@ CODE LOGIC:
 --------------------------------------------------------------------------
 TODO:
     -
-    Make edit forms use a function to change their related organizers
+    Make edit task form edit task DOM elements
+    Make edit step form edit step DOM elements
 .
 --------------------------------------------------------------------------
 

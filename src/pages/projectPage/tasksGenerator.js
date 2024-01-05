@@ -82,7 +82,7 @@ export default function generateTasks(tasks) {
 
         // Task information
         const taskItem = document.createElement("div");
-        taskItem.classList.add("project-list-item");
+        taskItem.classList.add("project-list-item", "task-card");
         // Link to task
         taskItem.setAttribute("data-project-id", task.getProjectID());
         taskItem.setAttribute("data-task-id", task.getTaskID());
