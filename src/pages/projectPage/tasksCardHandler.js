@@ -1,11 +1,11 @@
-import generateSteps from "./stepsGenerator";
-import generateActionButtons from "../utility/actionButtons";
-import { Actions } from "../../models/enums/actionButtons";
+import { generateStepCards } from "./stepsCardHandler.js";
+import generateActionButtons from "../utility/actionButtons.js";
+import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 
 /* Create a list of tasks for a project */
-export default function generateTasks(tasks) {
+function generateTaskCards(tasks) {
     /* Create a task item */
     function generateTask(task) {
         /* Create the checkbox and details of the task */
@@ -105,10 +105,34 @@ export default function generateTasks(tasks) {
         // Create task
         projectTaskItem.appendChild(generateTask(task));
         // Create steps
-        projectTaskItem.appendChild(generateSteps(task.getSteps()));
+        projectTaskItem.appendChild(generateStepCards(task.getSteps()));
 
         taskList.appendChild(projectTaskItem);
     })
 
     return taskList;
 }
+
+function editTaskCardInformation(task) {
+    const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
+    
+    // Grabbing information to edit
+    const taskInformation = taskCard.firstChild.lastChild;
+    const taskTitle = taskInformation.firstChild.firstChild;
+    const taskPriority = taskInformation.firstChild.lastChild;
+    const taskDesc = taskInformation.firstChild.nextSibling;
+    const taskDueDate = taskInformation.lastChild;
+    
+    // Editing information
+    taskTitle.textContent = task.getTitle();
+    taskPriority.textContent = task.getPriority();
+    taskDesc.textContent = task.getDescription();
+    taskDueDate.textContent = task.getDueDate() || "No Due Date";
+
+    // Replacing priority classlist
+    taskPriority.className = "";
+    const priorityClass = "priority-" + task.getPriority().toLowerCase();
+    taskPriority.classList.add("priority-text", priorityClass);
+}
+
+export { generateTaskCards, editTaskCardInformation }

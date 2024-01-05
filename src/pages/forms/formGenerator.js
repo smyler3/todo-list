@@ -3,9 +3,9 @@ import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
 import { createProjectFromForm, editProjectColourFromForm, editProjectFromForm, getCurrentProject, getProjects } from "../../models/organizers/project.js";
 import { createTaskFromForm, editTaskFromForm } from "../../models/organizers/task.js";
-import { createStepFromForm } from "../../models/organizers/step.js";
+import { createStepFromForm, editStepFromForm } from "../../models/organizers/step.js";
 import { editSidebarProjectColour, editSidebarProjectTitle, editProjectPageColour, editProjectCardColour } from "../display.js";
-import { editProjectPageInformation, editTaskCardInformation } from "../projectPage/index.js";
+import { editProjectPageInformation, editStepCardInformation, editTaskCardInformation } from "../projectPage/index.js";
 import { editProjectCardInformation } from "../allProjectsPage/index.js";
 
 /* Create the modal which will store all forms */
@@ -162,6 +162,7 @@ function renderEditTaskForm() {
     renderForm(form);
 
     // Fill the form fields with current information
+    // TODO: Check if moving this assignment to top works
     const currentTask = getCurrentProject().getCurrentTask();
     document.querySelector("#task-title").placeholder = document.querySelector("#task-title").value = currentTask.getTitle();
     document.querySelector("#task-desc").placeholder = document.querySelector("#task-desc").value = currentTask.getDescription();
@@ -205,7 +206,10 @@ function renderEditStepForm() {
 
     // Appending elements
     generateTextFields(stepTextFormFields, form);
-    addFormButtons(Organizers.STEP, "Edit", form, createStepFromForm);
+    addFormButtons(Organizers.STEP, "Edit", form, () => {
+        editStepFromForm(getCurrentProject().getCurrentTask().getCurrentStep());
+        editStepCardInformation(getCurrentProject().getCurrentTask().getCurrentStep());
+    });
 
     renderForm(form);
 

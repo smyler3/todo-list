@@ -1,4 +1,5 @@
-import generateTasks from "./tasksGenerator";
+import { generateTaskCards, editTaskCardInformation } from "./tasksCardHandler.js";
+import { editStepCardInformation } from "./stepsCardHandler.js";
 import generateActionButtons from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
 import * as forms from "../forms/formGenerator.js";
@@ -78,7 +79,7 @@ function renderProjectPage(project) {
 
         // Generate incomplete tasks
         taskListContainer.appendChild(todoSectionDivider);
-        taskListContainer.appendChild(generateTasks(project.getTasks()));
+        taskListContainer.appendChild(generateTaskCards(project.getTasks()));
 
         // Completed tasks section header
         const completedSectionDivider = document.createElement("h2");
@@ -87,7 +88,7 @@ function renderProjectPage(project) {
 
         // Generate completed tasks
         taskListContainer.appendChild(completedSectionDivider);
-        taskListContainer.appendChild(generateTasks(project.getCompletedTasks()));
+        taskListContainer.appendChild(generateTaskCards(project.getCompletedTasks()));
 
         return taskListContainer;
     }
@@ -115,28 +116,4 @@ function editProjectPageColour(project) {
     }
 }
 
-function editTaskCardInformation(task) {
-    document.querySelectorAll(".task-card").forEach(taskCard => {
-        if (String(taskCard.getAttribute("data-task-id")) === String(task.getTaskID())) {
-            // Grabbing information to edit
-            const taskInformation = taskCard.firstChild.lastChild;
-            const taskTitle = taskInformation.firstChild.firstChild;
-            const taskPriority = taskInformation.firstChild.lastChild;
-            const taskDesc = taskInformation.firstChild.nextSibling;
-            const taskDueDate = taskInformation.lastChild;
-            
-            // Editing information
-            taskTitle.textContent = task.getTitle();
-            taskPriority.textContent = task.getPriority();
-            taskDesc.textContent = task.getDescription();
-            taskDueDate.textContent = task.getDueDate() || "No Due Date";
-
-            // Replacing priority classlist
-            taskPriority.className = "";
-            const priorityClass = "priority-" + task.getPriority().toLowerCase();
-            taskPriority.classList.add("priority-text", priorityClass);
-        }
-    })
-}
-
-export { renderProjectPage, editProjectPageInformation, editProjectPageColour, editTaskCardInformation }
+export { renderProjectPage, editProjectPageInformation, editProjectPageColour, editTaskCardInformation, editStepCardInformation }

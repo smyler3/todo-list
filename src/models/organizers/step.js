@@ -22,6 +22,7 @@ function editStep(step, title) {
 //     delete step.title;
 // }
 
+/* Creates a step from creation form */
 function createStepFromForm() {
     const title = document.querySelector("#step-title").value;
     const project = getCurrentProject();
@@ -32,6 +33,13 @@ function createStepFromForm() {
     renderProjectPage(project);
 }
 
+/* Edits a step based on information in edit form */
+function editStepFromForm(step) {
+    const newTitle = document.querySelector("#step-title").value;
+
+    step.setTitle(newTitle);
+}
+
 /* Set a step to incomplete status */
 function setIncomplete() {
     if (this.status === Status.TODO) {
@@ -39,4 +47,4 @@ function setIncomplete() {
     }
 }
 
-export { createStep, editStep, createStepFromForm, setIncomplete }
+export { createStep, editStep, createStepFromForm, editStepFromForm, setIncomplete }

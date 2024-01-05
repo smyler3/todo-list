@@ -1,10 +1,10 @@
-import generateActionButtons from "../utility/actionButtons";
-import { Actions } from "../../models/enums/actionButtons";
+import generateActionButtons from "../utility/actionButtons.js";
+import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 
 /* Create a list of steps for a task */
-export default function generateSteps(steps) {
+function generateStepCards(steps) {
     /* Create a step item */
     function generateStep(step) {
 
@@ -33,7 +33,7 @@ export default function generateSteps(steps) {
         ]
 
         const stepItem = document.createElement("li");
-        stepItem.classList.add("project-list-item");
+        stepItem.classList.add("project-list-item", "step-item");
         // Link to task
         stepItem.setAttribute("data-project-id", step.getProjectID());
         stepItem.setAttribute("data-task-id", step.getTaskID());
@@ -52,10 +52,6 @@ export default function generateSteps(steps) {
 
         stepInfo.appendChild(completedCheckbox);
 
-        // Step Details
-        const stepDetails = document.createElement("span");
-        stepDetails.classList.add("step-details");
-
         // Title
         const stepTitle = document.createElement("h4");
         stepTitle.textContent = step.getTitle();
@@ -64,9 +60,7 @@ export default function generateSteps(steps) {
         const stepActionButtons = generateActionButtons(stepButtons);
 
         // Append Elements
-        stepDetails.appendChild(stepTitle);
-
-        stepInfo.appendChild(stepDetails);
+        stepInfo.appendChild(stepTitle);
 
         stepItem.appendChild(stepInfo);
         stepItem.appendChild(stepActionButtons);
@@ -84,3 +78,12 @@ export default function generateSteps(steps) {
 
     return stepList;
 }
+
+function editStepCardInformation(step) {
+    const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+    
+        // Editing information
+    stepCard.firstChild.lastChild.textContent = step.getTitle();
+}
+
+export { generateStepCards, editStepCardInformation }

@@ -55,13 +55,18 @@ CODE LOGIC:
     -
     Instead of re-rendering whole page just render new project? (Could be reverted when sorting implemented)
     Or maybe instead of adding project sorting we just allow click dragging to rearrange?
+
+    -
+    Use query select to grab related card rather than saerch through?
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TODO:
     -
-    Make edit task form edit task DOM elements
     Make edit step form edit step DOM elements
+
+    -
+    Move card edit function to their respsective generators within projectPage
 .
 --------------------------------------------------------------------------
 
