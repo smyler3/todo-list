@@ -55,6 +55,9 @@ CODE LOGIC:
     -
     Instead of re-rendering whole page just render new project? (Could be reverted when sorting implemented)
     Or maybe instead of adding project sorting we just allow click dragging to rearrange?
+
+    -
+    Maybe switch to seperate scrollbars for sidebar and content rather than one for the whole page
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
