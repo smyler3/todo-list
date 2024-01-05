@@ -126,7 +126,6 @@ function editTaskCardInformation(task) {
             const taskDueDate = taskInformation.lastChild;
             
             // Editing information
-            console.log(taskTitle);
             taskTitle.textContent = task.getTitle();
             taskPriority.textContent = task.getPriority();
             taskDesc.textContent = task.getDescription();

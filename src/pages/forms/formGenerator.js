@@ -156,7 +156,6 @@ function renderEditTaskForm() {
     form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
     addFormButtons(Organizers.TASK, "EDit", form, () => {
         editTaskFromForm(getCurrentProject().getCurrentTask());
-        alert("yo");
         editTaskCardInformation(getCurrentProject().getCurrentTask());
     });
 
@@ -167,6 +166,16 @@ function renderEditTaskForm() {
     document.querySelector("#task-title").placeholder = document.querySelector("#task-title").value = currentTask.getTitle();
     document.querySelector("#task-desc").placeholder = document.querySelector("#task-desc").value = currentTask.getDescription();
     document.querySelector("#task-date").value = currentTask.getDueDate();
+
+    // Highlight the currently selected priority
+    document.querySelectorAll("input[name='priority']").forEach(priorityBtn => {
+        if (priorityBtn.value === getCurrentProject().getCurrentTask().getPriority()) {
+            priorityBtn.checked = true;
+        }
+        else {
+            priorityBtn.checked = false;
+        }
+    })
 }
 
 /* Create the form for creating a new step */
