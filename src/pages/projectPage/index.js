@@ -50,7 +50,7 @@ function renderProjectPage(project) {
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
             event: () => {
                 setCurrentProject(project);
-                forms.renderDeleteForm();
+                forms.renderDeleteProjectForm();
             }},
         ]
 

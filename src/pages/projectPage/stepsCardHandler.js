@@ -28,7 +28,7 @@ function generateStepCards(steps) {
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: () => {
                 setCurrentTaskFromID();
                 getCurrentProject().getCurrentTask().setCurrentStep(step);
-                forms.renderDeleteForm();
+                // forms.renderDeleteForm();
             }},
         ]
 

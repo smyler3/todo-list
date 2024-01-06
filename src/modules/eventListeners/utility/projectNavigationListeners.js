@@ -1,4 +1,4 @@
-import { renderProjectPage, clearPage, renderDeleteForm } from "../../../pages/display.js";
+import { renderProjectPage, clearPage } from "../../../pages/display.js";
 import { setCurrentProject } from "../../../models/organizers/project.js";
 import { Actions } from "../../../models/enums/actionButtons.js";
 

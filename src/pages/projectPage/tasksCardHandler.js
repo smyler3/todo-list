@@ -76,7 +76,7 @@ function generateTaskCards(tasks) {
             }},
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: () => {
                 getCurrentProject().setCurrentTask(task);
-                forms.renderDeleteForm();
+                // forms.renderDeleteProjectForm();
             }},
         ]
 

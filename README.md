@@ -63,10 +63,7 @@ CODE LOGIC:
 --------------------------------------------------------------------------
 TODO:
     -
-    Make edit step form edit step DOM elements
-
-    -
-    Move card edit function to their respsective generators within projectPage
+    Make the delete buttons work
 .
 --------------------------------------------------------------------------
 

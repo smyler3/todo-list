@@ -1,12 +1,12 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
-import { createProjectFromForm, editProjectColourFromForm, editProjectFromForm, getCurrentProject, getProjects } from "../../models/organizers/project.js";
+import { createProjectFromForm, deleteProject, editProjectColourFromForm, editProjectFromForm, getCurrentProject, getProjects } from "../../models/organizers/project.js";
 import { createTaskFromForm, editTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm, editStepFromForm } from "../../models/organizers/step.js";
-import { editSidebarProjectColour, editSidebarProjectTitle, editProjectPageColour, editProjectCardColour } from "../display.js";
-import { editProjectPageInformation, editStepCardInformation, editTaskCardInformation } from "../projectPage/index.js";
-import { editProjectCardInformation } from "../allProjectsPage/index.js";
+import { editSidebarProjectColour, editSidebarProjectTitle, editProjectPageColour, editProjectCardColour, clearPage } from "../display.js";
+import { editProjectPageInformation, editStepCardInformation, editTaskCardInformation, renderProjectPage } from "../projectPage/index.js";
+import { editProjectCardInformation, renderAllProjectsPage } from "../allProjectsPage/index.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -218,13 +218,23 @@ function renderEditStepForm() {
 }
 
 /* Create the form for confirming organizer deletion */
-function renderDeleteForm() {
+function renderDeleteForm(deleteFunction) {
     const form = generateFormBase(("confirm-delete-form"), ("Delete Item?"), "delete-form");
 
     // Appending elements
-    addFormButtons("Organizer", "Delete", form);
+    addFormButtons("Organizer", "Delete", form, deleteFunction);
 
     renderForm(form);
+}
+
+function renderDeleteProjectForm() {
+    const deleteFunction = () => {
+        deleteProject(getCurrentProject());
+        clearPage();
+        renderAllProjectsPage(getProjects());
+    }
+
+    renderDeleteForm(deleteFunction);
 }
 
 function renderColourPickerForm() {
@@ -260,4 +270,4 @@ function renderColourPickerForm() {
 const formContainer = document.createElement("div");
 formContainer.classList.add("form-container");
 
-export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderEditTaskForm, renderCreateStepForm, renderEditStepForm, renderDeleteForm, renderColourPickerForm }
+export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderEditTaskForm, renderCreateStepForm, renderEditStepForm, renderDeleteProjectForm, renderColourPickerForm }

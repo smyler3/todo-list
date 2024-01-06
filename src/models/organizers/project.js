@@ -39,11 +39,15 @@ function createProject(title, description) {
 //     })
 // }
 
-// /* Delete an existing project */
-// function deleteProject(project) {
-//     delete project.getTitle();
-//     delete project.getDescription();
-// }
+/* Delete an existing project */
+function deleteProject(project) {
+    projects.forEach((projectItem, index) => {
+        if (projectItem.getProjectID() === project.getProjectID()) {
+            projects.splice(index, 1);
+            return;
+        }
+    })
+}
 
 /* Returns project count and increments it */
 function getNextProjectCount() {
@@ -95,4 +99,4 @@ let projectCount = 0;
 const projects = [];
 let currentProject = null;
 
-export { createDefaultProject, createProject, createProjectFromForm, editProjectFromForm, editProjectColourFromForm, getProjects, getCurrentProject, setCurrentProject }
+export { createDefaultProject, createProject, createProjectFromForm, editProjectFromForm, editProjectColourFromForm, getProjects, deleteProject, getCurrentProject, setCurrentProject }

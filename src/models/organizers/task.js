@@ -50,8 +50,6 @@ function editTaskFromForm(task) {
     const newDate = document.querySelector("#task-date").value;
     const newPriority = document.querySelector("input[name='priority']:checked").value;
 
-    console.log(newTitle, newDesc, newDate, newPriority);
-
     task.setTitle(newTitle);
     task.setDescription(newDesc);
     task.setDueDate(newDate);
