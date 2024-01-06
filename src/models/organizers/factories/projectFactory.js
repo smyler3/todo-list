@@ -53,9 +53,12 @@ export default function projectFactory(title, description, projectID) {
 
     /* Remove a task from the project */
     function removeTask(task) {
-        tasks.array.forEach(taskElement => {
-            if (task === taskElement) {
-                tasks.push(taskElement);
+        tasks.forEach((taskElement, index) => {
+            console.log(taskElement);
+        });
+        tasks.forEach((taskElement, index) => {
+            if (task.getTaskID() === taskElement.getTaskID()) {
+                tasks.splice(index, 1);
             }
         });
     }

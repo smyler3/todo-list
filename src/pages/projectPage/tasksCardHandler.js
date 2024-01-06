@@ -76,7 +76,7 @@ function generateTaskCards(tasks) {
             }},
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: () => {
                 getCurrentProject().setCurrentTask(task);
-                // forms.renderDeleteProjectForm();
+                forms.renderDeleteTaskForm();
             }},
         ]
 
@@ -135,4 +135,11 @@ function editTaskCardInformation(task) {
     taskPriority.classList.add("priority-text", priorityClass);
 }
 
-export { generateTaskCards, editTaskCardInformation }
+/* Removes a deleted tasks card */
+function deleteTaskCard(task) {
+    const taskCard = document.querySelector(`.task-card[data-task-id="${task.getTaskID()}"]`);
+
+    taskCard.parentNode.remove();
+}
+
+export { generateTaskCards, editTaskCardInformation, deleteTaskCard }
