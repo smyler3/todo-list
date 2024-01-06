@@ -57,13 +57,16 @@ CODE LOGIC:
     Or maybe instead of adding project sorting we just allow click dragging to rearrange?
 
     -
-    Use query select to grab related card rather than saerch through?
+    Change task-checkbox to something else as it is used by steps aswell
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TODO:
     -
     Make the delete buttons work
+
+    -
+    Add default checked back to creation forms
 .
 --------------------------------------------------------------------------
 

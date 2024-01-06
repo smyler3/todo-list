@@ -67,9 +67,9 @@ export default function taskFactory(title, description, dueDate, priority, proje
 
     /* Remove a step from the task */
     function removeStep(step) {
-        steps.array.forEach(stepElement => {
-            if (step === stepElement) {
-                steps.push(stepElement);
+        steps.forEach((stepElement, index) => {
+            if (step.getStepID() === stepElement.getStepID()) {
+                steps.splice(index, 1);
             }
         });
     }

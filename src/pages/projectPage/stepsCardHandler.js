@@ -28,12 +28,12 @@ function generateStepCards(steps) {
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: () => {
                 setCurrentTaskFromID();
                 getCurrentProject().getCurrentTask().setCurrentStep(step);
-                // forms.renderDeleteForm();
+                forms.renderDeleteStepForm();
             }},
         ]
 
         const stepItem = document.createElement("li");
-        stepItem.classList.add("project-list-item", "step-item");
+        stepItem.classList.add("project-list-item", "step-card");
         // Link to task
         stepItem.setAttribute("data-project-id", step.getProjectID());
         stepItem.setAttribute("data-task-id", step.getTaskID());
@@ -86,4 +86,11 @@ function editStepCardInformation(step) {
     stepCard.firstChild.lastChild.textContent = step.getTitle();
 }
 
-export { generateStepCards, editStepCardInformation }
+/* Removes a deleted steps card */
+function deleteStepCard(step) {
+    const stepCard = document.querySelector(`.step-card[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+
+    stepCard.remove();
+}
+
+export { generateStepCards, editStepCardInformation, deleteStepCard }

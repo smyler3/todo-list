@@ -9,6 +9,7 @@ import { editProjectPageInformation, editStepCardInformation, editTaskCardInform
 import { deleteProjectCard, editProjectCardInformation, renderAllProjectsPage } from "../allProjectsPage/index.js";
 import { removeSidebarProject } from "../sidebar/sidebarProjectsGenerator.js";
 import { deleteTaskCard } from "../projectPage/tasksCardHandler.js";
+import { deleteStepCard } from "../projectPage/stepsCardHandler.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -248,6 +249,15 @@ function renderDeleteTaskForm() {
     renderDeleteForm(deleteFunction);
 }
 
+function renderDeleteStepForm() {
+    const deleteFunction = () => {
+        getCurrentProject().getCurrentTask().removeStep(getCurrentProject().getCurrentTask().getCurrentStep());
+        deleteStepCard(getCurrentProject().getCurrentTask().getCurrentStep());
+    }
+
+    renderDeleteForm(deleteFunction);
+}
+
 function renderColourPickerForm() {
     const form = generateFormBase("colour-form", "Pick A Colour", "colour-form");
 
@@ -274,4 +284,4 @@ function renderColourPickerForm() {
 const formContainer = document.createElement("div");
 formContainer.classList.add("form-container");
 
-export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderEditTaskForm, renderCreateStepForm, renderEditStepForm, renderDeleteProjectForm, renderDeleteTaskForm, renderColourPickerForm }
+export { generateFormModal, renderCreateProjectForm, renderEditProjectForm, renderCreateTaskForm, renderEditTaskForm, renderCreateStepForm, renderEditStepForm, renderDeleteProjectForm, renderDeleteTaskForm, renderDeleteStepForm, renderColourPickerForm }
