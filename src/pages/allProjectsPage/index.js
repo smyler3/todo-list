@@ -113,24 +113,24 @@ function renderAllProjectsPage(projects) {
 
 /* Updates the project card if project information is edited */
 function editProjectCardInformation(project) {
-    document.querySelectorAll(".project-card").forEach(card => {
-        if (card.getAttribute("data-project-id") === String(project.getProjectID())) {
-            const cardDetails = card.firstChild;
-            cardDetails.firstChild.textContent = project.getTitle();
-            cardDetails.lastChild.textContent = project.getDescription();
-            return;
-        }
-    });
+    const projectCard = document.querySelector(`.project-card[data-project-id="${project.getProjectID()}"]`);
+    const cardDetails = projectCard.firstChild;
+    cardDetails.firstChild.textContent = project.getTitle();
+    cardDetails.lastChild.textContent = project.getDescription();
 }
 
 /* Updates the project card if project colour is edited */
 function editProjectCardColour(project) {
-    document.querySelectorAll(".project-card").forEach(card => {
-        if (card.getAttribute("data-project-id") === String(project.getProjectID())) {
-            card.style.borderColor = project.getColour();
-            return;
-        }
-    });
+    const projectCard = document.querySelector(`.project-card[data-project-id="${project.getProjectID()}"]`);
+    
+    projectCard.style.borderColor = project.getColour();
 }
 
-export { renderAllProjectsPage, editProjectCardInformation, editProjectCardColour }
+/* Removes a deleted projects card */
+function deleteProjectCard(project) {
+    const projectCard = document.querySelector(`.project-card[data-project-id="${project.getProjectID()}"]`);
+
+    projectCard.remove();
+}
+
+export { renderAllProjectsPage, editProjectCardInformation, editProjectCardColour, deleteProjectCard }

@@ -76,24 +76,22 @@ function addSidebarProject(project) {
 
 /* Edit the title of a sidebar project button */
 function editSidebarProjectTitle(project) {
-    document.querySelectorAll(".sidebar-project-button").forEach(sidebarItem => {
-        if (sidebarItem.getAttribute("data-project-id") === String(project.getProjectID())) {
-            sidebarItem.lastChild.textContent = project.getTitle();
-        }
-    })
+    const sidebarItem = document.querySelector(`.sidebar-project-button[data-project-id="${project.getProjectID()}"]`);
+    
+    sidebarItem.lastChild.textContent = project.getTitle();
 }
 
 /* Edit the colour of a sidebar project button */
 function editSidebarProjectColour(project) {
-    document.querySelectorAll(".sidebar-project-button").forEach(sidebarItem => {
-        if (sidebarItem.getAttribute("data-project-id") === String(project.getProjectID())) {
-            sidebarItem.firstChild.style.color = project.getColour();
-        }
-    })
+    const sidebarItem = document.querySelector(`.sidebar-project-button[data-project-id="${project.getProjectID()}"]`);
+    
+    sidebarItem.firstChild.style.color = project.getColour();
 }
 
-function removeSidebarProject() {
+function removeSidebarProject(project) {
+    const sidebarItem = document.querySelector(`.sidebar-project-button[data-project-id="${project.getProjectID()}"]`);
 
+    sidebarItem.remove();
 }
 
 export { renderSidebarProjects, addSidebarProject, editSidebarProjectTitle, editSidebarProjectColour, removeSidebarProject }

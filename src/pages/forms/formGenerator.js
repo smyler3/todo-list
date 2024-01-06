@@ -6,7 +6,8 @@ import { createTaskFromForm, editTaskFromForm } from "../../models/organizers/ta
 import { createStepFromForm, editStepFromForm } from "../../models/organizers/step.js";
 import { editSidebarProjectColour, editSidebarProjectTitle, editProjectPageColour, editProjectCardColour, clearPage } from "../display.js";
 import { editProjectPageInformation, editStepCardInformation, editTaskCardInformation, renderProjectPage } from "../projectPage/index.js";
-import { editProjectCardInformation, renderAllProjectsPage } from "../allProjectsPage/index.js";
+import { deleteProjectCard, editProjectCardInformation, renderAllProjectsPage } from "../allProjectsPage/index.js";
+import { removeSidebarProject } from "../sidebar/sidebarProjectsGenerator.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -169,14 +170,8 @@ function renderEditTaskForm() {
     document.querySelector("#task-date").value = currentTask.getDueDate();
 
     // Highlight the currently selected priority
-    document.querySelectorAll("input[name='priority']").forEach(priorityBtn => {
-        if (priorityBtn.value === getCurrentProject().getCurrentTask().getPriority()) {
-            priorityBtn.checked = true;
-        }
-        else {
-            priorityBtn.checked = false;
-        }
-    })
+    const priorityBtn = document.querySelector(`input[name='priority'][value='${getCurrentProject().getCurrentTask().getPriority()}']`);
+    priorityBtn.checked = true;
 }
 
 /* Create the form for creating a new step */
@@ -230,8 +225,14 @@ function renderDeleteForm(deleteFunction) {
 function renderDeleteProjectForm() {
     const deleteFunction = () => {
         deleteProject(getCurrentProject());
-        clearPage();
-        renderAllProjectsPage(getProjects());
+        removeSidebarProject(getCurrentProject());
+        if (document.querySelector(".project-header-container") !== null) {
+            clearPage();
+            renderAllProjectsPage(getProjects());
+        }
+        else {
+            deleteProjectCard(getCurrentProject());
+        }
     }
 
     renderDeleteForm(deleteFunction);
@@ -256,15 +257,8 @@ function renderColourPickerForm() {
     renderForm(form);
 
     // Highlight the currently selected colour
-    document.querySelectorAll(".colour-radio-btn").forEach(colourBtn => {
-        const btnColour = colourBtn.id.replace("colour-", "");
-        if (btnColour.toLowerCase() === getCurrentProject().getColour().toLowerCase()) {
-            colourBtn.checked = true;
-        }
-        else {
-            colourBtn.checked = false;
-        }
-    })
+    const colourBtn = document.querySelector(`.colour-radio-btn[id^="colour-"][id$="${getCurrentProject().getColour().toLowerCase()}"]`);
+    colourBtn.checked = true;
 }
 
 const formContainer = document.createElement("div");

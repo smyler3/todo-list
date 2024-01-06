@@ -28,10 +28,6 @@ function generatePriorityRadioButtons(organizerType) {
             radioInput.id = optionID;
             radioInput.name = "priority";
             radioInput.value = priorityValue;
-            // Add checked to default option
-            if (priorityValue === DefaultPriority) {
-                radioInput.checked = true;
-            }
     
             // Label
             const radioLabel = document.createElement("label");
@@ -84,10 +80,6 @@ function generateColourRadioButtons() {
             radioInput.value = colourValue;
             radioInput.style.color = colourValue;
             radioInput.style.borderColor = colourValue;
-            // Add checked to default option
-            if (colourValue === DefaultColour) {
-                radioInput.checked = true;
-            }
     
             // Label
             const radioLabel = document.createElement("label");
