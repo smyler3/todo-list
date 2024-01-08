@@ -256,7 +256,7 @@ function renderDeleteTaskForm() {
 
 function renderDeleteStepForm() {
     const deleteFunction = () => {
-        getCurrentProject().getCurrentTask().removeStep(getCurrentProject().getCurrentTask().getCurrentStep());
+        getCurrentProject().getCurrentTask().removeFromTodoSteps(getCurrentProject().getCurrentTask().getCurrentStep());
         deleteStepCard(getCurrentProject().getCurrentTask().getCurrentStep());
     }
 

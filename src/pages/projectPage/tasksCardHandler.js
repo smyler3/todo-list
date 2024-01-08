@@ -55,6 +55,8 @@ function generateTaskCards(tasks) {
             completedCheckbox.name = "";
             completedCheckbox.id = "";
 
+            // =;
+
             // Append elements
             projectListItemInfo.appendChild(completedCheckbox);
             projectListItemInfo.appendChild(generateTaskDetails(task));
@@ -99,13 +101,16 @@ function generateTaskCards(tasks) {
 
     // Add all tasks to the list
     tasks.forEach(task => {
+        // Mark current task
+        getCurrentProject().setCurrentTask(task);
+
         const projectTaskItem = document.createElement("li");
         projectTaskItem.classList.add("project-task-item");
 
         // Create task
         projectTaskItem.appendChild(generateTask(task));
         // Create steps
-        projectTaskItem.appendChild(generateStepCards(task.getSteps()));
+        projectTaskItem.appendChild(generateStepCards(task.getTodoSteps()));
 
         taskList.appendChild(projectTaskItem);
     })
@@ -139,7 +144,7 @@ function editTaskCardInformation(task) {
 function deleteTaskCard(task) {
     const taskCard = document.querySelector(`.task-card[data-task-id="${task.getTaskID()}"]`);
 
-    taskCard.parentNode.remove();
+    taskCard.parentElement.remove();
 }
 
 export { generateTaskCards, editTaskCardInformation, deleteTaskCard }

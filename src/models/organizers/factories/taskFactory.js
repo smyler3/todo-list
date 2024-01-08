@@ -3,7 +3,7 @@ import { Status } from "../../enums/status";
 /* Creates a single instance of a task object */
 export default function taskFactory(title, description, dueDate, priority, projectID, taskID) {
     let stepCount = 0;
-    const steps = [];
+    const todoSteps = [];
     const completedSteps = [];
     let status = Status.TODO;
     let currentStep = null;
@@ -56,20 +56,24 @@ export default function taskFactory(title, description, dueDate, priority, proje
         status = newStatus;
     }
 
-    function getSteps() {
-        return steps;
+    function getTodoSteps() {
+        return todoSteps;
     }
 
     /* Add a step to the task */
-    function addStep(step) {
-        steps.push(step);
+    function addToTodoSteps(step) {
+        todoSteps.push(step);
     }
 
-    /* Remove a step from the task */
-    function removeStep(step) {
-        steps.forEach((stepElement, index) => {
+    /* Remove a step todoSteps (and add to completedSteps if valid) */
+    function removeFromTodoSteps(step) {
+        todoSteps.forEach((stepElement, index) => {
             if (step.getStepID() === stepElement.getStepID()) {
-                steps.splice(index, 1);
+                todoSteps.splice(index, 1);
+            }
+            // Conditionally add to completedSteps
+            if (step.getStatus() === Status.COMPLETED) {
+                addToCompletedSteps(step);
             }
         });
     }
@@ -79,15 +83,15 @@ export default function taskFactory(title, description, dueDate, priority, proje
     }
 
     /* Add a completed step to the task */
-    function addCompletedStep(step) {
+    function addToCompletedSteps(step) {
         completedSteps.push(step);
     }
 
-    /* Remove a step from the task */
+    /* Remove a completed step from the task */
     function removeCompletedStep(step) {
-        completedSteps.array.forEach(stepElement => {
-            if (step === stepElement) {
-                completedSteps.push(stepElement);
+        completedSteps.forEach((stepElement, index) => {
+            if (step.getStepID() === stepElement.getStepID()) {
+                completedSteps.splice(index, 1);
             }
         });
     }
@@ -114,8 +118,8 @@ export default function taskFactory(title, description, dueDate, priority, proje
         getDueDate, setDueDate, 
         getPriority, setPriority, 
         getStatus, setStatus, 
-        getSteps, addStep, removeStep, 
-        getCompletedSteps, addCompletedStep, removeCompletedStep, 
+        getTodoSteps, addToTodoSteps, removeFromTodoSteps, 
+        getCompletedSteps, removeCompletedStep, 
         getProjectID, getTaskID, 
         getNextStepCount,
         getCurrentStep, setCurrentStep, 

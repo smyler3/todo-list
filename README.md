@@ -64,6 +64,16 @@ CODE LOGIC:
 TODO:
     -
     Add ability to check items as complete
+
+    -
+    use change not click and create lists for completed and incompleted tasks
+
+    -
+    Refactor 'addX' to 'addToXs' etc
+
+    -
+    When deleting a step, check it is removed from currentStep
+    When deleting a task, check it is removed from currentTask
 .
 --------------------------------------------------------------------------
 

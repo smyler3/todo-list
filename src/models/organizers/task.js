@@ -36,11 +36,10 @@ function createTaskFromForm() {
     const desc = document.querySelector("#task-desc").value;
     const date = document.querySelector("#task-date").value;
     const priority = document.querySelector('input[name="priority"]:checked').value;
-    const project = getCurrentProject();
 
-    createTask(project, title, desc, date, priority);
+    createTask(getCurrentProject(), title, desc, date, priority);
     clearPage();
-    renderProjectPage(project);
+    renderProjectPage(getCurrentProject());
 }
 
 /* Edits a task based on information in edit form */
@@ -60,7 +59,7 @@ function editTaskFromForm(task) {
 function completeTask(task) {
     // Mark incomplete steps
     task.setStatus(Status.COMPLETED);
-    task.getSteps().array.forEach(step => {
+    task.getTodoSteps().array.forEach(step => {
         step.setIncomplete();
     });
 }

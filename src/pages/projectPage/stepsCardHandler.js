@@ -2,6 +2,7 @@ import generateActionButtons from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
+import { createStepCompletionListener } from "../../modules/eventListeners/checkboxListeners.js";
 
 /* Create a list of steps for a task */
 function generateStepCards(steps) {
@@ -50,6 +51,8 @@ function generateStepCards(steps) {
         completedCheckbox.name = "";
         completedCheckbox.id = "";
 
+        createStepCompletionListener(completedCheckbox);
+
         stepInfo.appendChild(completedCheckbox);
 
         // Title
@@ -73,6 +76,8 @@ function generateStepCards(steps) {
 
     // Add all steps to the list
     steps.forEach(step => {
+        // Mark current step
+        getCurrentProject().getCurrentTask().setCurrentStep(step);
         stepList.appendChild(generateStep(step));
     });
 
@@ -82,8 +87,19 @@ function generateStepCards(steps) {
 function editStepCardInformation(step) {
     const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
     
-        // Editing information
+    // Editing information
     stepCard.firstChild.lastChild.textContent = step.getTitle();
+}
+
+/* Modifies a step card once it has been marked as completed */
+function setStepCardCompleted(step) {
+    const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+
+    // Visually marking as complete
+    stepCard.classList.add("completed");
+    const parent = stepCard.parentElement;
+    // Moves the card to the end of the list
+    parent.appendChild(stepCard);
 }
 
 /* Removes a deleted steps card */
@@ -93,4 +109,4 @@ function deleteStepCard(step) {
     stepCard.remove();
 }
 
-export { generateStepCards, editStepCardInformation, deleteStepCard }
+export { generateStepCards, editStepCardInformation, setStepCardCompleted, deleteStepCard }

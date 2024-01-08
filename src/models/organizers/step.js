@@ -1,6 +1,7 @@
 import stepFactory from "./factories/stepFactory";
 import { Status } from "../enums/status";
 import { clearPage, renderProjectPage } from "../../pages/display";
+import { getCurrentProject } from "./project";
 
 /* Create a new step and adds to a task */
 function createStep(task, title) {
@@ -9,7 +10,7 @@ function createStep(task, title) {
     const stepID = task.getNextStepCount();
     const newStep = stepFactory(title, projectID, taskID, stepID);
 
-    task.addStep(newStep);
+    task.addToTodoSteps(newStep);
 }
 
 /* Edit an existing step */
@@ -25,12 +26,10 @@ function editStep(step, title) {
 /* Creates a step from creation form */
 function createStepFromForm() {
     const title = document.querySelector("#step-title").value;
-    const project = getCurrentProject();
-    const task = project.getCurrentTask();
 
-    createStep(task, title);
+    createStep(getCurrentProject().getCurrentTask(), title);
     clearPage();
-    renderProjectPage(project);
+    renderProjectPage(getCurrentProject());
 }
 
 /* Edits a step based on information in edit form */
