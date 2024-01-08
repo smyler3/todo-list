@@ -107,10 +107,24 @@ function generateTaskCards(tasks) {
         const projectTaskItem = document.createElement("li");
         projectTaskItem.classList.add("project-task-item");
 
+        // List of all todo steps for current task
+        const todoStepsList = document.createElement("ul");
+        todoStepsList.classList.add("steps-list", "todo-steps-list");
+
+        // List of all completed steps for current task
+        const completedStepsList = document.createElement("ul");
+        completedStepsList.classList.add("steps-list", "todo-steps-list");
+
         // Create task
         projectTaskItem.appendChild(generateTask(task));
+
+        // Append step lists
+        projectTaskItem.appendChild(todoStepsList);
+        projectTaskItem.appendChild(completedStepsList);
+
         // Create steps
-        projectTaskItem.appendChild(generateStepCards(task.getTodoSteps()));
+        generateStepCards(task.getTodoSteps(), todoStepsList);
+        generateStepCards(task.getCompletedSteps(), completedStepsList);
 
         taskList.appendChild(projectTaskItem);
     })

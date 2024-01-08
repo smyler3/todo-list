@@ -3,11 +3,12 @@ import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 import { createStepCompletionListener } from "../../modules/eventListeners/checkboxListeners.js";
+import { Status } from "../../models/enums/status.js";
 
 /* Create a list of steps for a task */
-function generateStepCards(steps) {
+function generateStepCards(steps, parent) {
     /* Create a step item */
-    function generateStep(step) {
+    function generateStepCard(step) {
 
         /* Gets the current task from current step ids */
         function setCurrentTaskFromID() {
@@ -71,17 +72,13 @@ function generateStepCards(steps) {
         return stepItem;
     }
 
-    const stepList = document.createElement("ul");
-    stepList.classList.add("step-list");
-
     // Add all steps to the list
     steps.forEach(step => {
         // Mark current step
         getCurrentProject().getCurrentTask().setCurrentStep(step);
-        stepList.appendChild(generateStep(step));
-    });
 
-    return stepList;
+        parent.appendChild(generateStepCard(step));
+    });
 }
 
 function editStepCardInformation(step) {
@@ -94,12 +91,14 @@ function editStepCardInformation(step) {
 /* Modifies a step card once it has been marked as completed */
 function setStepCardCompleted(step) {
     const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+    console.log(stepCard);
 
     // Visually marking as complete
     stepCard.classList.add("completed");
     const parent = stepCard.parentElement;
     // Moves the card to the end of the list
-    parent.appendChild(stepCard);
+    console.log(parent);
+    parent.nextSibling.appendChild(stepCard);
 }
 
 /* Removes a deleted steps card */

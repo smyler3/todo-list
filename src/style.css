@@ -433,7 +433,7 @@ input[type="checkbox"]:checked {
  * ----------------------
  */
 .task-list-container,
-.step-list {
+.steps-list {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
@@ -511,6 +511,11 @@ input[type="checkbox"]:checked {
 .priority-none {
     color: #000000;
     background-color: #f0f1f4;
+}
+
+.completed {
+    background-color: rgb(210, 210, 210);
+    color: #6a6a6a;
 }
 
 /*

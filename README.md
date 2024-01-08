@@ -58,6 +58,9 @@ CODE LOGIC:
 
     -
     Change task-checkbox to something else as it is used by steps aswell
+
+    -
+    Duplicate setCurrentTaskFromID functions
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
