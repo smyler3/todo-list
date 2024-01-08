@@ -1,10 +1,11 @@
 import { DefaultColour, isValidColour } from "../../enums/colours.js";
+import { Status } from "../../enums/status.js";
 
 /* Creates a single instance of a project object */
 export default function projectFactory(title, description, projectID) {
     let colour = DefaultColour;
     let taskCount = 0;
-    const tasks = [];
+    const incompleteTasks = [];
     const completedTasks = [];
     let currentTask = null;
 
@@ -42,23 +43,24 @@ export default function projectFactory(title, description, projectID) {
         }
     }
 
-    function getTasks() {
-        return tasks;
+    function getIncompleteTasks() {
+        return incompleteTasks;
     }
 
     /* Add a task to the project */
-    function addTask(task) {
-        tasks.push(task);
+    function addToIncompleteTasks(task) {
+        incompleteTasks.push(task);
     }
 
-    /* Remove a task from the project */
-    function removeTask(task) {
-        tasks.forEach((taskElement, index) => {
-            console.log(taskElement);
-        });
-        tasks.forEach((taskElement, index) => {
+    /* Remove a task from the project (and add to incompleteSteps if valid) */
+    function removeFromIncompleteTasks(task) {
+        incompleteTasks.forEach((taskElement, index) => {
             if (task.getTaskID() === taskElement.getTaskID()) {
-                tasks.splice(index, 1);
+                incompleteTasks.splice(index, 1);
+            }
+            // Conditionally add to completedTasks
+            if (task.getStatus() === Status.COMPLETED) {
+                addToCompletedTasks(task);
             }
         });
     }
@@ -68,15 +70,15 @@ export default function projectFactory(title, description, projectID) {
     }
 
     /* Add a completed task to the project */
-    function addCompletedTask(task) {
+    function addToCompletedTasks(task) {
         completedTasks.push(task);
     }
 
-    /* Remove a task from the project */
-    function removeCompletedTask(task) {
-        completedTasks.array.forEach(taskElement => {
-            if (task === taskElement) {
-                completedTasks.push(taskElement);
+    /* Remove a completed task from the project */
+    function removeFromCompletedTasks(task) {
+        completedTasks.forEach((taskElement, index) => {
+            if (task.getTaskID() === taskElement.getTaskID()) {
+                completedTasks.splice(index, 1);
             }
         });
     }
@@ -97,8 +99,8 @@ export default function projectFactory(title, description, projectID) {
         getTitle, setTitle, 
         getDescription, setDescription, 
         getColour, setColour,
-        getTasks, addTask, removeTask,
-        getCompletedTasks, addCompletedTask, removeCompletedTask, 
+        getIncompleteTasks, addToIncompleteTasks, removeFromIncompleteTasks,
+        getCompletedTasks, addToCompletedTasks, removeFromCompletedTasks, 
         getProjectID,
         getNextTaskCount,
         getCurrentTask, setCurrentTask, 

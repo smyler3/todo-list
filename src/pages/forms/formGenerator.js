@@ -247,7 +247,7 @@ function renderDeleteProjectForm() {
 
 function renderDeleteTaskForm() {
     const deleteFunction = () => {
-        getCurrentProject().removeTask(getCurrentProject().getCurrentTask());
+        getCurrentProject().removeFromIncompleteTasks(getCurrentProject().getCurrentTask());
         deleteTaskCard(getCurrentProject().getCurrentTask());
     }
 

@@ -9,7 +9,7 @@ function createStep(task, title) {
     const stepID = task.getNextStepCount();
     const newStep = stepFactory(title, projectID, taskID, stepID);
 
-    task.addToTodoSteps(newStep);
+    task.addToIncompleteSteps(newStep);
 }
 
 /* Edit an existing step */

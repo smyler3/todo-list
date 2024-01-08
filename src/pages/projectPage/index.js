@@ -73,22 +73,32 @@ function renderProjectPage(project) {
         taskListContainer.classList.add("task-list-container");
 
         // Incomplete tasks section header
-        const todoSectionDivider = document.createElement("h2");
-        todoSectionDivider.textContent = "Tasks"
-        todoSectionDivider.classList.add("section-divider");
+        const taskSectionDivider = document.createElement("h2");
+        taskSectionDivider.textContent = "Tasks"
+        taskSectionDivider.classList.add("section-divider");
+
+        // List of incomplete tasks
+        const incompleteTasksList = document.createElement("ul");
+        incompleteTasksList.classList.add("task-list", "incomplete-task-list");
 
         // Generate incomplete tasks
-        taskListContainer.appendChild(todoSectionDivider);
-        taskListContainer.appendChild(generateTaskCards(project.getTasks()));
+        taskListContainer.appendChild(taskSectionDivider);
+        generateTaskCards(project.getIncompleteTasks(), incompleteTasksList);
+        taskListContainer.appendChild(incompleteTasksList);
 
         // Completed tasks section header
         const completedSectionDivider = document.createElement("h2");
         completedSectionDivider.textContent = "Completed"
         completedSectionDivider.classList.add("section-divider");
 
+        // List of completed tasks
+        const completedTasksList = document.createElement("ul");
+        completedTasksList.classList.add("task-list", "completed-task-list");
+
         // Generate completed tasks
         taskListContainer.appendChild(completedSectionDivider);
-        taskListContainer.appendChild(generateTaskCards(project.getCompletedTasks()));
+        generateTaskCards(project.getCompletedTasks(), completedTasksList);
+        taskListContainer.appendChild(completedTasksList);
 
         return taskListContainer;
     }

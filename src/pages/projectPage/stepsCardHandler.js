@@ -12,7 +12,7 @@ function generateStepCards(steps, parent) {
 
         /* Gets the current task from current step ids */
         function setCurrentTaskFromID() {
-            getCurrentProject().getTasks().forEach(task => {
+            getCurrentProject().getIncompleteTasks().forEach(task => {
                 if (String(task.getTaskID()) === String(step.getTaskID())) {
                     getCurrentProject().setCurrentTask(task);
                     return;

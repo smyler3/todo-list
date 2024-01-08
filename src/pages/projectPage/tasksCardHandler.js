@@ -3,9 +3,10 @@ import generateActionButtons from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
+import { createTaskCompletionListener } from "../../modules/eventListeners/checkboxListeners.js";
 
 /* Create a list of tasks for a project */
-function generateTaskCards(tasks) {
+function generateTaskCards(tasks, parent) {
     /* Create a task item */
     function generateTask(task) {
         /* Create the checkbox and details of the task */
@@ -55,7 +56,7 @@ function generateTaskCards(tasks) {
             completedCheckbox.name = "";
             completedCheckbox.id = "";
 
-            // =;
+            createTaskCompletionListener(completedCheckbox);
 
             // Append elements
             projectListItemInfo.appendChild(completedCheckbox);
@@ -96,9 +97,6 @@ function generateTaskCards(tasks) {
         return taskItem;
     }
 
-    const taskList = document.createElement("ul");
-    taskList.classList.add("task-list");
-
     // Add all tasks to the list
     tasks.forEach(task => {
         // Mark current task
@@ -107,29 +105,27 @@ function generateTaskCards(tasks) {
         const projectTaskItem = document.createElement("li");
         projectTaskItem.classList.add("project-task-item");
 
-        // List of all todo steps for current task
-        const todoStepsList = document.createElement("ul");
-        todoStepsList.classList.add("steps-list", "todo-steps-list");
+        // List of all incomplete steps for current task
+        const incompleteStepsList = document.createElement("ul");
+        incompleteStepsList.classList.add("steps-list", "incomplete-steps-list");
 
         // List of all completed steps for current task
         const completedStepsList = document.createElement("ul");
-        completedStepsList.classList.add("steps-list", "todo-steps-list");
+        completedStepsList.classList.add("steps-list", "completed-steps-list");
 
         // Create task
         projectTaskItem.appendChild(generateTask(task));
 
         // Append step lists
-        projectTaskItem.appendChild(todoStepsList);
+        projectTaskItem.appendChild(incompleteStepsList);
         projectTaskItem.appendChild(completedStepsList);
 
         // Create steps
         generateStepCards(task.getIncompleteSteps(), incompleteStepsList);
         generateStepCards(task.getCompletedSteps(), completedStepsList);
 
-        taskList.appendChild(projectTaskItem);
+        parent.appendChild(projectTaskItem);
     })
-
-    return taskList;
 }
 
 function editTaskCardInformation(task) {
@@ -154,6 +150,17 @@ function editTaskCardInformation(task) {
     taskPriority.classList.add("priority-text", priorityClass);
 }
 
+/* Modifies a task card once it has been marked as completed */
+function setTaskCardCompleted(task) {
+    const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
+
+    // Visually marking as complete
+    taskCard.classList.add("completed");
+    const taskContainer = taskCard.parentElement;
+    // Moves the card wrapper to the completed tasks section 
+    taskContainer.parentElement.nextSibling.nextSibling.appendChild(taskContainer);
+}
+
 /* Removes a deleted tasks card */
 function deleteTaskCard(task) {
     const taskCard = document.querySelector(`.task-card[data-task-id="${task.getTaskID()}"]`);
@@ -161,4 +168,4 @@ function deleteTaskCard(task) {
     taskCard.parentElement.remove();
 }
 
-export { generateTaskCards, editTaskCardInformation, deleteTaskCard }
+export { generateTaskCards, editTaskCardInformation, setTaskCardCompleted, deleteTaskCard }

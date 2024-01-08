@@ -9,7 +9,7 @@ function createTask(project, title, description, dueDate, priority) {
     const taskID = project.getNextTaskCount();
     const newTask = taskFactory(title, description, dueDate, priority, projectID, taskID);
 
-    project.addTask(newTask);
+    project.addToIncompleteTasks(newTask);
 }
 
 /* Edit an existing task */
@@ -50,7 +50,7 @@ function editTaskFromForm(task) {
 function completeTask(task) {
     task.setStatus(Status.COMPLETED);
     // Mark incomplete steps
-    task.getIncompleteSteps().array.forEach(step => {
+    task.getIncompleteSteps().forEach(step => {
         step.setStatus(Status.COMPLETED);
     });
 }
