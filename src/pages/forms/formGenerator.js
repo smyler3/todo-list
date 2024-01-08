@@ -10,6 +10,7 @@ import { deleteProjectCard, editProjectCardInformation, renderAllProjectsPage } 
 import { removeSidebarProject } from "../sidebar/sidebarProjectsGenerator.js";
 import { deleteTaskCard } from "../projectPage/tasksCardHandler.js";
 import { deleteStepCard } from "../projectPage/stepsCardHandler.js";
+import { DefaultPriority } from "../../models/enums/priority.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -141,6 +142,10 @@ function renderCreateTaskForm() {
     addFormButtons(Organizers.TASK, "Edit", form, createTaskFromForm);
 
     renderForm(form);
+
+    // Highlight the default priority
+    const priorityBtn = document.querySelector(`input[name='priority'][value='${DefaultPriority}']`);
+    priorityBtn.checked = true;
 }
 
 /* Create the form for editing a task */

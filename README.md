@@ -63,10 +63,7 @@ CODE LOGIC:
 --------------------------------------------------------------------------
 TODO:
     -
-    Make the delete buttons work
-
-    -
-    Add default checked back to creation forms
+    Add ability to check items as complete
 .
 --------------------------------------------------------------------------
 
