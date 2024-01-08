@@ -2,7 +2,7 @@ import { Status } from "../../enums/status";
 
 /* Creates a single instance of a step object */
 export default function stepFactory(title, projectID, taskID, stepID) {
-    let status = Status.TODO;
+    let status = Status.INCOMPLETE;
 
     function getTitle() {
         return title;

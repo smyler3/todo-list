@@ -1,5 +1,4 @@
 import stepFactory from "./factories/stepFactory";
-import { Status } from "../enums/status";
 import { clearPage, renderProjectPage } from "../../pages/display";
 import { getCurrentProject } from "./project";
 
@@ -18,11 +17,6 @@ function editStep(step, title) {
     step.setTitle(title);
 }
 
-// /* Delete an exisiting step */
-// function deleteStep(step) {
-//     delete step.title;
-// }
-
 /* Creates a step from creation form */
 function createStepFromForm() {
     const title = document.querySelector("#step-title").value;
@@ -39,11 +33,4 @@ function editStepFromForm(step) {
     step.setTitle(newTitle);
 }
 
-/* Set a step to incomplete status */
-function setIncomplete() {
-    if (this.status === Status.TODO) {
-        setStatus(Status.INCOMPLETE);
-    }
-}
-
-export { createStep, editStep, createStepFromForm, editStepFromForm, setIncomplete }
+export { createStep, editStep, createStepFromForm, editStepFromForm }

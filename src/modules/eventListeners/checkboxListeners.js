@@ -21,7 +21,7 @@ function createStepCompletionListener(checkbox) {
         }
 
         function setCurrentStepFromID(stepID) {
-            getCurrentProject().getCurrentTask().getTodoSteps().forEach(step => {
+            getCurrentProject().getCurrentTask().getIncompleteSteps().forEach(step => {
                 if (String(step.getStepID()) === stepID) {
                     getCurrentProject().getCurrentTask().setCurrentStep(step);
                     return;

@@ -123,7 +123,7 @@ function generateTaskCards(tasks) {
         projectTaskItem.appendChild(completedStepsList);
 
         // Create steps
-        generateStepCards(task.getTodoSteps(), todoStepsList);
+        generateStepCards(task.getIncompleteSteps(), incompleteStepsList);
         generateStepCards(task.getCompletedSteps(), completedStepsList);
 
         taskList.appendChild(projectTaskItem);

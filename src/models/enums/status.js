@@ -2,7 +2,6 @@
 const Status = {
     COMPLETED: "Completed",
     INCOMPLETE: "Incomplete",
-    TODO: "To Do",
 }
 
 /* Checks whether the status property is valid */

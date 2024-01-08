@@ -21,15 +21,6 @@ function editTask(task, title, description, dueDate, priority, status) {
     task.setStatus(task, status);
 }
 
-// /* Delete an exisiting task */
-// function deleteTask(task) {
-//     delete task.getTitle();
-//     delete task.getDescription();
-//     delete task.getDueDate();
-//     delete task.getPriority();
-//     delete task.getStatus();
-// }
-
 /* Creates a task from creation form */
 function createTaskFromForm() {
     const title = document.querySelector("#task-title").value;
@@ -57,10 +48,10 @@ function editTaskFromForm(task) {
 
 /* Complete a task and convert all steps to required status*/
 function completeTask(task) {
-    // Mark incomplete steps
     task.setStatus(Status.COMPLETED);
-    task.getTodoSteps().array.forEach(step => {
-        step.setIncomplete();
+    // Mark incomplete steps
+    task.getIncompleteSteps().array.forEach(step => {
+        step.setStatus(Status.COMPLETED);
     });
 }
 

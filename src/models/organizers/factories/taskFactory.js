@@ -3,9 +3,9 @@ import { Status } from "../../enums/status";
 /* Creates a single instance of a task object */
 export default function taskFactory(title, description, dueDate, priority, projectID, taskID) {
     let stepCount = 0;
-    const todoSteps = [];
+    const incompleteSteps = [];
     const completedSteps = [];
-    let status = Status.TODO;
+    let status = Status.INCOMPLETE;
     let currentStep = null;
 
     /* Returns step count and increments it */
@@ -56,20 +56,20 @@ export default function taskFactory(title, description, dueDate, priority, proje
         status = newStatus;
     }
 
-    function getTodoSteps() {
-        return todoSteps;
+    function getIncompleteSteps() {
+        return incompleteSteps;
     }
 
     /* Add a step to the task */
-    function addToTodoSteps(step) {
-        todoSteps.push(step);
+    function addToIncompleteSteps(step) {
+        incompleteSteps.push(step);
     }
 
-    /* Remove a step todoSteps (and add to completedSteps if valid) */
-    function removeFromTodoSteps(step) {
-        todoSteps.forEach((stepElement, index) => {
+    /* Remove a step from incompleteSteps (and add to completedSteps if valid) */
+    function removeFromIncompleteSteps(step) {
+        incompleteSteps.forEach((stepElement, index) => {
             if (step.getStepID() === stepElement.getStepID()) {
-                todoSteps.splice(index, 1);
+                incompleteSteps.splice(index, 1);
             }
             // Conditionally add to completedSteps
             if (step.getStatus() === Status.COMPLETED) {
@@ -118,7 +118,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
         getDueDate, setDueDate, 
         getPriority, setPriority, 
         getStatus, setStatus, 
-        getTodoSteps, addToTodoSteps, removeFromTodoSteps, 
+        getIncompleteSteps, addToIncompleteSteps, removeFromIncompleteSteps, 
         getCompletedSteps, removeCompletedStep, 
         getProjectID, getTaskID, 
         getNextStepCount,
