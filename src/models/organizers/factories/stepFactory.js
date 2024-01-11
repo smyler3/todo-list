@@ -20,6 +20,15 @@ export default function stepFactory(title, projectID, taskID, stepID) {
         status = newStatus;
     }
 
+    function swapStatus() {
+        if (status === Status.COMPLETED) {
+            status = Status.INCOMPLETE;
+        }
+        else {
+            status = Status.COMPLETED;
+        }
+    }
+
     function getProjectID() {
         return projectID;
     }
@@ -34,7 +43,7 @@ export default function stepFactory(title, projectID, taskID, stepID) {
 
     return { 
         getTitle, setTitle, 
-        getStatus, setStatus, 
+        getStatus, setStatus, swapStatus, 
         getProjectID, getTaskID, getStepID,
     }
 }

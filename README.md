@@ -64,9 +64,23 @@ CODE LOGIC:
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
+VISUALS:
+    -
+    Colour scheme is trash
+
+    - 
+    Add new project is inconsistent
+
+    -
+    When all steps are in the completed/incompleted list the size is different from otherwise
+    (maybe remove the padding?)
+.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 TODO:
     -
-    Add ability to check tasks as complete
+    Add ability to check completed steps as incomplete
+    Add ability to check completed tasks as incomplete
 
     -
     use change not click and create lists for completed and incompleted tasks

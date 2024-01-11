@@ -87,11 +87,15 @@ export default function taskFactory(title, description, dueDate, priority, proje
         completedSteps.push(step);
     }
 
-    /* Remove a completed step from the task */
+    /* Remove a completed step from the task (and add to incompleteSteps if valid) */
     function removeFromCompletedSteps(step) {
         completedSteps.forEach((stepElement, index) => {
             if (step.getStepID() === stepElement.getStepID()) {
                 completedSteps.splice(index, 1);
+            }
+            // Conditionally add to incompleteSteps
+            if (step.getStatus() === Status.INCOMPLETE) {
+                addToIncompleteSteps(step);
             }
         });
     }
