@@ -1546,7 +1546,7 @@ function createProjectFromForm() {
     createProject(title, desc);
     (0,_pages_display_js__WEBPACK_IMPORTED_MODULE_1__.clearPage)();
     (0,_pages_display_js__WEBPACK_IMPORTED_MODULE_1__.renderAllProjectsPage)(projects);
-    (0,_pages_sidebar_sidebarProjectsGenerator_js__WEBPACK_IMPORTED_MODULE_2__.addSidebarProject)(getCurrentProject());
+    (0,_pages_sidebar_sidebarProjectsGenerator_js__WEBPACK_IMPORTED_MODULE_2__.addToSidebarProjects)(getCurrentProject());
 }
 
 /* Edits a project based on information in edit form */
@@ -2425,7 +2425,7 @@ function renderDeleteForm(deleteFunction) {
 function renderDeleteProjectForm() {
     const deleteFunction = () => {
         (0,_models_organizers_project_js__WEBPACK_IMPORTED_MODULE_3__.deleteProject)((0,_models_organizers_project_js__WEBPACK_IMPORTED_MODULE_3__.getCurrentProject)());
-        (0,_sidebar_sidebarProjectsGenerator_js__WEBPACK_IMPORTED_MODULE_9__.removeSidebarProject)((0,_models_organizers_project_js__WEBPACK_IMPORTED_MODULE_3__.getCurrentProject)());
+        (0,_sidebar_sidebarProjectsGenerator_js__WEBPACK_IMPORTED_MODULE_9__.removeFromSidebarProjects)((0,_models_organizers_project_js__WEBPACK_IMPORTED_MODULE_3__.getCurrentProject)());
         if (document.querySelector(".project-header-container") !== null) {
             (0,_display_js__WEBPACK_IMPORTED_MODULE_6__.clearPage)();
             (0,_allProjectsPage_index_js__WEBPACK_IMPORTED_MODULE_8__.renderAllProjectsPage)((0,_models_organizers_project_js__WEBPACK_IMPORTED_MODULE_3__.getProjects)());
@@ -3229,10 +3229,10 @@ function renderSidebar(projects) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   addSidebarProject: () => (/* binding */ addSidebarProject),
+/* harmony export */   addToSidebarProjects: () => (/* binding */ addToSidebarProjects),
 /* harmony export */   editSidebarProjectColour: () => (/* binding */ editSidebarProjectColour),
 /* harmony export */   editSidebarProjectTitle: () => (/* binding */ editSidebarProjectTitle),
-/* harmony export */   removeSidebarProject: () => (/* binding */ removeSidebarProject),
+/* harmony export */   removeFromSidebarProjects: () => (/* binding */ removeFromSidebarProjects),
 /* harmony export */   renderSidebarProjects: () => (/* binding */ renderSidebarProjects)
 /* harmony export */ });
 /* harmony import */ var _models_organizers_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/organizers/project */ "./src/models/organizers/project.js");
@@ -3306,7 +3306,7 @@ function renderSidebarProjects(projects, parent) {
 }
 
 /* Add a project to the sidebar display */
-function addSidebarProject(project) {
+function addToSidebarProjects(project) {
     const newProjectBtn = generateProjectButton(project);
 
     document.querySelector(".sidebar-projects-menu").appendChild(newProjectBtn);
@@ -3327,7 +3327,7 @@ function editSidebarProjectColour(project) {
     sidebarItem.firstChild.style.color = project.getColour();
 }
 
-function removeSidebarProject(project) {
+function removeFromSidebarProjects(project) {
     const sidebarItem = document.querySelector(`.sidebar-project-button[data-project-id="${project.getProjectID()}"]`);
 
     sidebarItem.remove();

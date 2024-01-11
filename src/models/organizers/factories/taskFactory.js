@@ -88,7 +88,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
     }
 
     /* Remove a completed step from the task */
-    function removeCompletedStep(step) {
+    function removeFromCompletedSteps(step) {
         completedSteps.forEach((stepElement, index) => {
             if (step.getStepID() === stepElement.getStepID()) {
                 completedSteps.splice(index, 1);
@@ -119,7 +119,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
         getPriority, setPriority, 
         getStatus, setStatus, 
         getIncompleteSteps, addToIncompleteSteps, removeFromIncompleteSteps, 
-        getCompletedSteps, removeCompletedStep, 
+        getCompletedSteps, removeFromCompletedSteps, 
         getProjectID, getTaskID, 
         getNextStepCount,
         getCurrentStep, setCurrentStep, 

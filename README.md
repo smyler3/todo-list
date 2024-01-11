@@ -66,9 +66,6 @@ CODE LOGIC:
 --------------------------------------------------------------------------
 TODO:
     -
-    Refactor 'addX' to 'addToXs' etc
-
-    -
     Add ability to check tasks as complete
 
     -

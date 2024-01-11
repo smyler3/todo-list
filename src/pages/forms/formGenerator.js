@@ -7,7 +7,7 @@ import { createStepFromForm, editStepFromForm } from "../../models/organizers/st
 import { editSidebarProjectColour, editSidebarProjectTitle, editProjectPageColour, editProjectCardColour, clearPage } from "../display.js";
 import { editProjectPageInformation, editStepCardInformation, editTaskCardInformation, renderProjectPage } from "../projectPage/index.js";
 import { deleteProjectCard, editProjectCardInformation, renderAllProjectsPage } from "../allProjectsPage/index.js";
-import { removeSidebarProject } from "../sidebar/sidebarProjectsGenerator.js";
+import { removeFromSidebarProjects } from "../sidebar/sidebarProjectsGenerator.js";
 import { deleteTaskCard } from "../projectPage/tasksCardHandler.js";
 import { deleteStepCard } from "../projectPage/stepsCardHandler.js";
 import { DefaultPriority } from "../../models/enums/priority.js";
@@ -232,7 +232,7 @@ function renderDeleteForm(deleteFunction) {
 function renderDeleteProjectForm() {
     const deleteFunction = () => {
         deleteProject(getCurrentProject());
-        removeSidebarProject(getCurrentProject());
+        removeFromSidebarProjects(getCurrentProject());
         if (document.querySelector(".project-header-container") !== null) {
             clearPage();
             renderAllProjectsPage(getProjects());

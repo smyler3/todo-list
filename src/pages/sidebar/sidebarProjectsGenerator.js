@@ -67,7 +67,7 @@ function renderSidebarProjects(projects, parent) {
 }
 
 /* Add a project to the sidebar display */
-function addSidebarProject(project) {
+function addToSidebarProjects(project) {
     const newProjectBtn = generateProjectButton(project);
 
     document.querySelector(".sidebar-projects-menu").appendChild(newProjectBtn);
@@ -88,10 +88,10 @@ function editSidebarProjectColour(project) {
     sidebarItem.firstChild.style.color = project.getColour();
 }
 
-function removeSidebarProject(project) {
+function removeFromSidebarProjects(project) {
     const sidebarItem = document.querySelector(`.sidebar-project-button[data-project-id="${project.getProjectID()}"]`);
 
     sidebarItem.remove();
 }
 
-export { renderSidebarProjects, addSidebarProject, editSidebarProjectTitle, editSidebarProjectColour, removeSidebarProject }
+export { renderSidebarProjects, addToSidebarProjects, editSidebarProjectTitle, editSidebarProjectColour, removeFromSidebarProjects }

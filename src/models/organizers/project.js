@@ -1,6 +1,6 @@
 import projectFactory from "./factories/projectFactory";
 import { renderAllProjectsPage, clearPage, renderSidebar } from "../../pages/display.js";
-import { addSidebarProject } from "../../pages/sidebar/sidebarProjectsGenerator.js";
+import { addToSidebarProjects } from "../../pages/sidebar/sidebarProjectsGenerator.js";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
@@ -64,7 +64,7 @@ function createProjectFromForm() {
     createProject(title, desc);
     clearPage();
     renderAllProjectsPage(projects);
-    addSidebarProject(getCurrentProject());
+    addToSidebarProjects(getCurrentProject());
 }
 
 /* Edits a project based on information in edit form */
