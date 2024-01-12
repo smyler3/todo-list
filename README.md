@@ -79,6 +79,9 @@ VISUALS:
 --------------------------------------------------------------------------
 TODO:
     -
+    Refactor form button event logic to seperate files
+    
+    -
     When deleting a step, check it is removed from currentStep
     When deleting a task, check it is removed from currentTask
 .

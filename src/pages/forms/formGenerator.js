@@ -1,7 +1,7 @@
 import generateTextFields from "./textFieldGenerator";
 import * as radioFieldGenerator from "./radioFieldGenerator";
 import { Organizers } from "../../models/enums/organizer";
-import { createProjectFromForm, deleteProject, editProjectColourFromForm, editProjectFromForm, getCurrentProject, getProjects } from "../../models/organizers/project.js";
+import { createProjectFromForm, deleteProject, editProjectColourFromForm, editProjectFromForm, getCurrentProject, getProjects, setCurrentProject } from "../../models/organizers/project.js";
 import { createTaskFromForm, editTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm, editStepFromForm } from "../../models/organizers/step.js";
 import { editSidebarProjectColour, editSidebarProjectTitle, editProjectPageColour, editProjectCardColour, clearPage } from "../display.js";
@@ -11,6 +11,7 @@ import { removeFromSidebarProjects } from "../sidebar/sidebarProjectsGenerator.j
 import { deleteTaskCard } from "../projectPage/tasksCardHandler.js";
 import { deleteStepCard } from "../projectPage/stepsCardHandler.js";
 import { DefaultPriority } from "../../models/enums/priority.js";
+import { createFormCancelButtonListener, createFormSubmitButtonListener } from "../../modules/eventListeners/formButtonListeners/index.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -54,11 +55,7 @@ function addFormButtons(organizerType, actionType, parent, submitFunction) {
     submitBtn.classList.add("form-btn", "submit-btn");
 
     // Submit event
-    submitBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        submitFunction();
-        modal.style.display = "none";
-    });
+    createFormSubmitButtonListener(submitBtn, submitFunction, modal);
 
     // Cancel button
     const cancelBtn = document.createElement("button");
@@ -67,10 +64,7 @@ function addFormButtons(organizerType, actionType, parent, submitFunction) {
     cancelBtn.classList.add("form-btn", "cancel-btn");
 
     // Cancel event
-    cancelBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.style.display = "none";
-    });
+    createFormCancelButtonListener(cancelBtn, modal)
 
     // Append elements
     parent.appendChild(submitBtn);
@@ -233,6 +227,7 @@ function renderDeleteProjectForm() {
     const deleteFunction = () => {
         deleteProject(getCurrentProject());
         removeFromSidebarProjects(getCurrentProject());
+        setCurrentProject(null);
         if (document.querySelector(".project-header-container") !== null) {
             clearPage();
             renderAllProjectsPage(getProjects());
@@ -249,6 +244,7 @@ function renderDeleteTaskForm() {
     const deleteFunction = () => {
         getCurrentProject().removeFromIncompleteTasks(getCurrentProject().getCurrentTask());
         deleteTaskCard(getCurrentProject().getCurrentTask());
+        getCurrentProject().setCurrentTask(null);
     }
 
     renderDeleteForm(deleteFunction);
@@ -258,6 +254,7 @@ function renderDeleteStepForm() {
     const deleteFunction = () => {
         getCurrentProject().getCurrentTask().removeFromIncompleteSteps(getCurrentProject().getCurrentTask().getCurrentStep());
         deleteStepCard(getCurrentProject().getCurrentTask().getCurrentStep());
+        getCurrentProject().getCurrentTask().setCurrentStep(null);
     }
 
     renderDeleteForm(deleteFunction);
