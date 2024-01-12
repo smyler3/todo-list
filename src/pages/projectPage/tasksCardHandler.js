@@ -3,7 +3,7 @@ import generateActionButtons from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
-import { createTaskCompletionListener } from "../../modules/eventListeners/checkboxListeners.js";
+import { createTaskStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
 
 /* Create a list of tasks for a project */
 function generateTaskCards(tasks, parent) {
@@ -56,7 +56,7 @@ function generateTaskCards(tasks, parent) {
             completedCheckbox.name = "";
             completedCheckbox.id = "";
 
-            createTaskCompletionListener(completedCheckbox);
+            createTaskStatusListener(completedCheckbox);
 
             // Append elements
             projectListItemInfo.appendChild(completedCheckbox);
@@ -159,6 +159,33 @@ function setTaskCardCompleted(task) {
     const taskContainer = taskCard.parentElement;
     // Moves the card wrapper to the completed tasks section 
     taskContainer.parentElement.nextSibling.nextSibling.appendChild(taskContainer);
+
+    // Visually marking all incomplete steps as completed
+    task.getIncompleteSteps().forEach(step => {
+        const stepCard = document.querySelector(`.step-card[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+
+        stepCard.classList.add("completed");
+        stepCard.firstChild.firstChild.checked = true;
+    })
+}
+
+/* Modifies a task card once it has been marked as completed */
+function setTaskCardIncomplete(task) {
+    const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
+
+    // Visually marking as incomplete
+    taskCard.classList.remove("completed");
+    const taskContainer = taskCard.parentElement;
+    // Moves the card wrapper to the incomplete tasks section 
+    taskContainer.parentElement.previousSibling.previousSibling.appendChild(taskContainer);
+
+    // Visually remarking all incomplete steps as incomplete
+    task.getIncompleteSteps().forEach(step => {
+        const stepCard = document.querySelector(`.step-card[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+
+        stepCard.classList.remove("completed");
+        stepCard.firstChild.firstChild.checked = false;
+    })
 }
 
 /* Removes a deleted tasks card */
@@ -168,4 +195,4 @@ function deleteTaskCard(task) {
     taskCard.parentElement.remove();
 }
 
-export { generateTaskCards, editTaskCardInformation, setTaskCardCompleted, deleteTaskCard }
+export { generateTaskCards, editTaskCardInformation, setTaskCardCompleted, setTaskCardIncomplete, deleteTaskCard }

@@ -79,7 +79,6 @@ VISUALS:
 --------------------------------------------------------------------------
 TODO:
     -
-    Add ability to check completed steps as incomplete
     Add ability to check completed tasks as incomplete
 
     -

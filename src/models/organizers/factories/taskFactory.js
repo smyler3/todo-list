@@ -56,6 +56,15 @@ export default function taskFactory(title, description, dueDate, priority, proje
         status = newStatus;
     }
 
+    function swapStatus() {
+        if (status === Status.COMPLETED) {
+            status = Status.INCOMPLETE;
+        }
+        else {
+            status = Status.COMPLETED;
+        }
+    }
+
     function getIncompleteSteps() {
         return incompleteSteps;
     }
@@ -121,7 +130,7 @@ export default function taskFactory(title, description, dueDate, priority, proje
         getDescription, setDescription, 
         getDueDate, setDueDate, 
         getPriority, setPriority, 
-        getStatus, setStatus, 
+        getStatus, setStatus, swapStatus, 
         getIncompleteSteps, addToIncompleteSteps, removeFromIncompleteSteps, 
         getCompletedSteps, removeFromCompletedSteps, 
         getProjectID, getTaskID, 

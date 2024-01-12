@@ -2,7 +2,7 @@ import { Status } from "../../models/enums/status";
 import { getCurrentProject } from "../../models/organizers/project";
 import { completeTask } from "../../models/organizers/task";
 import { setStepCardCompleted, setStepCardIncomplete } from "../../pages/projectPage/stepsCardHandler";
-import { setTaskCardCompleted } from "../../pages/projectPage/tasksCardHandler";
+import { setTaskCardCompleted, setTaskCardIncomplete } from "../../pages/projectPage/tasksCardHandler";
 
 function setCurrentTaskFromID(tasks, taskID) {
     tasks.forEach(task => {
@@ -22,34 +22,44 @@ function setCurrentStepFromID(steps, stepID) {
     });
 }
 
-/* Handles marking a task and associated steps as completed after the box on a task card is checked */
-function createTaskCompletionListener(checkbox) {
-    checkbox.addEventListener("click", () => {
-        // Set current task from task card id value
-        const stepCard = checkbox.parentElement.parentElement;
-        setCurrentTaskFromID(getCurrentProject().getIncompleteTasks(), String(stepCard.getAttribute("data-task-id")));
+function taskStatusToggleListener(checkbox) {
+    const taskCard = checkbox.parentElement.parentElement;
+    // Searches both lists the current task
+    setCurrentTaskFromID(getCurrentProject().getIncompleteTasks(), String(taskCard.getAttribute("data-task-id")));
+    setCurrentTaskFromID(getCurrentProject().getCompletedTasks(), String(taskCard.getAttribute("data-task-id")));
 
-        // Mark the task and all steps as completed
-        completeTask(getCurrentProject().getCurrentTask());
-        // Add 'completed' class to each child step card and tick checkbox
-        getCurrentProject().getCurrentTask().getIncompleteSteps().forEach(step => {
-            const stepCard = document.querySelector(`.step-card[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+    const task = getCurrentProject().getCurrentTask();
 
-            stepCard.classList.add("completed");
-            stepCard.firstChild.firstChild.checked = true;
-        })
-        // Move the task to completed tasks in project
-        getCurrentProject().removeFromIncompleteTasks(getCurrentProject().getCurrentTask());
-        // Move the task card to completed tasks section of project and add 'completed' class
-        setTaskCardCompleted(getCurrentProject().getCurrentTask());
-    });
+    // Toggle the tasks complete status
+    task.swapStatus();
+
+    // Introduce a slight visual delay
+    setTimeout(() => {
+        // Call the template function based on the completion status
+        if (task.getStatus() === Status.COMPLETED) {
+            setTaskStatusCompleteHandler(task);
+        } else {
+            setTaskStatusIncompleteHandler(task);
+        }
+    }, 100);
+}
+
+function setTaskStatusCompleteHandler(task) {
+    getCurrentProject().removeFromIncompleteTasks(task);
+    setTaskCardCompleted(task);
+}
+
+function setTaskStatusIncompleteHandler(task) {
+    getCurrentProject().removeFromCompletedTasks(task);
+    setTaskCardIncomplete(task);
+}
+
+/* Handles initialization of the event listener for marking the completion status of tasks */
+function createTaskStatusListener(checkbox) {
+    checkbox.addEventListener("change", () => taskStatusToggleListener(checkbox));
 }
 
 function stepStatusToggleListener(checkbox) {
-    // console.log(checkbox);
-    // console.log(checkbox.parentElement);
-    // console.log(checkbox.parentElement.parentElement);
-    // alert('break');
     const stepCard = checkbox.parentElement.parentElement;
     setCurrentTaskFromID(getCurrentProject().getIncompleteTasks(), String(stepCard.getAttribute("data-task-id")));
     // Searches both lists the current step
@@ -69,7 +79,7 @@ function stepStatusToggleListener(checkbox) {
         } else {
             setStepStatusIncompleteHandler(step);
         }
-    }, 300);
+    }, 100);
 }
 
 function setStepStatusCompleteHandler(step) {
@@ -87,4 +97,4 @@ function createStepStatusListener(checkbox) {
     checkbox.addEventListener("change", () => stepStatusToggleListener(checkbox));
 }
 
-export { createTaskCompletionListener, createStepStatusListener }
+export { createTaskStatusListener, createStepStatusListener }

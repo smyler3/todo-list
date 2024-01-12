@@ -52,7 +52,7 @@ export default function projectFactory(title, description, projectID) {
         incompleteTasks.push(task);
     }
 
-    /* Remove a task from the project (and add to incompleteSteps if valid) */
+    /* Remove an incomplete task from the project (and add to completeTasks if valid) */
     function removeFromIncompleteTasks(task) {
         incompleteTasks.forEach((taskElement, index) => {
             if (task.getTaskID() === taskElement.getTaskID()) {
@@ -74,11 +74,15 @@ export default function projectFactory(title, description, projectID) {
         completedTasks.push(task);
     }
 
-    /* Remove a completed task from the project */
+    /* Remove a completed task from the project (and add to incompletedTasks if valid) */
     function removeFromCompletedTasks(task) {
         completedTasks.forEach((taskElement, index) => {
             if (task.getTaskID() === taskElement.getTaskID()) {
                 completedTasks.splice(index, 1);
+            }
+            // Conditionally add to completedTasks
+            if (task.getStatus() === Status.INCOMPLETE) {
+                addToIncompleteTasks(task);
             }
         });
     }
