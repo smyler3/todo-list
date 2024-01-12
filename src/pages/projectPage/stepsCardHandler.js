@@ -4,33 +4,22 @@ import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 import { createStepCompletionListener, createStepStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
 import { Status } from "../../models/enums/status.js";
+import { stepDeleteButtonListener, stepEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/stepActionButtonListeners.js";
 
 /* Create a list of steps for a task */
 function generateStepCards(steps, parent) {
     /* Create a step item */
     function generateStepCard(step) {
 
-        /* Gets the current task from current step ids */
-        function setCurrentTaskFromID() {
-            getCurrentProject().getIncompleteTasks().forEach(task => {
-                if (String(task.getTaskID()) === String(step.getTaskID())) {
-                    getCurrentProject().setCurrentTask(task);
-                    return;
-                }
-            })
-        }
-
         // Step Buttons to be created
         const stepButtons = [
-            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task", event: () => {
-                setCurrentTaskFromID();
-                getCurrentProject().getCurrentTask().setCurrentStep(step);
-                forms.renderEditStepForm();
+            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task",
+            event: () => {
+                stepEditButtonListener(step);
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: () => {
-                setCurrentTaskFromID();
-                getCurrentProject().getCurrentTask().setCurrentStep(step);
-                forms.renderDeleteStepForm();
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task",
+            event: () => {
+                stepDeleteButtonListener(step)
             }},
         ]
 

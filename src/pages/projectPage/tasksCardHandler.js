@@ -4,6 +4,7 @@ import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 import { createTaskStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
+import { taskCreateStepButtonListener, taskDeleteButtonListener, taskEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/taskActionButtonListeners.js";
 
 /* Create a list of tasks for a project */
 function generateTaskCards(tasks, parent) {
@@ -69,17 +70,15 @@ function generateTaskCards(tasks, parent) {
         const taskButtons = [
             {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step",
             event: () => {
-                getCurrentProject().setCurrentTask(task);
-                forms.renderCreateStepForm();
+                taskCreateStepButtonListener(task)
             }},
             {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task",
             event: () => {
-                getCurrentProject().setCurrentTask(task);
-                forms.renderEditTaskForm();
+                taskEditButtonListener(task);
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task", event: () => {
-                getCurrentProject().setCurrentTask(task);
-                forms.renderDeleteTaskForm();
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task",
+            event: () => {
+                taskDeleteButtonListener(task);
             }},
         ]
 

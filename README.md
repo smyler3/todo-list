@@ -79,12 +79,6 @@ VISUALS:
 --------------------------------------------------------------------------
 TODO:
     -
-    Add ability to check completed tasks as incomplete
-
-    -
-    use change not click and create lists for completed and incompleted tasks
-
-    -
     When deleting a step, check it is removed from currentStep
     When deleting a task, check it is removed from currentTask
 .

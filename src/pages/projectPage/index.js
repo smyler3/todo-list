@@ -4,6 +4,7 @@ import generateActionButtons from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
+import { projectColourButtonListener, projectCreateTaskButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
 
 /* Create the page showing all info for a selected project */
 function renderProjectPage(project) {
@@ -35,22 +36,19 @@ function renderProjectPage(project) {
         const projectButtons = [
             {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task",
             event: () => {
-                forms.renderCreateTaskForm(project);
+                projectCreateTaskButtonListener(project);
             }},
             {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
             event: () => {
-                setCurrentProject(project);
-                forms.renderColourPickerForm(); 
+                projectColourButtonListener(project);
             }},
             {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
             event: () => {
-                setCurrentProject(project);
-                forms.renderEditProjectForm();
+                projectEditButtonListener(project);
             }},
             {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
             event: () => {
-                setCurrentProject(project);
-                forms.renderDeleteProjectForm();
+                projectDeleteButtonListener(project);
             }},
         ]
 

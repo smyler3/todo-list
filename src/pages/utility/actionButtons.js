@@ -1,3 +1,5 @@
+import { createActionButtonListener } from "../../modules/eventListeners/actionButtonListeners/index.js";
+
 /* Creates the action buttons for a organizer */
 export default function generateActionButtons(buttons) {
     const actionBtns = document.createElement("span");
@@ -19,10 +21,7 @@ export default function generateActionButtons(buttons) {
         actionBtn.title = btn.title;
 
         // Button action
-        actionButtonContainer.addEventListener("click", (e) => {
-            btn.event();        
-            e.stopPropagation();
-        })
+        createActionButtonListener(actionButtonContainer, btn.event)
 
         // Append elements
         actionButtonContainer.appendChild(actionBtn);

@@ -109,7 +109,7 @@ function renderEditProjectForm() {
     addFormButtons(Organizers.PROJECT, "Edit", form, () => {
         editProjectFromForm(getCurrentProject());
         editSidebarProjectTitle(getCurrentProject());
-        // TODO: Change These
+        // TODO: Change These?
         if (document.querySelector(".project-header-container") !== null) {
             editProjectPageInformation(getCurrentProject());
         }
@@ -256,7 +256,7 @@ function renderDeleteTaskForm() {
 
 function renderDeleteStepForm() {
     const deleteFunction = () => {
-        getCurrentProject().getCurrentTask().removeFromTodoSteps(getCurrentProject().getCurrentTask().getCurrentStep());
+        getCurrentProject().getCurrentTask().removeFromIncompleteSteps(getCurrentProject().getCurrentTask().getCurrentStep());
         deleteStepCard(getCurrentProject().getCurrentTask().getCurrentStep());
     }
 
