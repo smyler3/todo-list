@@ -133,7 +133,11 @@ function renderCreateTaskForm() {
     // Appending elements
     generateTextFields(taskTextFormFields, form);
     form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
-    addFormButtons(Organizers.TASK, "Edit", form, createTaskFromForm);
+    addFormButtons(Organizers.TASK, "Edit", form, () => {
+        createTaskFromForm();
+        clearPage();
+        renderProjectPage(getCurrentProject());
+    });
 
     renderForm(form);
 
@@ -156,9 +160,12 @@ function renderEditTaskForm() {
     // Appending elements
     generateTextFields(taskTextFormFields, form);
     form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
-    addFormButtons(Organizers.TASK, "EDit", form, () => {
+    addFormButtons(Organizers.TASK, "Edit", form, () => {
         editTaskFromForm(getCurrentProject().getCurrentTask());
         editTaskCardInformation(getCurrentProject().getCurrentTask());
+        getCurrentProject().sortIncompleteTasks();
+        clearPage();
+        renderProjectPage(getCurrentProject());
     });
 
     renderForm(form);

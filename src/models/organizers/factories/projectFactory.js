@@ -1,4 +1,5 @@
 import { DefaultColour, isValidColour } from "../../enums/colours.js";
+import { prioritySort } from "../../enums/priority.js";
 import { Status } from "../../enums/status.js";
 
 /* Creates a single instance of a project object */
@@ -50,6 +51,10 @@ export default function projectFactory(title, description, projectID) {
     /* Add a task to the project */
     function addToIncompleteTasks(task) {
         incompleteTasks.push(task);
+        sortIncompleteTasks();
+        incompleteTasks.forEach(task => {
+            console.log(task.getTitle());
+        })
     }
 
     /* Remove an incomplete task from the project (and add to completeTasks if valid) */
@@ -65,6 +70,10 @@ export default function projectFactory(title, description, projectID) {
         });
     }
 
+    function sortIncompleteTasks() {
+        incompleteTasks.sort(prioritySort);
+    }
+
     function getCompletedTasks() {
         return completedTasks;
     }
@@ -72,6 +81,10 @@ export default function projectFactory(title, description, projectID) {
     /* Add a completed task to the project */
     function addToCompletedTasks(task) {
         completedTasks.push(task);
+        sortCompletedTasks();
+        completedTasks.forEach(task => {
+            console.log(task.getTitle());
+        })
     }
 
     /* Remove a completed task from the project (and add to incompletedTasks if valid) */
@@ -85,6 +98,10 @@ export default function projectFactory(title, description, projectID) {
                 addToIncompleteTasks(task);
             }
         });
+    }
+
+    function sortCompletedTasks() {
+        completedTasks.sort(prioritySort);
     }
 
     function getProjectID() {
@@ -103,8 +120,8 @@ export default function projectFactory(title, description, projectID) {
         getTitle, setTitle, 
         getDescription, setDescription, 
         getColour, setColour,
-        getIncompleteTasks, addToIncompleteTasks, removeFromIncompleteTasks,
-        getCompletedTasks, addToCompletedTasks, removeFromCompletedTasks, 
+        getIncompleteTasks, addToIncompleteTasks, removeFromIncompleteTasks, sortIncompleteTasks,
+        getCompletedTasks, addToCompletedTasks, removeFromCompletedTasks, sortCompletedTasks,
         getProjectID,
         getNextTaskCount,
         getCurrentTask, setCurrentTask, 

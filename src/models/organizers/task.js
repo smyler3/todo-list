@@ -29,8 +29,6 @@ function createTaskFromForm() {
     const priority = document.querySelector('input[name="priority"]:checked').value;
 
     createTask(getCurrentProject(), title, desc, date, priority);
-    clearPage();
-    renderProjectPage(getCurrentProject());
 }
 
 /* Edits a task based on information in edit form */

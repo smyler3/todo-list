@@ -69,21 +69,57 @@ VISUALS:
     Colour scheme is trash
 
     - 
-    Add new project is inconsistent
+    Add new project button is inconsistent
+
+    -
+    Make checkboxes bigger?
 
     -
     When all steps are in the completed/incompleted list the size is different from otherwise
     (maybe remove the padding?)
+
+    -
+    Completed subheader to "Completed Tasks"?
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TODO:
+    - 
+    Stop action buttons from working when a step is marked as complete (except delete)
+    Stop action buttons from working when a task is marked as complete (except delete)
+
     -
-    Refactor form button event logic to seperate files
-    
+    Sort task cards by priority by default
+
     -
-    When deleting a step, check it is removed from currentStep
-    When deleting a task, check it is removed from currentTask
+    Add local storage
+
+    - 
+    Apply visual overhaul
+        - Make colour picker better
+        - Change project colour visuals
+        - Change colour scheme
+        - Change add project button
+        - Add TODO logo?
+
+    -
+    Apply clean coding practices
+
+    -
+    Add code for adding default data?
+.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+POTENTIAL FUTURE FEATURES:
+    -
+    Allow different sorting of tasks
+
+    - 
+    Add delay to clicking on project navigation cards
+    Add delay to clicking on action buttons cards
+
+    -
+    Add different date formats
 .
 --------------------------------------------------------------------------
 
