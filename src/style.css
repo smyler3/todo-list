@@ -3,6 +3,8 @@
     --sidebar-text: rgb(0, 0, 0);
     --sidebar-hover-background: rgba(191, 112, 255, 0.15); /*rgba(226, 112, 255, 0.5) rgba(255, 141, 112, 0.15)*/
     --project-icon: rgba(177, 96, 231, 0.5);
+    --action-btn-background: #ffffff;
+    --completed-card-background: rgb(210, 210, 210);
 }
 
 /*
@@ -53,6 +55,7 @@ input[type="checkbox"]:checked {
     display: flex;
     align-items: center;
     gap: 0.2rem;
+    background-color: none;
 }
 
 .action-btn {
@@ -60,9 +63,18 @@ input[type="checkbox"]:checked {
     padding: 1rem;
     border: 2px solid #00000010;
     border-radius: 50%;
+    background-color: var(--action-btn-background);
 }
 .action-btn:hover {
     background-color: var(--sidebar-hover-background);
+}
+
+.disabled-action-btn {
+    cursor: default;
+    background-color: var(--completed-card-background)
+}
+.disabled-action-btn:hover {
+    background-color: var(--completed-card-background);
 }
 
 /*
@@ -514,7 +526,7 @@ input[type="checkbox"]:checked {
 }
 
 .completed {
-    background-color: rgb(210, 210, 210);
+    background-color: var(--completed-card-background);
     color: #6a6a6a;
 }
 

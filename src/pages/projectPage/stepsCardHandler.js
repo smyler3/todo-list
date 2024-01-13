@@ -1,4 +1,4 @@
-import generateActionButtons from "../utility/actionButtons.js";
+import { generateActionButtons, disableActionButtons, enableActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
@@ -11,7 +11,7 @@ function generateStepCards(steps, parent) {
     /* Create a step item */
     function generateStepCard(step) {
 
-        // Step Buttons to be created
+        // Step buttons to be created
         const stepButtons = [
             {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task",
             event: () => {
@@ -30,11 +30,11 @@ function generateStepCards(steps, parent) {
         stepItem.setAttribute("data-task-id", step.getTaskID());
         stepItem.setAttribute("data-step-id", step.getStepID());
 
-        // Step Information
+        // Step information
         const stepInfo = document.createElement("span");
         stepInfo.classList.add("project-list-item-info");
 
-        // Completion Checkbox
+        // Completion checkbox
         const completedCheckbox = document.createElement("input");
         completedCheckbox.classList.add("task-checkbox");
         completedCheckbox.type = "checkbox";
@@ -49,12 +49,11 @@ function generateStepCards(steps, parent) {
         const stepTitle = document.createElement("h4");
         stepTitle.textContent = step.getTitle();
 
-        // Action Buttons for Steps
+        // Action buttons for steps
         const stepActionButtons = generateActionButtons(stepButtons);
 
         // Append Elements
         stepInfo.appendChild(stepTitle);
-
         stepItem.appendChild(stepInfo);
         stepItem.appendChild(stepActionButtons);
 
@@ -86,6 +85,10 @@ function setStepCardCompleted(step) {
     const parent = stepCard.parentElement;
     // Moves the card to the end of the list
     parent.nextSibling.appendChild(stepCard);
+
+    // Disabling action buttons
+    const editButton = stepCard.lastChild.firstChild;
+    disableActionButtons([editButton]);
 }
 
 /* Modifies a step card once it has been marked as incomplete */
@@ -99,6 +102,10 @@ function setStepCardIncomplete(step) {
     console.log(parent.previousSibling);
     // Moves the card to the end of the list
     parent.previousSibling.appendChild(stepCard);
+
+    // Re-enabling action buttons
+    const editButton = stepCard.lastChild.firstChild;
+    enableActionButtons([editButton]);
 }
 
 /* Removes a deleted steps card */

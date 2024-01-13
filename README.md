@@ -16,6 +16,9 @@ CODE SYNTAX:
 
     -
     Use consistent index.js layout or switch to something else
+
+    - 
+    Assign names to variables like .firstChild.xxx so what they are is clear
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -60,7 +63,7 @@ CODE LOGIC:
     Change task-checkbox to something else as it is used by steps aswell
 
     -
-    Duplicate setCurrentTaskFromID functions
+    Duplicate setCurrentTaskFromID and setCurrentStepFromID functions
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -84,12 +87,12 @@ VISUALS:
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TODO:
+    -
+    When marking a task as incomplete, sort it back to correct position
+    
     - 
     Stop action buttons from working when a step is marked as complete (except delete)
     Stop action buttons from working when a task is marked as complete (except delete)
-
-    -
-    Sort task cards by priority by default
 
     -
     Add local storage
@@ -120,6 +123,9 @@ POTENTIAL FUTURE FEATURES:
 
     -
     Add different date formats
+
+    -
+    Move individual edited/added task cards rather than refresh page
 .
 --------------------------------------------------------------------------
 

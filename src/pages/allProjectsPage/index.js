@@ -1,4 +1,4 @@
-import generateActionButtons from "../utility/actionButtons.js";
+import { generateActionButtons } from "../utility/actionButtons.js";
 import { createAllProjectsListeners } from "../../modules/eventListeners/index.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";

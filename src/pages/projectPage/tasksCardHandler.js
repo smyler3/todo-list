@@ -1,5 +1,5 @@
 import { generateStepCards } from "./stepsCardHandler.js";
-import generateActionButtons from "../utility/actionButtons.js";
+import { disableActionButtons, enableActionButtons, generateActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
@@ -159,12 +159,22 @@ function setTaskCardCompleted(task) {
     // Moves the card wrapper to the completed tasks section 
     taskContainer.parentElement.nextSibling.nextSibling.appendChild(taskContainer);
 
+    // Disabling action buttons
+    const createButton = taskCard.lastChild.firstChild;
+    const editButton = createButton.nextSibling;
+    disableActionButtons([createButton, editButton]);
+
     // Visually marking all incomplete steps as completed
     task.getIncompleteSteps().forEach(step => {
         const stepCard = document.querySelector(`.step-card[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
 
         stepCard.classList.add("completed");
-        stepCard.firstChild.firstChild.checked = true;
+        const checkbox = stepCard.firstChild.firstChild;
+        checkbox.checked = true;
+
+        // Disabling action buttons
+        const editButton = stepCard.lastChild.firstChild;
+        disableActionButtons([editButton]);
     })
 }
 
@@ -178,12 +188,22 @@ function setTaskCardIncomplete(task) {
     // Moves the card wrapper to the incomplete tasks section 
     taskContainer.parentElement.previousSibling.previousSibling.appendChild(taskContainer);
 
+    // Re-enabling action buttons
+    const createButton = taskCard.lastChild.firstChild;
+    const editButton = createButton.nextSibling;
+    enableActionButtons([createButton, editButton]);
+
     // Visually remarking all incomplete steps as incomplete
     task.getIncompleteSteps().forEach(step => {
         const stepCard = document.querySelector(`.step-card[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
 
         stepCard.classList.remove("completed");
-        stepCard.firstChild.firstChild.checked = false;
+        const checkbox = stepCard.firstChild.firstChild;
+        checkbox.checked = false;
+
+        // Re-enabling action buttons
+        const editButton = stepCard.lastChild.firstChild;
+        enableActionButtons([editButton]);
     })
 }
 

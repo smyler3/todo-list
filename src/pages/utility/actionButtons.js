@@ -1,14 +1,14 @@
 import { createActionButtonListener } from "../../modules/eventListeners/actionButtonListeners/index.js";
 
 /* Creates the action buttons for a organizer */
-export default function generateActionButtons(buttons) {
+function generateActionButtons(buttons) {
     const actionBtns = document.createElement("span");
     actionBtns.classList.add("action-btns");
 
     // Project buttons
     buttons.forEach(btn => {
         // Button container
-        const actionButtonContainer = document.createElement("span");
+        const actionButtonContainer = document.createElement("button");
         actionButtonContainer.classList.add("icon", "action-btn");
         btn.classNames.forEach(className => {
             actionButtonContainer.classList.add(className);
@@ -31,3 +31,21 @@ export default function generateActionButtons(buttons) {
 
     return actionBtns;
 }
+
+function disableActionButtons(buttons) {
+    buttons.forEach(button => {
+        button.disabled = true;
+        // Visually show disabled
+        button.classList.add("disabled-action-btn");
+    })
+}
+
+function enableActionButtons(buttons) {
+    buttons.forEach(button => {
+        button.disabled = false;
+        // Visually show enabled
+        button.classList.remove("disabled-action-btn");
+    })
+}
+
+export { generateActionButtons, disableActionButtons, enableActionButtons }

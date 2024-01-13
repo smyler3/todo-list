@@ -1,6 +1,6 @@
 import { generateTaskCards, editTaskCardInformation } from "./tasksCardHandler.js";
 import { editStepCardInformation } from "./stepsCardHandler.js";
-import generateActionButtons from "../utility/actionButtons";
+import { generateActionButtons } from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
