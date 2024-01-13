@@ -1,6 +1,7 @@
 import { DefaultColour, isValidColour } from "../../enums/colours.js";
 import { prioritySort } from "../../enums/priority.js";
 import { Status } from "../../enums/status.js";
+import { serializeTask } from "../task.js";
 
 /* Creates a single instance of a project object */
 export default function projectFactory(title, description, projectID) {
@@ -70,6 +71,16 @@ export default function projectFactory(title, description, projectID) {
         });
     }
 
+    /* Converts all incomplete tasks to a JSON-friendly format */
+    function getSerializedIncompleteTasks() {
+        const serializedTasks = [];
+        incompleteTasks.forEach(task => {
+            serializedTasks.push(serializeTask(task));
+        });
+
+        return serializedTasks;
+    }
+
     function sortIncompleteTasks() {
         incompleteTasks.sort(prioritySort);
     }
@@ -100,6 +111,16 @@ export default function projectFactory(title, description, projectID) {
         });
     }
 
+    /* Converts all completed tasks to a JSON-friendly format */
+    function getSerializedCompletedTasks() {
+        const serializedTasks = [];
+        completedTasks.forEach(task => {
+            serializedTasks.push(serializeTask(task));
+        });
+
+        return serializedTasks;
+    }
+
     function sortCompletedTasks() {
         completedTasks.sort(prioritySort);
     }
@@ -120,8 +141,8 @@ export default function projectFactory(title, description, projectID) {
         getTitle, setTitle, 
         getDescription, setDescription, 
         getColour, setColour,
-        getIncompleteTasks, addToIncompleteTasks, removeFromIncompleteTasks, sortIncompleteTasks,
-        getCompletedTasks, addToCompletedTasks, removeFromCompletedTasks, sortCompletedTasks,
+        getIncompleteTasks, addToIncompleteTasks, removeFromIncompleteTasks, sortIncompleteTasks, getSerializedIncompleteTasks,
+        getCompletedTasks, addToCompletedTasks, removeFromCompletedTasks, sortCompletedTasks, getSerializedCompletedTasks,
         getProjectID,
         getNextTaskCount,
         getCurrentTask, setCurrentTask, 

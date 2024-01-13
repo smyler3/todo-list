@@ -1,6 +1,7 @@
 import projectFactory from "./factories/projectFactory";
 import { renderAllProjectsPage, clearPage, renderSidebar } from "../../pages/display.js";
 import { addToSidebarProjects } from "../../pages/sidebar/sidebarProjectsGenerator.js";
+import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
@@ -13,6 +14,9 @@ function createDefaultProject() {
     )
 
     projects.push(defaultProject);
+
+    // Save change locally
+    saveProjectsToLocalStorage(getSerializedProjects());
 }
 
 /* Create a new project */
@@ -27,17 +31,10 @@ function createProject(title, description) {
 
     projects.push(newProject);
     setCurrentProject(newProject);
-}
 
-// /* Replace an existing project with a new one */
-// function replaceProject(project) {
-//     projects.forEach(element => {
-//         if (element.getProjectID() === project.getProjectID()) {
-//             element = project;
-//             setCurrentProject(project);
-//         }
-//     })
-// }
+    // Save change locally
+    saveProjectsToLocalStorage(getSerializedProjects());
+}
 
 /* Delete an existing project */
 function deleteProject(project) {
@@ -87,6 +84,11 @@ function getProjects() {
     return projects;
 }
 
+
+function setProjects(newProjects) {
+    projects = newProjects;
+}
+
 function getCurrentProject() {
     return currentProject;
 }
@@ -95,8 +97,35 @@ function setCurrentProject(newProject) {
     currentProject = newProject;
 }
 
+/* Convert the project to a JSON-friendly format */
+function serializeProject(project) {
+    const title = project.getTitle();
+    const desc = project.getDescription();
+    const incompleteTasks = project.getSerializedIncompleteTasks();
+    const completedTasks = project.getSerializedCompletedTasks();
+    const projectID = project.getProjectID();
+
+    return {
+        title,
+        desc,
+        incompleteTasks,
+        completedTasks,
+        projectID,
+    }
+}
+
+/* Convert the project to a JSON-friendly format */
+function getSerializedProjects() {
+    const serializedProjects = [];
+    projects.forEach(project => {
+        serializedProjects.push(serializeProject(project));
+    })
+
+    return serializedProjects;
+}
+
 let projectCount = 0;
-const projects = [];
+let projects = [];
 let currentProject = null;
 
-export { createDefaultProject, createProject, createProjectFromForm, editProjectFromForm, editProjectColourFromForm, getProjects, deleteProject, getCurrentProject, setCurrentProject }
+export { createDefaultProject, createProject, createProjectFromForm, editProjectFromForm, editProjectColourFromForm, getProjects, setProjects, deleteProject, getCurrentProject, setCurrentProject, getSerializedProjects }

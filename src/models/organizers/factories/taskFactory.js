@@ -1,4 +1,5 @@
 import { Status } from "../../enums/status";
+import { serializeStep } from "../step";
 
 /* Creates a single instance of a task object */
 export default function taskFactory(title, description, dueDate, priority, projectID, taskID) {
@@ -87,6 +88,16 @@ export default function taskFactory(title, description, dueDate, priority, proje
         });
     }
 
+    /* Converts all incomplete steps to a JSON-friendly format */
+    function getSerializedIncompleteSteps() {
+        const serializedSteps = [];
+        incompleteSteps.forEach(step => {
+            serializedSteps.push(serializeStep(step));
+        });
+
+        return serializedSteps;
+    }
+
     function getCompletedSteps() {
         return completedSteps;
     }
@@ -107,6 +118,16 @@ export default function taskFactory(title, description, dueDate, priority, proje
                 addToIncompleteSteps(step);
             }
         });
+    }
+
+    /* Converts all completed steps to a JSON-friendly format */
+    function getSerializedCompletedSteps() {
+        const serializedSteps = [];
+        completedSteps.forEach(step => {
+            serializedSteps.push(serializeStep(step));
+        });
+
+        return serializedSteps;
     }
 
     function getProjectID() {
@@ -131,8 +152,8 @@ export default function taskFactory(title, description, dueDate, priority, proje
         getDueDate, setDueDate, 
         getPriority, setPriority, 
         getStatus, setStatus, swapStatus, 
-        getIncompleteSteps, addToIncompleteSteps, removeFromIncompleteSteps, 
-        getCompletedSteps, removeFromCompletedSteps, 
+        getIncompleteSteps, addToIncompleteSteps, removeFromIncompleteSteps, getSerializedIncompleteSteps,
+        getCompletedSteps, addToCompletedSteps, removeFromCompletedSteps, getSerializedCompletedSteps,
         getProjectID, getTaskID, 
         getNextStepCount,
         getCurrentStep, setCurrentStep, 

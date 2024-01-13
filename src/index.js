@@ -1,10 +1,23 @@
 import "./style.css";
-import { createDefaultProject, createProject, getProjects } from "./models/organizers/project";
+import { createDefaultProject, createProject, getProjects, setProjects } from "./models/organizers/project";
 import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
 import { createSidebarListeners } from "./modules/eventListeners/index.js";
+import { loadProjectsFromLocalStorage, saveProjectsToLocalStorage } from "./modules/localStorage/index.js";
 
+// Importing local storage
+const storageData = loadProjectsFromLocalStorage();
+console.log(storageData);
+// console.log(storageData[0][0].getTitle());
+// console.log(JSON.stringify(storageData));
+// if (storageData !== null) {
+//     // setProjects(storageData);
+//     console.log(storageData[0].getTitle());
+// }
+// else {
+//     createDefaultProject();
+// }
 createDefaultProject();
 
 // Work project/tasks/steps
@@ -34,3 +47,6 @@ display.forms.generateFormModal(document.querySelector(".content"));
 display.renderAllProjectsPage(getProjects());
 // display.renderProjectPage(projects[1]);
 createSidebarListeners(getProjects());
+
+const storageData2 = loadProjectsFromLocalStorage();
+console.log("3", storageData2);

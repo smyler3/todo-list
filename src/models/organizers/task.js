@@ -1,7 +1,8 @@
 import taskFactory from "./factories/taskFactory";
 import { Status } from "../enums/status";
-import { getCurrentProject } from "./project";
+import { getCurrentProject, getProjects, getSerializedProjects } from "./project";
 import { renderProjectPage, clearPage } from "../../pages/display.js";
+import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
 
 /* Create a new task and adds to a project */
 function createTask(project, title, description, dueDate, priority) {
@@ -10,6 +11,9 @@ function createTask(project, title, description, dueDate, priority) {
     const newTask = taskFactory(title, description, dueDate, priority, projectID, taskID);
 
     project.addToIncompleteTasks(newTask);
+
+    // Save change locally
+    saveProjectsToLocalStorage(getSerializedProjects());
 }
 
 /* Edit an existing task */
@@ -53,4 +57,29 @@ function completeTask(task) {
     });
 }
 
-export { createTask, editTask, completeTask, createTaskFromForm, editTaskFromForm }
+/* Convert the task to a JSON-friendly format */
+function serializeTask(task) {
+    const title = task.getTitle();
+    const desc = task.getDescription();
+    const dueDate = task.getDueDate();
+    const priority = task.getPriority();
+    const status = task.getStatus();
+    const incompleteSteps = task.getSerializedIncompleteSteps();
+    const completedSteps = task.getSerializedCompletedSteps();
+    const projectID = task.getProjectID();
+    const taskID = task.getTaskID();
+
+    return {
+        title,
+        desc,
+        dueDate,
+        priority,
+        status,
+        incompleteSteps,
+        completedSteps,
+        projectID,
+        taskID,
+    }
+}
+
+export { createTask, editTask, completeTask, createTaskFromForm, editTaskFromForm, serializeTask }
