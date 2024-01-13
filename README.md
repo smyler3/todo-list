@@ -88,13 +88,6 @@ VISUALS:
 --------------------------------------------------------------------------
 TODO:
     -
-    When marking a task as incomplete, sort it back to correct position
-    
-    - 
-    Stop action buttons from working when a step is marked as complete (except delete)
-    Stop action buttons from working when a task is marked as complete (except delete)
-
-    -
     Add local storage
 
     - 
@@ -125,7 +118,7 @@ POTENTIAL FUTURE FEATURES:
     Add different date formats
 
     -
-    Move individual edited/added task cards rather than refresh page
+    Move individual edited/added/marked incomplete task cards to correct place rather than refresh page
 .
 --------------------------------------------------------------------------
 

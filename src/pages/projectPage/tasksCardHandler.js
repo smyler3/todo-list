@@ -5,6 +5,7 @@ import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 import { createTaskStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
 import { taskCreateStepButtonListener, taskDeleteButtonListener, taskEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/taskActionButtonListeners.js";
+import { clearPage, renderProjectPage } from "../display.js";
 
 /* Create a list of tasks for a project */
 function generateTaskCards(tasks, parent) {
@@ -186,7 +187,8 @@ function setTaskCardIncomplete(task) {
     taskCard.classList.remove("completed");
     const taskContainer = taskCard.parentElement;
     // Moves the card wrapper to the incomplete tasks section 
-    taskContainer.parentElement.previousSibling.previousSibling.appendChild(taskContainer);
+    clearPage();
+    renderProjectPage(getCurrentProject());
 
     // Re-enabling action buttons
     const createButton = taskCard.lastChild.firstChild;
