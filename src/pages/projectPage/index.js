@@ -114,6 +114,14 @@ function renderProjectPage(project) {
 }
 
 function updateCompletionStatus(project) {
+    project.getIncompleteTasks().forEach(task => {
+        // Visually marking their completed steps as completed
+        task.getCompletedSteps().forEach(step => {
+            const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+            setStepCardCompleted(stepCard);
+        })
+    })
+
     project.getCompletedTasks().forEach(task => {
         // Visually marking completed tasks as completed
         const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);

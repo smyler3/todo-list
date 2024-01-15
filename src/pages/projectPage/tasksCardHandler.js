@@ -169,10 +169,18 @@ function setTaskCardCompleted(taskCard) {
         stepCard.classList.add("completed");
         const checkbox = stepCard.firstChild.firstChild;
         checkbox.checked = true;
+        checkbox.disabled = true;
 
         // Disabling action buttons
         const editButton = stepCard.lastChild.firstChild;
         disableActionButtons([editButton]);
+    }
+
+    // Disabling the checkbox of completed steps
+    const completedSteps = taskCard.nextSibling.nextSibling;
+    for (let stepCard of completedSteps.children) {
+        const checkbox = stepCard.firstChild.firstChild;
+        checkbox.disabled = true;
     }
 }
 
@@ -191,14 +199,21 @@ function setTaskCardIncomplete(taskCard) {
     // Visually remarking all incomplete steps as incomplete
     const incompleteSteps = taskCard.nextSibling;
     for (let stepCard of incompleteSteps.children) {
-        console.log(stepCard);
         stepCard.classList.remove("completed");
         const checkbox = stepCard.firstChild.firstChild;
         checkbox.checked = false;
+        checkbox.disabled = false;
 
         // Re-enabling action buttons
         const editButton = stepCard.lastChild.firstChild;
         enableActionButtons([editButton]);
+    }
+
+    // Enabling the checkbox of completed steps
+    const completedSteps = taskCard.nextSibling.nextSibling;
+    for (let stepCard of completedSteps.children) {
+        const checkbox = stepCard.firstChild.firstChild;
+        checkbox.disabled = false;
     }
 }
 

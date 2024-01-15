@@ -97,7 +97,6 @@ export default function projectFactory(title, description, projectID) {
     /* Remove a completed task from the project (and add to incompletedTasks if valid) */
     function removeFromCompletedTasks(task) {
         completedTasks.forEach((taskElement, index) => {
-            console.log(taskElement.getTaskID(), task.getTaskID(), task.getStatus());
             if (task.getTaskID() === taskElement.getTaskID()) {
                 completedTasks.splice(index, 1);
 

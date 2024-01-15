@@ -13,9 +13,6 @@ const storageData = loadProjectsFromLocalStorage();
 if (storageData !== null) {
     storageData.forEach(project => {
         deserializeProject(project);
-        getCurrentProject().getIncompleteTasks().forEach(t => {
-            console.log("t", t.getTitle());
-        })
     })
 }
 // Use default data

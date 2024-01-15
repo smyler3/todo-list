@@ -88,7 +88,8 @@ VISUALS:
 --------------------------------------------------------------------------
 TODO:
     -
-    completed steps can still have their buttons clicked to move them between complete and incomplete
+    Completed steps marked as incomplete when task marked as incomplete
+    (maybe they are removed from completed on page refresh?)
     -
     Save completion status of organizers
     Save deletions of organizers

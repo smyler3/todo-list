@@ -47,20 +47,14 @@ function taskStatusToggleListener(checkbox) {
 
 function setTaskStatusCompleteHandler(task) {
     getCurrentProject().removeFromIncompleteTasks(task);
-    // const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
-    // setTaskCardCompleted(taskCard);
     // Moves the card wrapper to the completed tasks section 
-    console.log("yo", getCurrentProject().getCompletedTasks());
     clearPage();
     renderProjectPage(getCurrentProject());
 }
 
 function setTaskStatusIncompleteHandler(task) {
     getCurrentProject().removeFromCompletedTasks(task);
-    // const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
-    // setTaskCardIncomplete(taskCard);
     // Moves the card wrapper to the incomplete tasks section 
-    console.log("yo", getCurrentProject().getCompletedTasks());
     clearPage();
     renderProjectPage(getCurrentProject());
 }
