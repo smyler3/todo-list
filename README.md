@@ -66,7 +66,7 @@ CODE LOGIC:
     Duplicate setCurrentTaskFromID and setCurrentStepFromID functions
 
     -
-    Project colours not rendered on load
+    Use the isValidColour, isValidStatus, isValidPriority as much as possible
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -90,11 +90,6 @@ VISUALS:
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TODO:
-    -
-    Altering the colour of a project is not saved across loads
-    -
-    Add local storage
-
     - 
     Apply visual overhaul
         - Fix spacing of cards (remove margin from lists/cards and just use gaps)

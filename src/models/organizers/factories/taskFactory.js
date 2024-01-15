@@ -1,5 +1,6 @@
 import { saveProjectsToLocalStorage } from "../../../modules/localStorage";
-import { Status } from "../../enums/status";
+import { isValidPriority } from "../../enums/priority";
+import { Status, isValidStatus } from "../../enums/status";
 import { getSerializedProjects } from "../project";
 import { serializeStep } from "../step";
 
@@ -48,7 +49,9 @@ export default function taskFactory(title, description, dueDate, priority, proje
     }
     
     function setPriority(newPriority) {
-        priority = newPriority;
+        if (isValidPriority(newPriority)) {
+            priority = newPriority;
+        }
     }
 
     function getStatus() {
@@ -56,7 +59,9 @@ export default function taskFactory(title, description, dueDate, priority, proje
     }
     
     function setStatus(newStatus) {
-        status = newStatus;
+        if (isValidStatus(newStatus)) {
+            status = newStatus;
+        }
     }
 
     function swapStatus() {

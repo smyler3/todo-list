@@ -17,7 +17,9 @@ export default function stepFactory(title, projectID, taskID, stepID) {
     }
     
     function setStatus(newStatus) {
-        status = newStatus;
+        if (isValidStatus(newStatus)) {
+            status = newStatus;
+        }
     }
 
     function swapStatus() {

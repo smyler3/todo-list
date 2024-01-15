@@ -62,8 +62,6 @@ function serializeTask(task) {
     const status = task.getStatus();
     const incompleteSteps = task.getSerializedIncompleteSteps();
     const completedSteps = task.getSerializedCompletedSteps();
-    const projectID = task.getProjectID();
-    const taskID = task.getTaskID();
 
     return {
         title,
@@ -73,8 +71,6 @@ function serializeTask(task) {
         status,
         incompleteSteps,
         completedSteps,
-        projectID,
-        taskID,
     }
 }
 

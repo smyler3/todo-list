@@ -108,16 +108,16 @@ function setCurrentProject(newProject) {
 function serializeProject(project) {
     const title = project.getTitle();
     const desc = project.getDescription();
+    const colour = project.getColour();
     const incompleteTasks = project.getSerializedIncompleteTasks();
     const completedTasks = project.getSerializedCompletedTasks();
-    const projectID = project.getProjectID();
 
     return {
         title,
         desc,
         incompleteTasks,
         completedTasks,
-        projectID,
+        colour,
     }
 }
 
@@ -134,6 +134,9 @@ function deserializeProject(project) {
     project.completedTasks.forEach(task => {
         deserializeTask(newProject, task);
     })
+
+    // Adding colour
+    newProject.setColour(project.colour);
 }
 
 /* Convert the project to a JSON-friendly format */

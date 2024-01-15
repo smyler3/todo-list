@@ -41,16 +41,10 @@ function editStepFromForm(step) {
 function serializeStep(step) {
     const title = step.getTitle();
     const status = step.getStatus();
-    const projectID = step.getProjectID();
-    const taskID = step.getTaskID();
-    const stepID = step.getStepID();
 
     return {
         title,
         status,
-        projectID,
-        taskID,
-        stepID,
     }
 }
 
