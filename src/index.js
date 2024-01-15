@@ -1,5 +1,5 @@
 import "./style.css";
-import { createDefaultProject, createProject, deserializeProject, getProjects, setProjects } from "./models/organizers/project";
+import { createDefaultProject, createProject, deserializeProject, getCurrentProject, getProjects, setProjects } from "./models/organizers/project";
 import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
@@ -8,12 +8,14 @@ import { loadProjectsFromLocalStorage, saveProjectsToLocalStorage } from "./modu
 
 // Importing local storage
 const storageData = loadProjectsFromLocalStorage();
-console.log("this", storageData);
+// console.log("this", storageData);
 // Load stored data
 if (storageData !== null) {
-    console.log("We made it");
     storageData.forEach(project => {
         deserializeProject(project);
+        getCurrentProject().getIncompleteTasks().forEach(t => {
+            console.log("t", t.getTitle());
+        })
     })
 }
 // Use default data
@@ -31,11 +33,11 @@ else {
     createStep(getProjects()[1].getIncompleteTasks()[1], "Generate Financial Graphs");
     createStep(getProjects()[1].getIncompleteTasks()[1], "Check report draft for typos");
 
-    // // School project/tasks/steps
-    // createProject("School", "All things school related!");
+    // School project/tasks/steps
+    createProject("School", "All things school related!");
 
-    // createTask(getProjects()[2], "Presentations", "All work presentations", "", "High");
-    // createStep(getProjects()[2].getIncompleteTasks()[0], "Homework");
+    createTask(getProjects()[2], "Presentations", "All work presentations", "", "High");
+    createStep(getProjects()[2].getIncompleteTasks()[0], "Homework");
 }
 
 
@@ -49,6 +51,3 @@ display.forms.generateFormModal(document.querySelector(".content"));
 display.renderAllProjectsPage(getProjects());
 // display.renderProjectPage(projects[1]);
 createSidebarListeners(getProjects());
-
-const storageData2 = loadProjectsFromLocalStorage();
-console.log("3", storageData2);

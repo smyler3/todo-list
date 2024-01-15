@@ -12,14 +12,10 @@ function createStep(task, title) {
     const newStep = stepFactory(title, projectID, taskID, stepID);
 
     task.addToIncompleteSteps(newStep);
+    task.setCurrentStep(newStep);
 
     // Save change locally
     saveProjectsToLocalStorage(getSerializedProjects());
-}
-
-/* Edit an existing step */
-function editStep(step, title) {
-    step.setTitle(title);
 }
 
 /* Creates a step from creation form */
@@ -36,6 +32,9 @@ function editStepFromForm(step) {
     const newTitle = document.querySelector("#step-title").value;
 
     step.setTitle(newTitle);
+
+    // Save change locally
+    saveProjectsToLocalStorage(getSerializedProjects());
 }
 
 /* Convert the step to a JSON-friendly format */
@@ -58,16 +57,14 @@ function serializeStep(step) {
 /* Create a step from JSON format data */
 function deserializeStep(task, step) {
     // Creating step from data
-    const newStep = stepFactory(step.title, step.projectID, step.taskID, step.stepID);
+    createStep(task, step.title);
+    const newStep = task.getCurrentStep();
 
     // Adding to appropriate location
-    if (step.status === Status.INCOMPLETE) {
-        task.addToIncompleteSteps(newStep);
-    }
-    else {
+    if (step.status === Status.COMPLETED) {
         newStep.setStatus(Status.COMPLETED);
-        task.addToCompleteSteps(newStep);
+        task.removeFromIncompleteSteps();
     }
 }
 
-export { createStep, editStep, createStepFromForm, editStepFromForm, serializeStep, deserializeStep }
+export { createStep, createStepFromForm, editStepFromForm, serializeStep, deserializeStep }

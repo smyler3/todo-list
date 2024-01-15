@@ -88,11 +88,18 @@ VISUALS:
 --------------------------------------------------------------------------
 TODO:
     -
-    Rebuild organizers from local data JSON format (re-attach functions)
-    Add check to see whether to use localStorage or use DefaultProject
-    Check cards of stored data display completed organizers correctly
+    completed steps can still have their buttons clicked to move them between complete and incomplete
+    -
+    Save completion status of organizers
+    Save deletions of organizers
     -
     Add local storage
+
+    count is not increasing when a task etc is created so there are multiple tasks etc with the same id values making buttons not work
+
+    // Maybe also pass steps/tasks in, instead of collecting via ID
+
+    - Fix spacing of cards (remove margin from lists/cards and just use gaps)
 
     - 
     Apply visual overhaul
@@ -107,6 +114,10 @@ TODO:
 
     -
     Add code for adding default data?
+
+
+    right now the problem is that when you mark a task as incomplete, the page re-renders, but the logic for visually marking cards as complete on refresh is broken
+    so things that should stay marked as complete are instead marked as incomplete
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------

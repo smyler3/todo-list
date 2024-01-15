@@ -72,6 +72,9 @@ function editProjectFromForm(project) {
 
     project.setTitle(newTitle);
     project.setDescription(newDesc);
+
+    // Save change locally
+    saveProjectsToLocalStorage(getSerializedProjects());
 }
 
 /* Edits the colour of a project based on colour picker form */
@@ -121,7 +124,8 @@ function serializeProject(project) {
 /* Create a project from JSON format data */
 function deserializeProject(project) {
     // Creating project from data
-    const newProject = projectFactory(project.title, project.description, project.projectID);
+    createProject(project.title, project.description);
+    const newProject = getCurrentProject();
 
     // Adding all tasks
     project.incompleteTasks.forEach(task => {
@@ -130,8 +134,6 @@ function deserializeProject(project) {
     project.completedTasks.forEach(task => {
         deserializeTask(newProject, task);
     })
-
-    addToProjects(newProject);
 }
 
 /* Convert the project to a JSON-friendly format */

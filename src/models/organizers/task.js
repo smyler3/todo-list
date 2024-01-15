@@ -12,18 +12,10 @@ function createTask(project, title, description, dueDate, priority) {
     const newTask = taskFactory(title, description, dueDate, priority, projectID, taskID);
 
     project.addToIncompleteTasks(newTask);
+    project.setCurrentTask(newTask);
 
     // Save change locally
     saveProjectsToLocalStorage(getSerializedProjects());
-}
-
-/* Edit an existing task */
-function editTask(task, title, description, dueDate, priority, status) {
-    task.setTitle(title);
-    task.setDescription(task, description);
-    task.setDueDate(task, dueDate);
-    task.setPriority(task, priority);
-    task.setStatus(task, status);
 }
 
 /* Creates a task from creation form */
@@ -47,6 +39,9 @@ function editTaskFromForm(task) {
     task.setDescription(newDesc);
     task.setDueDate(newDate);
     task.setPriority(newPriority);
+
+    // Save change locally
+    saveProjectsToLocalStorage(getSerializedProjects());
 }
 
 /* Complete a task and convert all steps to required status*/
@@ -86,7 +81,8 @@ function serializeTask(task) {
 /* Create a task from JSON format data */
 function deserializeTask(project, task) {
     // Creating task from data
-    const newTask = taskFactory(task.title, task.desc, task.dueDate, task.priority, task.projectID, task.taskID);
+    createTask(project, task.title, task.desc, task.dueDate, task.priority);
+    const newTask = project.getCurrentTask()
 
     // Adding all steps
     task.incompleteSteps.forEach(step => {
@@ -97,13 +93,10 @@ function deserializeTask(project, task) {
     })
 
     // Adding to appropriate location
-    if (task.status === Status.INCOMPLETE) {
-        project.addToIncompleteTasks(newTask);
-    }
-    else {
-        task.setStatus(Status.COMPLETED);
-        project.addToIncompleteTasks(newTask);
+    if (task.status === Status.COMPLETED) {
+        newTask.setStatus(Status.COMPLETED);
+        project.removeFromIncompleteTasks(newTask);
     }
 }
 
-export { createTask, editTask, completeTask, createTaskFromForm, editTaskFromForm, serializeTask, deserializeTask }
+export { createTask, completeTask, createTaskFromForm, editTaskFromForm, serializeTask, deserializeTask }

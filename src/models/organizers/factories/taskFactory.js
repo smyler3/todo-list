@@ -80,10 +80,13 @@ export default function taskFactory(title, description, dueDate, priority, proje
         incompleteSteps.forEach((stepElement, index) => {
             if (step.getStepID() === stepElement.getStepID()) {
                 incompleteSteps.splice(index, 1);
-            }
-            // Conditionally add to completedSteps
-            if (step.getStatus() === Status.COMPLETED) {
-                addToCompletedSteps(step);
+
+                // Conditionally add to completedSteps
+                if (step.getStatus() === Status.COMPLETED) {
+                    addToCompletedSteps(step);
+                }
+
+                return;
             }
         });
     }
@@ -112,10 +115,13 @@ export default function taskFactory(title, description, dueDate, priority, proje
         completedSteps.forEach((stepElement, index) => {
             if (step.getStepID() === stepElement.getStepID()) {
                 completedSteps.splice(index, 1);
-            }
-            // Conditionally add to incompleteSteps
-            if (step.getStatus() === Status.INCOMPLETE) {
-                addToIncompleteSteps(step);
+
+                // Conditionally add to incompleteSteps
+                if (step.getStatus() === Status.INCOMPLETE) {
+                    addToIncompleteSteps(step);
+                }
+
+                return;
             }
         });
     }

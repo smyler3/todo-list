@@ -53,9 +53,6 @@ export default function projectFactory(title, description, projectID) {
     function addToIncompleteTasks(task) {
         incompleteTasks.push(task);
         sortIncompleteTasks();
-        incompleteTasks.forEach(task => {
-            console.log(task.getTitle());
-        })
     }
 
     /* Remove an incomplete task from the project (and add to completeTasks if valid) */
@@ -63,10 +60,12 @@ export default function projectFactory(title, description, projectID) {
         incompleteTasks.forEach((taskElement, index) => {
             if (task.getTaskID() === taskElement.getTaskID()) {
                 incompleteTasks.splice(index, 1);
-            }
-            // Conditionally add to completedTasks
-            if (task.getStatus() === Status.COMPLETED) {
-                addToCompletedTasks(task);
+
+                // Conditionally add to completedTasks
+                if (task.getStatus() === Status.COMPLETED) {
+                    addToCompletedTasks(task);
+                }
+                return;
             }
         });
     }
@@ -93,20 +92,21 @@ export default function projectFactory(title, description, projectID) {
     function addToCompletedTasks(task) {
         completedTasks.push(task);
         sortCompletedTasks();
-        completedTasks.forEach(task => {
-            console.log(task.getTitle());
-        })
     }
 
     /* Remove a completed task from the project (and add to incompletedTasks if valid) */
     function removeFromCompletedTasks(task) {
         completedTasks.forEach((taskElement, index) => {
+            console.log(taskElement.getTaskID(), task.getTaskID(), task.getStatus());
             if (task.getTaskID() === taskElement.getTaskID()) {
                 completedTasks.splice(index, 1);
-            }
-            // Conditionally add to completedTasks
-            if (task.getStatus() === Status.INCOMPLETE) {
-                addToIncompleteTasks(task);
+
+                // Conditionally add to incompleteTasks
+                if (task.getStatus() === Status.INCOMPLETE) {
+                    addToIncompleteTasks(task);
+                }
+
+                return;
             }
         });
     }
