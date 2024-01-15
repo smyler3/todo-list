@@ -1,6 +1,6 @@
-import { generateTaskCards, editTaskCardInformation } from "./tasksCardHandler.js";
-import { editStepCardInformation } from "./stepsCardHandler.js";
-import { generateActionButtons } from "../utility/actionButtons";
+import { generateTaskCards, editTaskCardInformation, setTaskCardCompleted } from "./tasksCardHandler.js";
+import { editStepCardInformation, setStepCardCompleted } from "./stepsCardHandler.js";
+import { disableActionButtons, generateActionButtons } from "../utility/actionButtons";
 import { Actions } from "../../models/enums/actionButtons";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
@@ -108,6 +108,24 @@ function renderProjectPage(project) {
     // Appending Body
     const body = document.querySelector(".content-body");
     body.appendChild(generateContent(project));
+
+    // Update the visual status of newly added cards
+    updateCompletionStatus(project);
+}
+
+function updateCompletionStatus(project) {
+    project.getCompletedTasks().forEach(task => {
+        // Visually marking completed tasks as completed
+        const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
+
+        setTaskCardCompleted(taskCard);
+
+        // Visually marking their completed steps as completed
+        task.getCompletedSteps().forEach(step => {
+            const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+            setStepCardCompleted(stepCard);
+        })
+    })
 }
 
 /* Updates the project page if project information is edited */

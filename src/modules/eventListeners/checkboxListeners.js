@@ -1,6 +1,7 @@
 import { Status } from "../../models/enums/status";
 import { getCurrentProject } from "../../models/organizers/project";
 import { completeTask } from "../../models/organizers/task";
+import { clearPage, renderProjectPage } from "../../pages/display";
 import { setStepCardCompleted, setStepCardIncomplete } from "../../pages/projectPage/stepsCardHandler";
 import { setTaskCardCompleted, setTaskCardIncomplete } from "../../pages/projectPage/tasksCardHandler";
 
@@ -46,12 +47,22 @@ function taskStatusToggleListener(checkbox) {
 
 function setTaskStatusCompleteHandler(task) {
     getCurrentProject().removeFromIncompleteTasks(task);
-    setTaskCardCompleted(task);
+    // const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
+    // setTaskCardCompleted(taskCard);
+    // Moves the card wrapper to the completed tasks section 
+    console.log("yo", getCurrentProject().getCompletedTasks());
+    clearPage();
+    renderProjectPage(getCurrentProject());
 }
 
 function setTaskStatusIncompleteHandler(task) {
     getCurrentProject().removeFromCompletedTasks(task);
-    setTaskCardIncomplete(task);
+    // const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
+    // setTaskCardIncomplete(taskCard);
+    // Moves the card wrapper to the incomplete tasks section 
+    console.log("yo", getCurrentProject().getCompletedTasks());
+    clearPage();
+    renderProjectPage(getCurrentProject());
 }
 
 /* Handles initialization of the event listener for marking the completion status of tasks */
@@ -84,12 +95,22 @@ function stepStatusToggleListener(checkbox) {
 
 function setStepStatusCompleteHandler(step) {
     getCurrentProject().getCurrentTask().removeFromIncompleteSteps(step);
-    setStepCardCompleted(step);
+    const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+    setStepCardCompleted(stepCard);
+
+    // Moves the card to the completed steps list
+    const parent = stepCard.parentElement;
+    parent.nextSibling.appendChild(stepCard);
 }
 
 function setStepStatusIncompleteHandler(step) {
     getCurrentProject().getCurrentTask().removeFromCompletedSteps(step);
-    setStepCardIncomplete(step);
+    const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
+    setStepCardIncomplete(stepCard);
+
+    // Moves the card to the incomplete steps list
+    const parent = stepCard.parentElement;
+    parent.previousSibling.appendChild(stepCard);
 }
 
 /* Handles initialization of the event listener for marking the completion status of steps */

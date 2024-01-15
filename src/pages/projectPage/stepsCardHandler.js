@@ -77,14 +77,11 @@ function editStepCardInformation(step) {
 }
 
 /* Modifies a step card once it has been marked as completed */
-function setStepCardCompleted(step) {
-    const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
-
+function setStepCardCompleted(stepCard) {
     // Visually marking as complete
     stepCard.classList.add("completed");
-    const parent = stepCard.parentElement;
-    // Moves the card to the end of the list
-    parent.nextSibling.appendChild(stepCard);
+    const checkbox = stepCard.firstChild.firstChild;
+    checkbox.checked = true;
 
     // Disabling action buttons
     const editButton = stepCard.lastChild.firstChild;
@@ -92,16 +89,11 @@ function setStepCardCompleted(step) {
 }
 
 /* Modifies a step card once it has been marked as incomplete */
-function setStepCardIncomplete(step) {
-    const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
-
+function setStepCardIncomplete(stepCard) {
     // Visually marking as incomplete
     stepCard.classList.remove("completed");
-    const parent = stepCard.parentElement;
-    console.log(parent);
-    console.log(parent.previousSibling);
-    // Moves the card to the end of the list
-    parent.previousSibling.appendChild(stepCard);
+    const checkbox = stepCard.firstChild.firstChild;
+    checkbox.checked = false;
 
     // Re-enabling action buttons
     const editButton = stepCard.lastChild.firstChild;

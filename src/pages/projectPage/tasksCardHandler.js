@@ -6,6 +6,7 @@ import { getCurrentProject } from "../../models/organizers/project.js";
 import { createTaskStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
 import { taskCreateStepButtonListener, taskDeleteButtonListener, taskEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/taskActionButtonListeners.js";
 import { clearPage, renderProjectPage } from "../display.js";
+import { Status } from "../../models/enums/status.js";
 
 /* Create a list of tasks for a project */
 function generateTaskCards(tasks, parent) {
@@ -151,14 +152,11 @@ function editTaskCardInformation(task) {
 }
 
 /* Modifies a task card once it has been marked as completed */
-function setTaskCardCompleted(task) {
-    const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
-
+function setTaskCardCompleted(taskCard) {
     // Visually marking as complete
     taskCard.classList.add("completed");
-    const taskContainer = taskCard.parentElement;
-    // Moves the card wrapper to the completed tasks section 
-    taskContainer.parentElement.nextSibling.nextSibling.appendChild(taskContainer);
+    const taskCheckbox = taskCard.firstChild.firstChild;
+    taskCheckbox.checked = true;
 
     // Disabling action buttons
     const createButton = taskCard.lastChild.firstChild;
@@ -166,9 +164,8 @@ function setTaskCardCompleted(task) {
     disableActionButtons([createButton, editButton]);
 
     // Visually marking all incomplete steps as completed
-    task.getIncompleteSteps().forEach(step => {
-        const stepCard = document.querySelector(`.step-card[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
-
+    const incompleteSteps = taskCard.nextSibling;
+    for (let stepCard of incompleteSteps.children) {
         stepCard.classList.add("completed");
         const checkbox = stepCard.firstChild.firstChild;
         checkbox.checked = true;
@@ -176,19 +173,15 @@ function setTaskCardCompleted(task) {
         // Disabling action buttons
         const editButton = stepCard.lastChild.firstChild;
         disableActionButtons([editButton]);
-    })
+    }
 }
 
 /* Modifies a task card once it has been marked as completed */
-function setTaskCardIncomplete(task) {
-    const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
-
+function setTaskCardIncomplete(taskCard) {
     // Visually marking as incomplete
     taskCard.classList.remove("completed");
-    const taskContainer = taskCard.parentElement;
-    // Moves the card wrapper to the incomplete tasks section 
-    clearPage();
-    renderProjectPage(getCurrentProject());
+    const checkbox = taskCard.firstChild.firstChild;
+    checkbox.checked = false;
 
     // Re-enabling action buttons
     const createButton = taskCard.lastChild.firstChild;
@@ -196,9 +189,9 @@ function setTaskCardIncomplete(task) {
     enableActionButtons([createButton, editButton]);
 
     // Visually remarking all incomplete steps as incomplete
-    task.getIncompleteSteps().forEach(step => {
-        const stepCard = document.querySelector(`.step-card[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
-
+    const incompleteSteps = taskCard.nextSibling;
+    for (let stepCard of incompleteSteps.children) {
+        console.log(stepCard);
         stepCard.classList.remove("completed");
         const checkbox = stepCard.firstChild.firstChild;
         checkbox.checked = false;
@@ -206,7 +199,7 @@ function setTaskCardIncomplete(task) {
         // Re-enabling action buttons
         const editButton = stepCard.lastChild.firstChild;
         enableActionButtons([editButton]);
-    })
+    }
 }
 
 /* Removes a deleted tasks card */
