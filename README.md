@@ -88,6 +88,10 @@ VISUALS:
 --------------------------------------------------------------------------
 TODO:
     -
+    Rebuild organizers from local data JSON format (re-attach functions)
+    Add check to see whether to use localStorage or use DefaultProject
+    Check cards of stored data display completed organizers correctly
+    -
     Add local storage
 
     - 

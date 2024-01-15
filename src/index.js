@@ -1,5 +1,5 @@
 import "./style.css";
-import { createDefaultProject, createProject, getProjects, setProjects } from "./models/organizers/project";
+import { createDefaultProject, createProject, deserializeProject, getProjects, setProjects } from "./models/organizers/project";
 import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
 import * as display from "./pages/display";
@@ -8,34 +8,36 @@ import { loadProjectsFromLocalStorage, saveProjectsToLocalStorage } from "./modu
 
 // Importing local storage
 const storageData = loadProjectsFromLocalStorage();
-console.log(storageData);
-// console.log(storageData[0][0].getTitle());
-// console.log(JSON.stringify(storageData));
-// if (storageData !== null) {
-//     // setProjects(storageData);
-//     console.log(storageData[0].getTitle());
-// }
-// else {
-//     createDefaultProject();
-// }
-createDefaultProject();
+console.log("this", storageData);
+// Load stored data
+if (storageData !== null) {
+    console.log("We made it");
+    storageData.forEach(project => {
+        deserializeProject(project);
+    })
+}
+// Use default data
+else {
+    createDefaultProject();
 
-// Work project/tasks/steps
-createProject("Work Meetings", "All things work meeting related!");
+    // Work project/tasks/steps
+    createProject("Work Meetings", "All things work meeting related!");
 
-createTask(getProjects()[1], "Monday Meetings", "All monday work meetings", "", "Med");
-createStep(getProjects()[1].getIncompleteTasks()[0], "Morning Meeting");
-createStep(getProjects()[1].getIncompleteTasks()[0], "Afternoon Meeting");
+    createTask(getProjects()[1], "Monday Meetings", "All monday work meetings", "", "Med");
+    createStep(getProjects()[1].getIncompleteTasks()[0], "Morning Meeting");
+    createStep(getProjects()[1].getIncompleteTasks()[0], "Afternoon Meeting");
 
-createTask(getProjects()[1], "Presentation", "All work presentations", "", "None");
-createStep(getProjects()[1].getIncompleteTasks()[1], "Generate Financial Graphs");
-createStep(getProjects()[1].getIncompleteTasks()[1], "Check report draft for typos");
+    createTask(getProjects()[1], "Presentation", "All work presentations", "", "None");
+    createStep(getProjects()[1].getIncompleteTasks()[1], "Generate Financial Graphs");
+    createStep(getProjects()[1].getIncompleteTasks()[1], "Check report draft for typos");
 
-// School project/tasks/steps
-createProject("School", "All things school related!");
+    // // School project/tasks/steps
+    // createProject("School", "All things school related!");
 
-createTask(getProjects()[2], "Presentations", "All work presentations", "", "High");
-createStep(getProjects()[2].getIncompleteTasks()[0], "Homework");
+    // createTask(getProjects()[2], "Presentations", "All work presentations", "", "High");
+    // createStep(getProjects()[2].getIncompleteTasks()[0], "Homework");
+}
+
 
 display.renderSidebar(getProjects());
 display.forms.generateFormModal(document.querySelector(".content"));

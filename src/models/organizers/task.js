@@ -3,6 +3,7 @@ import { Status } from "../enums/status";
 import { getCurrentProject, getProjects, getSerializedProjects } from "./project";
 import { renderProjectPage, clearPage } from "../../pages/display.js";
 import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
+import { deserializeStep } from "./step.js";
 
 /* Create a new task and adds to a project */
 function createTask(project, title, description, dueDate, priority) {
@@ -82,4 +83,27 @@ function serializeTask(task) {
     }
 }
 
-export { createTask, editTask, completeTask, createTaskFromForm, editTaskFromForm, serializeTask }
+/* Create a task from JSON format data */
+function deserializeTask(project, task) {
+    // Creating task from data
+    const newTask = taskFactory(task.title, task.desc, task.dueDate, task.priority, task.projectID, task.taskID);
+
+    // Adding all steps
+    task.incompleteSteps.forEach(step => {
+        deserializeStep(newTask, step);
+    })
+    task.completedSteps.forEach(step => {
+        deserializeStep(newTask, step);
+    })
+
+    // Adding to appropriate location
+    if (task.status === Status.INCOMPLETE) {
+        project.addToIncompleteTasks(newTask);
+    }
+    else {
+        task.setStatus(Status.COMPLETED);
+        project.addToIncompleteTasks(newTask);
+    }
+}
+
+export { createTask, editTask, completeTask, createTaskFromForm, editTaskFromForm, serializeTask, deserializeTask }

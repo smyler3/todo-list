@@ -2,6 +2,7 @@ import projectFactory from "./factories/projectFactory";
 import { renderAllProjectsPage, clearPage, renderSidebar } from "../../pages/display.js";
 import { addToSidebarProjects } from "../../pages/sidebar/sidebarProjectsGenerator.js";
 import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
+import { deserializeTask } from "./task.js";
 
 /* Creates the default project that stores all unassigned tasks */
 function createDefaultProject() {
@@ -29,7 +30,7 @@ function createProject(title, description) {
         projectID,
     )
 
-    projects.push(newProject);
+    addToProjects(newProject);
     setCurrentProject(newProject);
 
     // Save change locally
@@ -84,6 +85,9 @@ function getProjects() {
     return projects;
 }
 
+function addToProjects(newProject) {
+    projects.push(newProject);
+}
 
 function setProjects(newProjects) {
     projects = newProjects;
@@ -114,6 +118,22 @@ function serializeProject(project) {
     }
 }
 
+/* Create a project from JSON format data */
+function deserializeProject(project) {
+    // Creating project from data
+    const newProject = projectFactory(project.title, project.description, project.projectID);
+
+    // Adding all tasks
+    project.incompleteTasks.forEach(task => {
+        deserializeTask(newProject, task);
+    })
+    project.completedTasks.forEach(task => {
+        deserializeTask(newProject, task);
+    })
+
+    addToProjects(newProject);
+}
+
 /* Convert the project to a JSON-friendly format */
 function getSerializedProjects() {
     const serializedProjects = [];
@@ -128,4 +148,4 @@ let projectCount = 0;
 let projects = [];
 let currentProject = null;
 
-export { createDefaultProject, createProject, createProjectFromForm, editProjectFromForm, editProjectColourFromForm, getProjects, setProjects, deleteProject, getCurrentProject, setCurrentProject, getSerializedProjects }
+export { createDefaultProject, createProject, createProjectFromForm, editProjectFromForm, editProjectColourFromForm, getProjects, setProjects, deleteProject, getCurrentProject, setCurrentProject, getSerializedProjects, deserializeProject }

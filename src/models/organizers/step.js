@@ -2,6 +2,7 @@ import stepFactory from "./factories/stepFactory";
 import { clearPage, renderProjectPage } from "../../pages/display";
 import { getCurrentProject, getProjects, getSerializedProjects } from "./project";
 import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
+import { Status } from "../enums/status.js";
 
 /* Create a new step and adds to a task */
 function createStep(task, title) {
@@ -54,4 +55,19 @@ function serializeStep(step) {
     }
 }
 
-export { createStep, editStep, createStepFromForm, editStepFromForm, serializeStep }
+/* Create a step from JSON format data */
+function deserializeStep(task, step) {
+    // Creating step from data
+    const newStep = stepFactory(step.title, step.projectID, step.taskID, step.stepID);
+
+    // Adding to appropriate location
+    if (step.status === Status.INCOMPLETE) {
+        task.addToIncompleteSteps(newStep);
+    }
+    else {
+        newStep.setStatus(Status.COMPLETED);
+        task.addToCompleteSteps(newStep);
+    }
+}
+
+export { createStep, editStep, createStepFromForm, editStepFromForm, serializeStep, deserializeStep }
