@@ -114,16 +114,16 @@ function renderProjectPage(project) {
 }
 
 function updateCompletionStatus(project) {
+    // Visually marking the completed steps of incomplete tasks as completed
     project.getIncompleteTasks().forEach(task => {
-        // Visually marking their completed steps as completed
         task.getCompletedSteps().forEach(step => {
             const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
             setStepCardCompleted(stepCard);
         })
     })
 
+    // Visually marking the complete tasks as completed
     project.getCompletedTasks().forEach(task => {
-        // Visually marking completed tasks as completed
         const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
 
         setTaskCardCompleted(taskCard);

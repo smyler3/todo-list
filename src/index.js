@@ -8,7 +8,6 @@ import { loadProjectsFromLocalStorage, saveProjectsToLocalStorage } from "./modu
 
 // Importing local storage
 const storageData = loadProjectsFromLocalStorage();
-// console.log("this", storageData);
 // Load stored data
 if (storageData !== null) {
     storageData.forEach(project => {

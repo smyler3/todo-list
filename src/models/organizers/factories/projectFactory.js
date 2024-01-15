@@ -1,6 +1,8 @@
+import { saveProjectsToLocalStorage } from "../../../modules/localStorage/index.js";
 import { DefaultColour, isValidColour } from "../../enums/colours.js";
 import { prioritySort } from "../../enums/priority.js";
 import { Status } from "../../enums/status.js";
+import { getSerializedProjects } from "../project.js";
 import { serializeTask } from "../task.js";
 
 /* Creates a single instance of a project object */
@@ -43,6 +45,9 @@ export default function projectFactory(title, description, projectID) {
         if (isValidColour(newColour)) {
             colour = newColour;
         }
+
+        // Save change locally
+        saveProjectsToLocalStorage(getSerializedProjects());
     }
 
     function getIncompleteTasks() {
@@ -65,6 +70,10 @@ export default function projectFactory(title, description, projectID) {
                 if (task.getStatus() === Status.COMPLETED) {
                     addToCompletedTasks(task);
                 }
+
+                // Save change locally
+                saveProjectsToLocalStorage(getSerializedProjects());
+
                 return;
             }
         });
@@ -104,6 +113,9 @@ export default function projectFactory(title, description, projectID) {
                 if (task.getStatus() === Status.INCOMPLETE) {
                     addToIncompleteTasks(task);
                 }
+
+                // Save change locally
+                saveProjectsToLocalStorage(getSerializedProjects());
 
                 return;
             }

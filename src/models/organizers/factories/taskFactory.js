@@ -1,4 +1,6 @@
+import { saveProjectsToLocalStorage } from "../../../modules/localStorage";
 import { Status } from "../../enums/status";
+import { getSerializedProjects } from "../project";
 import { serializeStep } from "../step";
 
 /* Creates a single instance of a task object */
@@ -86,6 +88,9 @@ export default function taskFactory(title, description, dueDate, priority, proje
                     addToCompletedSteps(step);
                 }
 
+                // Save change locally
+                saveProjectsToLocalStorage(getSerializedProjects());
+
                 return;
             }
         });
@@ -120,6 +125,9 @@ export default function taskFactory(title, description, dueDate, priority, proje
                 if (step.getStatus() === Status.INCOMPLETE) {
                     addToIncompleteSteps(step);
                 }
+
+                // Save change locally
+                saveProjectsToLocalStorage(getSerializedProjects());
 
                 return;
             }

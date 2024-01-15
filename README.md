@@ -64,6 +64,9 @@ CODE LOGIC:
 
     -
     Duplicate setCurrentTaskFromID and setCurrentStepFromID functions
+
+    -
+    Project colours not rendered on load
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -88,22 +91,13 @@ VISUALS:
 --------------------------------------------------------------------------
 TODO:
     -
-    Completed steps marked as incomplete when task marked as incomplete
-    (maybe they are removed from completed on page refresh?)
-    -
-    Save completion status of organizers
-    Save deletions of organizers
+    Altering the colour of a project is not saved across loads
     -
     Add local storage
 
-    count is not increasing when a task etc is created so there are multiple tasks etc with the same id values making buttons not work
-
-    // Maybe also pass steps/tasks in, instead of collecting via ID
-
-    - Fix spacing of cards (remove margin from lists/cards and just use gaps)
-
     - 
     Apply visual overhaul
+        - Fix spacing of cards (remove margin from lists/cards and just use gaps)
         - Make colour picker better
         - Change project colour visuals
         - Change colour scheme
