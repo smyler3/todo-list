@@ -12,6 +12,7 @@
 
     /* Button styling */
     --action-btn-background: var(--white);
+    --action-btn-hover-background: rgba(0, 0, 0, 0.1);
     --submit-btn-background: rgb(0, 89, 255);
 
     /* Shadows */
@@ -72,12 +73,12 @@ input[type="radio"] {
 .action-btn {
     cursor: pointer;
     padding: 1rem;
-    border: 2px solid var(--light-shadow);
+    border: 2px solid #00000099;
     border-radius: 50%;
-    background-color: var(--action-btn-background);
+    background-color: #ffffff00;
 }
 .action-btn:hover {
-    background-color: var(--sidebar-hover-background);
+    background-color: var(--action-btn-hover-background);
 }
 
 .disabled-action-btn {
@@ -210,7 +211,7 @@ input[type="radio"] {
     justify-content: space-between;
     padding: 0 3rem;
     height: 100%;
-    border: 2px solid #00000050;
+    border: 2px solid #000000;
 }
 
 .project-header-details {

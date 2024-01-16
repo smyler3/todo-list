@@ -1,16 +1,15 @@
 /* Colour ENUM */
 const Colours = {
-    NONE: "#7E8180",
-    PINK: "#FF99D1",
-    PURPLE: "#9966CC",
-    BLUE: "#5A9BD5",
-    TEAL: "#1CB1C3",
-    GREEN: "#66FFB2",
-    YELLOW: "#F9D471",
-    ORANGE: "#FFA74F",
-    RED: "#FF867C",
+    NONE: "#ffffff", // Muted gray
+    PINK: "hsl(320, 60%, 85%)", // Muted pink
+    PURPLE: "hsl(270, 60%, 75%)", // Muted purple
+    BLUE: "hsl(210, 60%, 75%)", // Muted blue
+    TEAL: "hsl(190, 60%, 75%)", // Muted teal
+    GREEN: "hsl(120, 60%, 85%)", // Muted green
+    YELLOW: "hsl(50, 60%, 85%)", // Muted yellow
+    ORANGE: "hsl(30, 60%, 85%)", // Muted orange
+    RED: "hsl(0, 60%, 85%)" // Muted red
 }
-
 
 /* Default option */
 const DefaultColour = Colours.NONE;

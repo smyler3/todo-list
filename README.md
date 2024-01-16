@@ -88,8 +88,6 @@ VISUALS:
 TODO:
     - 
     Apply visual overhaul
-        - Make colour picker better
-        - Change project colour visuals
         - Change colour scheme
         - Change add project button
         - Add TODO logo?

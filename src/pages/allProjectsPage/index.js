@@ -3,6 +3,7 @@ import { createAllProjectsListeners } from "../../modules/eventListeners/index.j
 import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
+import { DefaultColour } from "../../models/enums/colours.js";
 
 /* Create the page showing all of the current projects */
 function renderAllProjectsPage(projects) {
@@ -88,7 +89,8 @@ function renderAllProjectsPage(projects) {
             projectCard.classList.add("project-card");
             // Link to project
             projectCard.setAttribute("data-project-id", project.getProjectID());
-            projectCard.style.borderColor = project.getColour();
+            projectCard.style.backgroundColor = project.getColour();
+            projectCard.style.borderColor = "#000000";
 
             // Appending elements
             projectCard.appendChild(generateCardDetails(project));
@@ -122,8 +124,7 @@ function editProjectCardInformation(project) {
 /* Updates the project card if project colour is edited */
 function editProjectCardColour(project) {
     const projectCard = document.querySelector(`.project-card[data-project-id="${project.getProjectID()}"]`);
-    
-    projectCard.style.borderColor = project.getColour();
+    projectCard.style.backgroundColor = project.getColour();
 }
 
 /* Removes a deleted projects card */

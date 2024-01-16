@@ -5,6 +5,7 @@ import { Actions } from "../../models/enums/actionButtons";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
 import { projectColourButtonListener, projectCreateTaskButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
+import { DefaultColour } from "../../models/enums/colours.js";
 
 /* Create the page showing all info for a selected project */
 function renderProjectPage(project) {
@@ -56,7 +57,7 @@ function renderProjectPage(project) {
         projectHeader.classList.add("project-header-container");
         // Link to project
         projectHeader.setAttribute("data-project-id", project.getProjectID());
-        projectHeader.style.borderColor = project.getColour();
+        projectHeader.style.backgroundColor = project.getColour();
 
         // Append Elements
         projectHeader.appendChild(generateProjectDetails(project));
@@ -145,9 +146,7 @@ function editProjectPageInformation(project) {
 /* Updates the project page if project colour is edited */
 function editProjectPageColour(project) {
     const projectHeader = document.querySelector(".project-header-container");
-    if (projectHeader !== null) {
-        projectHeader.style.borderColor = project.getColour();
-    }
+    projectHeader.style.backgroundColor = project.getColour();
 }
 
 export { renderProjectPage, editProjectPageInformation, editProjectPageColour, editTaskCardInformation, editStepCardInformation }
