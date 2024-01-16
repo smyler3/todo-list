@@ -124,7 +124,7 @@ function serializeProject(project) {
 /* Create a project from JSON format data */
 function deserializeProject(project) {
     // Creating project from data
-    createProject(project.title, project.description);
+    createProject(project.title, project.desc);
     const newProject = getCurrentProject();
 
     // Adding all tasks
