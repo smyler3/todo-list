@@ -164,6 +164,9 @@ input[type="radio"] {
 
 .project-icon {
     color: var(--project-icon);
+    background-color: var(--project-icon);
+    border: 2px solid #00000099;
+    border-radius: 50%;
 }
 
 /*

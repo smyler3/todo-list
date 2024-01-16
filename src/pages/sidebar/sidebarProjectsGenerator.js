@@ -19,9 +19,8 @@ function generateSidebarItem(title, iconFunction) {
 /* Create the icon for a project */
 function generateProjectIcon(iconColour) {
     const projectIcon = document.createElement("span");
-    projectIcon.textContent = "●";
     projectIcon.classList.add("icon", "project-icon");
-    projectIcon.style.color = iconColour;
+    projectIcon.style.backgroundColor = iconColour;
 
     return projectIcon;
 }
@@ -29,7 +28,7 @@ function generateProjectIcon(iconColour) {
 /* Create the icon for the all projects icon */
 function generateAllProjectIcon() {
     const projectIcon = document.createElement("span");
-    projectIcon.classList.add("icon", "project-icon");
+    projectIcon.classList.add("icon");
 
     // Icon image
     const iconImage = document.createElement("img");
@@ -84,8 +83,7 @@ function editSidebarProjectTitle(project) {
 /* Edit the colour of a sidebar project button */
 function editSidebarProjectColour(project) {
     const sidebarItem = document.querySelector(`.sidebar-project-button[data-project-id="${project.getProjectID()}"]`);
-    
-    sidebarItem.firstChild.style.color = project.getColour();
+    sidebarItem.firstChild.style.backgroundColor = project.getColour();
 }
 
 function removeFromSidebarProjects(project) {

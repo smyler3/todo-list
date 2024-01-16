@@ -19,9 +19,6 @@ export default function renderSidebar(projects) {
     const projectsList = document.createElement("ul");
     projectsList.classList.add("sidebar-projects-menu");
 
-    // All projects button
-    const allProjects = document.createElement("li");
-
     // Appending elements
     sidebar.appendChild(logo);
     listContainer.appendChild(projectHeader);
