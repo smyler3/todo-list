@@ -79,12 +79,13 @@ function generateColourRadioButtons() {
             radioInput.name = "colour";
             radioInput.value = colourValue;
             radioInput.style.color = colourValue;
-            radioInput.style.borderColor = colourValue;
     
             // Label
             const radioLabel = document.createElement("label");
+            radioLabel.classList.add("colour-radio-btn-label");
             radioLabel.textContent = colourKey;
             radioLabel.for = optionID;
+            radioLabel.style.backgroundColor = colourValue;
     
             // Append elements
             radioContainer.appendChild(radioInput);

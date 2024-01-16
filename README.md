@@ -81,10 +81,6 @@ VISUALS:
     Make checkboxes bigger?
 
     -
-    When all steps are in the completed/incompleted list the size is different from otherwise
-    (maybe remove the padding?)
-
-    -
     Completed subheader to "Completed Tasks"?
 .
 --------------------------------------------------------------------------
@@ -109,6 +105,18 @@ TODO:
 POTENTIAL FUTURE FEATURES:
     -
     Allow different sorting of tasks
+
+    -
+    Sort tasks by date second
+
+    -
+    Sort projects by colours
+
+    -
+    Drag and drop ordering
+
+    -
+    Make action buttons clear so card background can show project colour
 
     - 
     Add delay to clicking on project navigation cards

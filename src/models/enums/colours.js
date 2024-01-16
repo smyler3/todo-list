@@ -1,13 +1,16 @@
 /* Colour ENUM */
 const Colours = {
     NONE: "#7E8180",
-    RED: "#E1341E",
-    BLUE: "#0E09F6",
-    GREEN: "#0CF33D",
-    PURPLE: "#F30CC2",
-    YELLOW: "#F1F609",
-    // TEAL: "#1ecbe1",
+    PINK: "#FF99D1",
+    PURPLE: "#9966CC",
+    BLUE: "#5A9BD5",
+    TEAL: "#1CB1C3",
+    GREEN: "#66FFB2",
+    YELLOW: "#F9D471",
+    ORANGE: "#FFA74F",
+    RED: "#FF867C",
 }
+
 
 /* Default option */
 const DefaultColour = Colours.NONE;
