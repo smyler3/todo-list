@@ -448,9 +448,11 @@ input[type="checkbox"]:checked {
 .steps-list {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
     padding-left: 2rem;
-    gap: 10px;
+}
+
+.task-list-container {
+    gap: 0.2rem;
     margin-top: 10px;
 }
 
@@ -460,6 +462,10 @@ input[type="checkbox"]:checked {
 
 .task-list {
     padding: 0 2rem 1rem;
+}
+
+.task-card {
+    margin-bottom: 10px;
 }
 
 .project-list-item {
@@ -483,6 +489,10 @@ input[type="checkbox"]:checked {
 .project-list-task-details {
     display: flex;
     flex-direction: column;
+}
+
+.step-card {
+    margin-bottom: 10px;
 }
 
 .project-list-step-info {

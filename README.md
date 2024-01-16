@@ -92,7 +92,6 @@ VISUALS:
 TODO:
     - 
     Apply visual overhaul
-        - Fix spacing of cards (remove margin from lists/cards and just use gaps)
         - Make colour picker better
         - Change project colour visuals
         - Change colour scheme
@@ -104,10 +103,6 @@ TODO:
 
     -
     Add code for adding default data?
-
-
-    right now the problem is that when you mark a task as incomplete, the page re-renders, but the logic for visually marking cards as complete on refresh is broken
-    so things that should stay marked as complete are instead marked as incomplete
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
