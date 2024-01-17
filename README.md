@@ -1,6 +1,7 @@
 A todo list website built using JS Modules
 
 There are three different ways to organise your todo list:
+
     Projects:
         A project is like a folder, holding a collection of tasks
         They have a title and a description, and can be organized by colour 
@@ -16,7 +17,6 @@ There are three different ways to organise your todo list:
 -----------------------------------------------------------------------
 --------------------------------------------------------------------------
 POTENTIAL FUTURE FEATURES:
-
 
     -
     Add code for adding default data
