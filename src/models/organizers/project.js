@@ -1,5 +1,5 @@
-import projectFactory from "./factories/projectFactory";
-import { renderAllProjectsPage, clearPage, renderSidebar } from "../../pages/display.js";
+import projectFactory from "./factories/projectFactory.js";
+import { renderAllProjectsPage, clearPage } from "../../pages/display.js";
 import { addToSidebarProjects } from "../../pages/sidebar/sidebarProjectsGenerator.js";
 import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
 import { deserializeTask } from "./task.js";
@@ -42,6 +42,7 @@ function deleteProject(project) {
     projects.forEach((projectItem, index) => {
         if (projectItem.getProjectID() === project.getProjectID()) {
             projects.splice(index, 1);
+            
             return;
         }
     })
@@ -156,4 +157,10 @@ let projectCount = 0;
 let projects = [];
 let currentProject = null;
 
-export { createDefaultProject, createProject, createProjectFromForm, editProjectFromForm, editProjectColourFromForm, getProjects, setProjects, deleteProject, getCurrentProject, setCurrentProject, getSerializedProjects, deserializeProject }
+export { 
+    createDefaultProject, createProject, createProjectFromForm,  
+    editProjectFromForm, editProjectColourFromForm,
+    getProjects, setProjects, deleteProject,
+    getCurrentProject, setCurrentProject,
+    getSerializedProjects, deserializeProject
+}

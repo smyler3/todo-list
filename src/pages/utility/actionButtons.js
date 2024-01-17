@@ -32,6 +32,7 @@ function generateActionButtons(buttons) {
     return actionBtns;
 }
 
+/* Disable an action button */
 function disableActionButtons(buttons) {
     buttons.forEach(button => {
         button.disabled = true;
@@ -40,6 +41,7 @@ function disableActionButtons(buttons) {
     })
 }
 
+/* Enable an action button */
 function enableActionButtons(buttons) {
     buttons.forEach(button => {
         button.disabled = false;

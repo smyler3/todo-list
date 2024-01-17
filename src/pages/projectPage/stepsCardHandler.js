@@ -1,9 +1,7 @@
 import { generateActionButtons, disableActionButtons, enableActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
-import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
-import { createStepCompletionListener, createStepStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
-import { Status } from "../../models/enums/status.js";
+import { createStepStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
 import { stepDeleteButtonListener, stepEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/stepActionButtonListeners.js";
 
 /* Create a list of steps for a task */
@@ -13,11 +11,11 @@ function generateStepCards(steps, parent) {
 
         // Step buttons to be created
         const stepButtons = [
-            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Step",
+            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "Edit Step Button", title: "Edit Step",
             event: () => {
                 stepEditButtonListener(step);
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Step",
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "Delete Step Button", title: "Delete Step",
             event: () => {
                 stepDeleteButtonListener(step)
             }},
@@ -36,7 +34,7 @@ function generateStepCards(steps, parent) {
 
         // Completion checkbox
         const completedCheckbox = document.createElement("input");
-        completedCheckbox.classList.add("task-checkbox");
+        completedCheckbox.classList.add("completion-checkbox");
         completedCheckbox.type = "checkbox";
         completedCheckbox.name = "";
         completedCheckbox.id = "";
@@ -69,11 +67,13 @@ function generateStepCards(steps, parent) {
     });
 }
 
+/* Updates the step card if step information is edited */
 function editStepCardInformation(step) {
     const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
     
     // Editing information
-    stepCard.firstChild.lastChild.textContent = step.getTitle();
+    const stepCardTitle = stepCard.firstChild.lastChild;
+    stepCardTitle.textContent = step.getTitle();
 }
 
 /* Modifies a step card once it has been marked as completed */

@@ -1,5 +1,5 @@
-import { getCurrentProject, getProjects } from "../../models/organizers/project";
-import { addProjectNavigationListener } from "../../modules/eventListeners/utility/projectNavigationListeners";
+import { getProjects } from "../../models/organizers/project.js";
+import { addProjectNavigationListener } from "../../modules/eventListeners/projectNavigationListeners.js";
 
 /* Create a sidebar menu item */
 function generateSidebarItem(title, iconFunction) {
@@ -83,9 +83,11 @@ function editSidebarProjectTitle(project) {
 /* Edit the colour of a sidebar project button */
 function editSidebarProjectColour(project) {
     const sidebarItem = document.querySelector(`.sidebar-project-button[data-project-id="${project.getProjectID()}"]`);
-    sidebarItem.firstChild.style.backgroundColor = project.getColour();
+    const sidebarItemIcon = sidebarItem.firstChild;
+    sidebarItemIcon.style.backgroundColor = project.getColour();
 }
 
+/* Remove a sidebar project button */
 function removeFromSidebarProjects(project) {
     const sidebarItem = document.querySelector(`.sidebar-project-button[data-project-id="${project.getProjectID()}"]`);
 

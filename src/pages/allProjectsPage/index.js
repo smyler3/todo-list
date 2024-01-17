@@ -1,10 +1,8 @@
 import { generateActionButtons } from "../utility/actionButtons.js";
-import { createAllProjectsListeners } from "../../modules/eventListeners/index.js";
 import { Actions } from "../../models/enums/actionButtons.js";
-import * as forms from "../forms/formGenerator.js";
-import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
-import { DefaultColour } from "../../models/enums/colours.js";
 import { createProjectButtonListener } from "../../modules/eventListeners/actionButtonListeners/allProjectsActionButtonListeners.js";
+import { createProjectPageNavigationListeners } from "../../modules/eventListeners/projectNavigationListeners.js";
+import { projectColourButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
 
 /* Create the page showing all of the current projects */
 function renderAllProjectsPage(projects) {
@@ -59,20 +57,17 @@ function renderAllProjectsPage(projects) {
         function generateProjectCardButtons(project) {
             // Project buttons to be created
             const projectCardButtons = [
-                {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
+                {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "Colour Project Button", title: "Colour Project",
                 event: () => {
-                    setCurrentProject(project);
-                    forms.renderColourPickerForm(); 
+                    projectColourButtonListener(project);
                 }},
-                {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
+                {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "Edit Project Button", title: "Edit Project",
                 event: () => {
-                    setCurrentProject(project);
-                    forms.renderEditProjectForm();
+                    projectEditButtonListener(project);
                 }},
-                {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
+                {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "Delete Project Button", title: "Delete Project",
                 event: () => {
-                    setCurrentProject(project);
-                    forms.renderDeleteProjectForm();
+                    projectDeleteButtonListener(project);
                 }},
             ]
 
@@ -86,6 +81,7 @@ function renderAllProjectsPage(projects) {
         projects.forEach(project => {
             const projectCard = document.createElement("span");
             projectCard.classList.add("project-card");
+
             // Link to project
             projectCard.setAttribute("data-project-id", project.getProjectID());
             projectCard.style.backgroundColor = project.getColour();
@@ -109,15 +105,18 @@ function renderAllProjectsPage(projects) {
     body.appendChild(generateContent(projects));
 
     // Add event listeners
-    createAllProjectsListeners(projects);
+    createProjectPageNavigationListeners(projects, ".project-card");
 }
 
 /* Updates the project card if project information is edited */
 function editProjectCardInformation(project) {
     const projectCard = document.querySelector(`.project-card[data-project-id="${project.getProjectID()}"]`);
     const cardDetails = projectCard.firstChild;
-    cardDetails.firstChild.textContent = project.getTitle();
-    cardDetails.lastChild.textContent = project.getDescription();
+    const cardTitle = cardDetails.firstChild;
+    const cardDescription = cardDetails.lastChild;
+
+    cardTitle.textContent = project.getTitle();
+    cardDescription.textContent = project.getDescription();
 }
 
 /* Updates the project card if project colour is edited */

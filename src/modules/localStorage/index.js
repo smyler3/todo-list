@@ -1,5 +1,3 @@
-import { deserializeProject } from "../../models/organizers/project";
-
 // Updates the data stored in the local environment
 function saveProjectsToLocalStorage(newProjects) {
     localStorage.setItem("projects", JSON.stringify(newProjects));

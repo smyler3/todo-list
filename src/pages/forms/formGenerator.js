@@ -1,6 +1,6 @@
-import generateTextFields from "./textFieldGenerator";
-import * as radioFieldGenerator from "./radioFieldGenerator";
-import { Organizers } from "../../models/enums/organizer";
+import generateTextFields from "./textFieldGenerator.js";
+import * as radioFieldGenerator from "./radioFieldGenerator.js";
+import { Organizers } from "../../models/enums/organizer.js";
 import { createProjectFromForm, deleteProject, editProjectColourFromForm, editProjectFromForm, getCurrentProject, getProjects, setCurrentProject } from "../../models/organizers/project.js";
 import { createTaskFromForm, editTaskFromForm } from "../../models/organizers/task.js";
 import { createStepFromForm, editStepFromForm } from "../../models/organizers/step.js";
@@ -11,7 +11,7 @@ import { removeFromSidebarProjects } from "../sidebar/sidebarProjectsGenerator.j
 import { deleteTaskCard } from "../projectPage/tasksCardHandler.js";
 import { deleteStepCard } from "../projectPage/stepsCardHandler.js";
 import { DefaultPriority } from "../../models/enums/priority.js";
-import { createFormCancelButtonListener, createFormSubmitButtonListener } from "../../modules/eventListeners/formButtonListeners/index.js";
+import { createFormCancelButtonListener, createFormSubmitButtonListener } from "../../modules/eventListeners/formButtonListeners.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {
@@ -75,11 +75,11 @@ function addFormButtons(organizerType, actionType, parent, submitFunction) {
 function renderCreateProjectForm() {
     // All form fields for creating a project
     const projectTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 40},
+        {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 20},
         {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , maxLength: 80, rows: 40},
     ]
 
-    const form = generateFormBase("project-creation-form", "New Project", "creation-form");
+    const form = generateFormBase("project-form-body", "New Project", "form-body");
 
     // Appending elements
     generateTextFields(projectTextFormFields, form);
@@ -92,18 +92,18 @@ function renderCreateProjectForm() {
 function renderEditProjectForm() {
     // All form fields for a project
     const projectTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 40},
+        {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 20},
         {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , maxLength: 80, rows: 40},
     ]
 
-    const form = generateFormBase("project-edit-form", "Edit Project", "creation-form");
+    const form = generateFormBase("project-edit-form", "Edit Project", "form-body");
 
     // Appending elements
     generateTextFields(projectTextFormFields, form);
     addFormButtons(Organizers.PROJECT, "Edit", form, () => {
         editProjectFromForm(getCurrentProject());
         editSidebarProjectTitle(getCurrentProject());
-        // TODO: Change These?
+        // Checking which page is currently displayed
         if (document.querySelector(".project-header-container") !== null) {
             editProjectPageInformation(getCurrentProject());
         }
@@ -128,7 +128,7 @@ function renderCreateTaskForm() {
         {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
     ]
 
-    const form = generateFormBase("task-creation-form", "New Task", "creation-form");
+    const form = generateFormBase("task-form-body", "New Task", "form-body");
 
     // Appending elements
     generateTextFields(taskTextFormFields, form);
@@ -155,14 +155,15 @@ function renderEditTaskForm() {
         {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
     ]
 
-    const form = generateFormBase("task-edit-form", "Edit Task", "creation-form");
+    const currentTask = getCurrentProject().getCurrentTask();
+    const form = generateFormBase("task-edit-form", "Edit Task", "form-body");
 
     // Appending elements
     generateTextFields(taskTextFormFields, form);
     form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
     addFormButtons(Organizers.TASK, "Edit", form, () => {
-        editTaskFromForm(getCurrentProject().getCurrentTask());
-        editTaskCardInformation(getCurrentProject().getCurrentTask());
+        editTaskFromForm(currentTask);
+        editTaskCardInformation(currentTask);
         getCurrentProject().sortIncompleteTasks();
         clearPage();
         renderProjectPage(getCurrentProject());
@@ -171,14 +172,12 @@ function renderEditTaskForm() {
     renderForm(form);
 
     // Fill the form fields with current information
-    // TODO: Check if moving this assignment to top works
-    const currentTask = getCurrentProject().getCurrentTask();
     document.querySelector("#task-title").placeholder = document.querySelector("#task-title").value = currentTask.getTitle();
     document.querySelector("#task-desc").placeholder = document.querySelector("#task-desc").value = currentTask.getDescription();
     document.querySelector("#task-date").value = currentTask.getDueDate();
 
     // Highlight the currently selected priority
-    const priorityBtn = document.querySelector(`input[name='priority'][value='${getCurrentProject().getCurrentTask().getPriority()}']`);
+    const priorityBtn = document.querySelector(`input[name='priority'][value='${currentTask.getPriority()}']`);
     priorityBtn.checked = true;
 }
 
@@ -189,7 +188,7 @@ function renderCreateStepForm() {
         {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
     ]
 
-    const form = generateFormBase("step-creation-form", "New Step", "creation-form");
+    const form = generateFormBase("step-form-body", "New Step", "form-body");
 
     // Appending elements
     generateTextFields(stepTextFormFields, form);
@@ -205,19 +204,20 @@ function renderEditStepForm() {
         {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
     ]
 
-    const form = generateFormBase("step-edit-form", "Edit Step", "creation-form");
+    const currentStep = getCurrentProject().getCurrentTask().getCurrentStep();
+    const form = generateFormBase("step-edit-form", "Edit Step", "form-body");
 
     // Appending elements
     generateTextFields(stepTextFormFields, form);
     addFormButtons(Organizers.STEP, "Edit", form, () => {
-        editStepFromForm(getCurrentProject().getCurrentTask().getCurrentStep());
-        editStepCardInformation(getCurrentProject().getCurrentTask().getCurrentStep());
+        editStepFromForm(currentStep);
+        editStepCardInformation(currentStep);
     });
 
     renderForm(form);
 
     // Fill the form fields with current information
-    document.querySelector("#step-title").placeholder = document.querySelector("#step-title").value = getCurrentProject().getCurrentTask().getCurrentStep().getTitle();
+    document.querySelector("#step-title").placeholder = document.querySelector("#step-title").value = currentStep.getTitle();
 }
 
 /* Create the form for confirming organizer deletion */
@@ -230,6 +230,7 @@ function renderDeleteForm(deleteFunction, organizerType) {
     renderForm(form);
 }
 
+/* Create the form for deleting a project */
 function renderDeleteProjectForm() {
     const deleteFunction = () => {
         deleteProject(getCurrentProject());
@@ -247,27 +248,33 @@ function renderDeleteProjectForm() {
     renderDeleteForm(deleteFunction, Organizers.PROJECT);
 }
 
+/* Create the form for deleting a task */
 function renderDeleteTaskForm() {
+    const currentTask = getCurrentProject().getCurrentTask();
     const deleteFunction = () => {
-        getCurrentProject().removeFromIncompleteTasks(getCurrentProject().getCurrentTask());
-        getCurrentProject().removeFromCompleteTasks(getCurrentProject().getCurrentTask());
-        deleteTaskCard(getCurrentProject().getCurrentTask());
+        getCurrentProject().removeFromIncompleteTasks(currentTask);
+        getCurrentProject().removeFromCompletedTasks(currentTask);
+        deleteTaskCard(currentTask);
         getCurrentProject().setCurrentTask(null);
     }
 
     renderDeleteForm(deleteFunction, Organizers.TASK);
 }
 
+/* Create the form for deleting a step */
 function renderDeleteStepForm() {
     const deleteFunction = () => {
-        getCurrentProject().getCurrentTask().removeFromIncompleteSteps(getCurrentProject().getCurrentTask().getCurrentStep());
-        deleteStepCard(getCurrentProject().getCurrentTask().getCurrentStep());
-        getCurrentProject().getCurrentTask().setCurrentStep(null);
+        const currentTask = getCurrentProject().getCurrentTask();
+        const currentStep = currentTask.getCurrentStep();
+        currentTask.removeFromIncompleteSteps(currentStep);
+        deleteStepCard(currentStep);
+        currentTask.setCurrentStep(null);
     }
 
     renderDeleteForm(deleteFunction, Organizers.STEP);
 }
 
+/* Create the form for changing project colour */
 function renderColourPickerForm() {
     const form = generateFormBase("colour-form", "Pick A Colour", "colour-form");
 

@@ -1,7 +1,6 @@
-import taskFactory from "./factories/taskFactory";
-import { Status } from "../enums/status";
-import { getCurrentProject, getProjects, getSerializedProjects } from "./project";
-import { renderProjectPage, clearPage } from "../../pages/display.js";
+import taskFactory from "./factories/taskFactory.js";
+import { Status } from "../enums/status.js";
+import { getCurrentProject, getSerializedProjects } from "./project.js";
 import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
 import { deserializeStep } from "./step.js";
 
@@ -95,4 +94,9 @@ function deserializeTask(project, task) {
     }
 }
 
-export { createTask, completeTask, createTaskFromForm, editTaskFromForm, serializeTask, deserializeTask }
+export { 
+    createTask, 
+    completeTask, 
+    createTaskFromForm, editTaskFromForm, 
+    serializeTask, deserializeTask
+}

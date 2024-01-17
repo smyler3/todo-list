@@ -1,3 +1,4 @@
+/* Creates the submit form button */
 function createFormSubmitButtonListener(btn, submitFunction, modal) {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -6,6 +7,7 @@ function createFormSubmitButtonListener(btn, submitFunction, modal) {
     });
 }
 
+/* Creates the cancel form button */
 function createFormCancelButtonListener(btn, modal) {
     btn.addEventListener("click", (e) => {
         e.preventDefault();

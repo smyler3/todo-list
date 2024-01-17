@@ -1,4 +1,4 @@
-/* Create a dlabel for a form field */
+/* Create a label for a form field */
 function generateLabel(formField) {
     const fieldLabel = document.createElement("label");
     fieldLabel.textContent = formField.labelText;

@@ -1,5 +1,6 @@
-import { renderSidebarProjects } from "./sidebarProjectsGenerator";
+import { renderSidebarProjects } from "./sidebarProjectsGenerator.js";
 
+/* Create the sidebar */
 export default function renderSidebar(projects) {
     const sidebar = document.querySelector(".sidebar");
 

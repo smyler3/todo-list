@@ -1,7 +1,7 @@
-import createSidebarListeners from "./sidebarListeners";
-import createAllProjectsListeners from "./allProjectsListeners";
+import createSidebarListeners from "./sidebarListeners.js";
+import { createProjectPageNavigationListeners } from "./projectNavigationListeners.js";
 
 export {
     createSidebarListeners,
-    createAllProjectsListeners,
+    createProjectPageNavigationListeners,
 }

@@ -89,6 +89,15 @@ input[type="radio"] {
     background-color: var(--completed-card-background);
 }
 
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    height: 20px;
+    width: 20px;
+}
+
 /*
  * ------------------------------------------------------------
  * Page Layout Styling
@@ -151,15 +160,6 @@ input[type="radio"] {
 .sidebar-item:hover {
     cursor: pointer;
     background-color: var(--sidebar-hover-background);
-}
-
-.icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: x-large;
-    height: 20px;
-    width: 20px;
 }
 
 .project-icon {
@@ -234,14 +234,6 @@ input[type="radio"] {
     gap: 1rem;
 }
 
-.project-header-title {
-
-}
-
-.project-header-description {
-
-}
-
 /*
  * ------------------------------------------------------------
  * Form Styling
@@ -282,7 +274,7 @@ input[type="radio"] {
     box-shadow: 0 10px 15px var(--light-shadow);
 } 
 
-.creation-form,
+.form-body,
 .delete-form,
 .colour-form {
     flex: 1;
@@ -355,11 +347,6 @@ input[type="radio"] {
     gap: 0.3rem;
     padding: 0.5rem;
 }
-/*
- * ----------------------
- * Deletion Form Styling
- * ----------------------
- */
  
 /*
  * ----------------------
@@ -382,9 +369,6 @@ input[type="radio"] {
     flex-direction: column;
     align-items: center;
     gap: 0.2rem;
-}
-
-.colour-radio-btn {
 }
 
 .colour-radio-btn-label {
@@ -419,7 +403,6 @@ input[type="checkbox"]:checked {
     grid-area: 2 / 2 / -2 / -1;
     background-color: rgb(226, 232, 240);
     overflow-y: auto;
-    /* padding-right: calc(100vw - 100%); */
 }
 
 /*
@@ -580,16 +563,3 @@ input[type="checkbox"]:checked {
     background-color: var(--completed-card-background);
     color: var(--completed-card-text);
 }
-
-/*
- * ------------------------------------------------------------
- * Footer Styling
- * ------------------------------------------------------------
- */
-
-/* .footer {
-    grid-area: -2 / 1 / -1 / -1;
-    text-align: center;
-    padding: 1rem 0;
-    background-color: var(--white);
-} */

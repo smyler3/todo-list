@@ -1,4 +1,4 @@
-import { Status } from "../../enums/status";
+import { Status, isValidStatus } from "../../enums/status.js";
 
 /* Creates a single instance of a step object */
 export default function stepFactory(title, projectID, taskID, stepID) {

@@ -1,8 +1,8 @@
-import { saveProjectsToLocalStorage } from "../../../modules/localStorage";
-import { isValidPriority } from "../../enums/priority";
-import { Status, isValidStatus } from "../../enums/status";
-import { getSerializedProjects } from "../project";
-import { serializeStep } from "../step";
+import { saveProjectsToLocalStorage } from "../../../modules/localStorage/index.js";
+import { isValidPriority } from "../../enums/priority.js";
+import { Status, isValidStatus } from "../../enums/status.js";
+import { getSerializedProjects } from "../project.js";
+import { serializeStep } from "../step.js";
 
 /* Creates a single instance of a task object */
 export default function taskFactory(title, description, dueDate, priority, projectID, taskID) {

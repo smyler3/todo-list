@@ -1,5 +1,5 @@
-import { Priority, DefaultPriority } from "../../models/enums/priority";
-import { Colours, DefaultColour } from "../../models/enums/colours";
+import { Priority } from "../../models/enums/priority.js";
+import { Colours } from "../../models/enums/colours.js";
 
 /* Add the designated legend and fieldset to a container */
 function generateRadioButtons(legend, fieldset) {
@@ -57,6 +57,7 @@ function generatePriorityRadioButtons(organizerType) {
     return field;
 }
 
+/* Create a set of radio buttons for the project colour options */
 function generateColourRadioButtons() {
     /* Add the radio button options */
     function generateColourOptions() {

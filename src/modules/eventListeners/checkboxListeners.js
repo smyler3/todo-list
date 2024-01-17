@@ -1,28 +1,11 @@
-import { Status } from "../../models/enums/status";
-import { getCurrentProject } from "../../models/organizers/project";
-import { completeTask } from "../../models/organizers/task";
-import { clearPage, renderProjectPage } from "../../pages/display";
-import { setStepCardCompleted, setStepCardIncomplete } from "../../pages/projectPage/stepsCardHandler";
-import { setTaskCardCompleted, setTaskCardIncomplete } from "../../pages/projectPage/tasksCardHandler";
+import { Status } from "../../models/enums/status.js";
+import { getCurrentProject } from "../../models/organizers/project.js";
+import { completeTask } from "../../models/organizers/task.js";
+import { clearPage, renderProjectPage } from "../../pages/display.js";
+import { setStepCardCompleted, setStepCardIncomplete } from "../../pages/projectPage/stepsCardHandler.js";
+import { setCurrentTaskFromID, setCurrentStepFromID } from "./utility";
 
-function setCurrentTaskFromID(tasks, taskID) {
-    tasks.forEach(task => {
-        if (String(task.getTaskID()) === taskID) {
-            getCurrentProject().setCurrentTask(task);
-            return;
-        }
-    });
-}
-
-function setCurrentStepFromID(steps, stepID) {
-    steps.forEach(step => {
-        if (String(step.getStepID()) === stepID) {
-            getCurrentProject().getCurrentTask().setCurrentStep(step);
-            return;
-        }
-    });
-}
-
+/* Handles toggling the completion status logic for a task */
 function taskStatusToggleListener(checkbox) {
     const taskCard = checkbox.parentElement.parentElement;
     // Searches both lists the current task
@@ -45,6 +28,7 @@ function taskStatusToggleListener(checkbox) {
     }, 100);
 }
 
+/* Handles marking a task as completed */
 function setTaskStatusCompleteHandler(task) {
     getCurrentProject().removeFromIncompleteTasks(task);
     // Moves the card wrapper to the completed tasks section 
@@ -52,6 +36,7 @@ function setTaskStatusCompleteHandler(task) {
     renderProjectPage(getCurrentProject());
 }
 
+/* Handles marking a task as incomplete */
 function setTaskStatusIncompleteHandler(task) {
     getCurrentProject().removeFromCompletedTasks(task);
     // Moves the card wrapper to the incomplete tasks section 
@@ -64,14 +49,16 @@ function createTaskStatusListener(checkbox) {
     checkbox.addEventListener("change", () => taskStatusToggleListener(checkbox));
 }
 
+/* Handles toggling the completion status logic for a step */
 function stepStatusToggleListener(checkbox) {
     const stepCard = checkbox.parentElement.parentElement;
     setCurrentTaskFromID(getCurrentProject().getIncompleteTasks(), String(stepCard.getAttribute("data-task-id")));
     // Searches both lists the current step
-    setCurrentStepFromID(getCurrentProject().getCurrentTask().getIncompleteSteps(), String(stepCard.getAttribute("data-step-id")));
-    setCurrentStepFromID(getCurrentProject().getCurrentTask().getCompletedSteps(), String(stepCard.getAttribute("data-step-id")));
+    const currentTask = getCurrentProject().getCurrentTask();
+    setCurrentStepFromID(currentTask.getIncompleteSteps(), String(stepCard.getAttribute("data-step-id")));
+    setCurrentStepFromID(currentTask.getCompletedSteps(), String(stepCard.getAttribute("data-step-id")));
 
-    const step = getCurrentProject().getCurrentTask().getCurrentStep();
+    const step = currentTask.getCurrentStep();
 
     // Toggle the steps complete status
     step.swapStatus();
@@ -87,6 +74,7 @@ function stepStatusToggleListener(checkbox) {
     }, 100);
 }
 
+/* Handles marking a step as completed */
 function setStepStatusCompleteHandler(step) {
     getCurrentProject().getCurrentTask().removeFromIncompleteSteps(step);
     const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);
@@ -97,6 +85,7 @@ function setStepStatusCompleteHandler(step) {
     parent.nextSibling.appendChild(stepCard);
 }
 
+/* Handles marking a step as incomplete */
 function setStepStatusIncompleteHandler(step) {
     getCurrentProject().getCurrentTask().removeFromCompletedSteps(step);
     const stepCard = document.querySelector(`[data-task-id="${step.getTaskID()}"][data-step-id="${step.getStepID()}"]`);

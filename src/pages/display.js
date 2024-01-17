@@ -1,24 +1,29 @@
 import renderSidebar from "./sidebar";
-import { editSidebarProjectTitle, editSidebarProjectColour } from "./sidebar/sidebarProjectsGenerator";
+// import renderSidebar from "./sidebar.js"
+import { editSidebarProjectTitle, editSidebarProjectColour } from "./sidebar/sidebarProjectsGenerator.js";
 import { renderProjectPage, editProjectPageColour} from "./projectPage";
 import { renderAllProjectsPage, editProjectCardColour } from "./allProjectsPage";
-import * as forms from "./forms/formGenerator";
+import * as forms from "./forms/formGenerator.js";
 
+/* Remove all content from the header */
 function clearHeader() {
     const header = document.querySelector(".header");
     header.replaceChildren();
 }
 
+/* Remove all content from the body */
 function clearBody() {
     const body = document.querySelector(".content-body");
     body.replaceChildren();
 }
 
+/* Remove all content from the content sections */
 function clearPage() {
     clearHeader();
     clearBody();
 }
 
+/* Remove all content from the sidebar */
 function clearSidebar() {
     const sidebar = document.querySelector(".sidebar");
     sidebar.replaceChildren();

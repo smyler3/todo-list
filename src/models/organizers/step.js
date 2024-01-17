@@ -1,6 +1,6 @@
-import stepFactory from "./factories/stepFactory";
-import { clearPage, renderProjectPage } from "../../pages/display";
-import { getCurrentProject, getProjects, getSerializedProjects } from "./project";
+import stepFactory from "./factories/stepFactory.js";
+import { clearPage, renderProjectPage } from "../../pages/display.js";
+import { getCurrentProject, getSerializedProjects } from "./project.js";
 import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
 import { Status } from "../enums/status.js";
 
@@ -61,4 +61,8 @@ function deserializeStep(task, step) {
     }
 }
 
-export { createStep, createStepFromForm, editStepFromForm, serializeStep, deserializeStep }
+export { 
+    createStep, 
+    createStepFromForm, editStepFromForm, 
+    serializeStep, deserializeStep
+}

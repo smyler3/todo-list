@@ -1,12 +1,9 @@
 import { generateStepCards } from "./stepsCardHandler.js";
 import { disableActionButtons, enableActionButtons, generateActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
-import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 import { createTaskStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
 import { taskCreateStepButtonListener, taskDeleteButtonListener, taskEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/taskActionButtonListeners.js";
-import { clearPage, renderProjectPage } from "../display.js";
-import { Status } from "../../models/enums/status.js";
 
 /* Create a list of tasks for a project */
 function generateTaskCards(tasks, parent) {
@@ -54,7 +51,7 @@ function generateTaskCards(tasks, parent) {
 
             // Completion checkbox
             const completedCheckbox = document.createElement("input");
-            completedCheckbox.classList.add("task-checkbox");
+            completedCheckbox.classList.add("completion-checkbox");
             completedCheckbox.type = "checkbox";
             completedCheckbox.name = "";
             completedCheckbox.id = "";
@@ -70,15 +67,15 @@ function generateTaskCards(tasks, parent) {
 
         // Task buttons to be created
         const taskButtons = [
-            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Step",
+            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "Create Step Button", title: "Add New Step",
             event: () => {
                 taskCreateStepButtonListener(task)
             }},
-            {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task",
+            {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "Edit Task Button", title: "Edit Task",
             event: () => {
                 taskEditButtonListener(task);
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task",
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "Delete Task Button", title: "Delete Task",
             event: () => {
                 taskDeleteButtonListener(task);
             }},
@@ -129,6 +126,7 @@ function generateTaskCards(tasks, parent) {
     })
 }
 
+/* Updates the task card if task information is edited */
 function editTaskCardInformation(task) {
     const taskCard = document.querySelector(`[data-task-id="${task.getTaskID()}"]`);
     

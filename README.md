@@ -2,26 +2,8 @@ Notes:
 --------------------------------------------------------------------------
 CODE SYNTAX:
     -
-    Check for double capitalised comments
-    e.g. 
-    // Appending Elements 
-    (instead of) 
-    // Appending elements 
-
-    -
-    Check all imports for missing ; and .js
-
-    -
-    Check forEach loops to see if you can return after success for efficiency
-
-    -
     Use consistent index.js layout or switch to something else
 
-    - 
-    Assign names to variables like .firstChild.xxx so what they are is clear
-
-    -
-    Add alt text to images
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -33,10 +15,11 @@ DUPLICATE CODE:
     Radio field generator has heaps of duplicate code
 
     -
-    Should be a way to reduce duplicate project action button code
+    Code reuse for edit and creation forms
 
     -
-    Code reuse for edit and creation forms
+    Both project action button arrays share the same code
+    Should be a way to reduce duplicate project action button code
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -45,57 +28,23 @@ CODE LOGIC:
     Can use a function to call all action buttons on loading
 
     - 
-    Add form sanatisation to creation forms
-    Add form sanatisation to edit forms
     Add max and min values to form fields (or just required)
 
     -
     Font in textarea is weird
-
-    -
-    Make a function to grab current project from a given id?
-
-    -
-    Rename creation-form to something else as used by edit forms too
-
-    -
-    Instead of re-rendering whole page just render new project? (Could be reverted when sorting implemented)
-    Or maybe instead of adding project sorting we just allow click dragging to rearrange?
-
-    -
-    Change task-checkbox to something else as it is used by steps aswell
-
-    -
-    Duplicate setCurrentTaskFromID and setCurrentStepFromID functions
-
-    -
-    Use the isValidColour, isValidStatus, isValidPriority as much as possible
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 VISUALS:
     -
-    Colour scheme is trash
-
-    - 
-    Add new project button is inconsistent
+    Wrap project desc text on too long
 
     -
     Make checkboxes bigger?
-
-    -
-    Completed subheader to "Completed Tasks"?
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TODO:
-    - 
-    Apply visual overhaul
-        - Add TODO logo?
-
-    -
-    Apply clean coding practices
-
     -
     Add code for adding default data?
 .

@@ -1,6 +1,5 @@
-import { renderProjectPage, clearPage } from "../../../pages/display.js";
-import { setCurrentProject } from "../../../models/organizers/project.js";
-import { Actions } from "../../../models/enums/actionButtons.js";
+import { renderProjectPage, clearPage } from "../../pages/display.js";
+import { setCurrentProject } from "../../models/organizers/project.js";
 
 /* Make a group of project navigation DOM elements link to their project page */
 function createProjectPageNavigationListeners(projects, className) {
