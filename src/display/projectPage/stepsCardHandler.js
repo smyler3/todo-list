@@ -3,6 +3,8 @@ import { Actions } from "../../models/enums/actionButtons.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 import { createStepStatusListener } from "../../common/eventListeners/checkboxListeners.js";
 import { stepDeleteButtonListener, stepEditButtonListener } from "../../common/eventListeners/actionButtonListeners/stepActionButtonListeners.js";
+import EditButtonIcon from "../../assets/icons/edit.svg";
+import DeleteButtonIcon from "../../assets/icons/delete.svg";
 
 /* Create a list of steps for a task */
 function generateStepCards(steps, parent) {
@@ -11,11 +13,11 @@ function generateStepCards(steps, parent) {
 
         // Step buttons to be created
         const stepButtons = [
-            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "Edit Step Button", title: "Edit Step",
+            {classNames: [Actions.EDIT, "edit-step"], src: EditButtonIcon, alt: "Edit Step Button", title: "Edit Step",
             event: () => {
                 stepEditButtonListener(step);
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "Delete Step Button", title: "Delete Step",
+            {classNames: [Actions.DELETE], src: DeleteButtonIcon, alt: "Delete Step Button", title: "Delete Step",
             event: () => {
                 stepDeleteButtonListener(step)
             }},

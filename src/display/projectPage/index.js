@@ -3,6 +3,10 @@ import { editStepCardInformation, setStepCardCompleted } from "./stepsCardHandle
 import { generateActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import { projectColourButtonListener, projectCreateTaskButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../common/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
+import CreateButtonIcon from "../../assets/icons/add.svg";
+import ColourButtonIcon from "../../assets/icons/paint.svg";
+import EditButtonIcon from "../../assets/icons/edit.svg";
+import DeleteButtonIcon from "../../assets/icons/delete.svg";
 
 /* Create the page showing all info for a selected project */
 function renderProjectPage(project) {
@@ -32,20 +36,20 @@ function renderProjectPage(project) {
 
         // Project Buttons to be created
         const projectButtons = [
-            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Task",
+            {classNames: [Actions.CREATE], src: CreateButtonIcon, alt: "", title: "Add New Task",
             event: () => {
                 projectCreateTaskButtonListener
                 projectCreateTaskButtonListener(project);
             }},
-            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
+            {classNames: [Actions.COLOUR], src: ColourButtonIcon, alt: "", title: "Colour Project",
             event: () => {
                 projectColourButtonListener(project);
             }},
-            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
+            {classNames: [Actions.EDIT, "edit-project"], src: EditButtonIcon, alt: "", title: "Edit Project",
             event: () => {
                 projectEditButtonListener(project);
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
+            {classNames: [Actions.DELETE], src: DeleteButtonIcon, alt: "", title: "Delete Project",
             event: () => {
                 projectDeleteButtonListener(project);
             }},

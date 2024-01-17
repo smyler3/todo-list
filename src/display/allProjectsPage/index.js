@@ -4,6 +4,9 @@ import { createProjectButtonListener } from "../../common/eventListeners/actionB
 import { createProjectPageNavigationListeners } from "../../common/eventListeners/projectNavigationListeners.js";
 import { setCurrentProject } from "../../models/organizers/project.js";
 import { forms } from "../display.js";
+import ColourButtonIcon from "../../assets/icons/paint.svg";
+import EditButtonIcon from "../../assets/icons/edit.svg";
+import DeleteButtonIcon from "../../assets/icons/delete.svg";
 
 /* Create the page showing all of the current projects */
 function renderAllProjectsPage(projects) {
@@ -59,17 +62,17 @@ function renderAllProjectsPage(projects) {
         function generateProjectCardButtons(project) {
             // Project Buttons to be created
             const projectCardButtons = [
-                {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
+                {classNames: [Actions.COLOUR], src: ColourButtonIcon, alt: "", title: "Colour Project",
                 event: () => {
                     setCurrentProject(project);
                     forms.renderColourPickerForm(); 
                 }},
-                {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Project",
+                {classNames: [Actions.EDIT, "edit-project"], src: EditButtonIcon, alt: "", title: "Edit Project",
                 event: () => {
                     setCurrentProject(project);
                     forms.renderEditProjectForm();
                 }},
-                {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Project",
+                {classNames: [Actions.DELETE], src: DeleteButtonIcon, alt: "", title: "Delete Project",
                 event: () => {
                     setCurrentProject(project);
                     forms.renderDeleteProjectForm();

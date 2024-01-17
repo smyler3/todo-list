@@ -1,5 +1,6 @@
 import { getProjects } from "../../models/organizers/project.js";
 import { addProjectNavigationListener } from "../../common/eventListeners/projectNavigationListeners.js";
+import allProjectsIcon from "../../assets/icons/projects.svg";
 
 /* Create a sidebar menu item */
 function generateSidebarItem(title, iconFunction) {
@@ -32,7 +33,7 @@ function generateAllProjectIcon() {
 
     // Icon image
     const iconImage = document.createElement("img");
-    iconImage.src = "../src/assets/icons/projects.svg";
+    iconImage.src = allProjectsIcon;
 
     // Appening elements
     projectIcon.appendChild(iconImage);

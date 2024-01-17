@@ -4,6 +4,9 @@ import { Actions } from "../../models/enums/actionButtons.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 import { createTaskStatusListener } from "../../common/eventListeners/checkboxListeners.js";
 import { taskCreateStepButtonListener, taskDeleteButtonListener, taskEditButtonListener } from "../../common/eventListeners/actionButtonListeners/taskActionButtonListeners.js";
+import CreateButtonIcon from "../../assets/icons/add.svg";
+import EditButtonIcon from "../../assets/icons/edit.svg";
+import DeleteButtonIcon from "../../assets/icons/delete.svg";
 
 /* Create a list of tasks for a project */
 function generateTaskCards(tasks, parent) {
@@ -67,15 +70,15 @@ function generateTaskCards(tasks, parent) {
 
         // Task buttons to be created
         const taskButtons = [
-            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "Create Step Button", title: "Add New Step",
+            {classNames: [Actions.CREATE], src: CreateButtonIcon, alt: "Create Step Button", title: "Add New Step",
             event: () => {
                 taskCreateStepButtonListener(task)
             }},
-            {classNames: [Actions.EDIT, "edit-task"], src: "../src/assets/icons/edit.svg", alt: "Edit Task Button", title: "Edit Task",
+            {classNames: [Actions.EDIT, "edit-task"], src: EditButtonIcon, alt: "Edit Task Button", title: "Edit Task",
             event: () => {
                 taskEditButtonListener(task);
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "Delete Task Button", title: "Delete Task",
+            {classNames: [Actions.DELETE], src: DeleteButtonIcon, alt: "Delete Task Button", title: "Delete Task",
             event: () => {
                 taskDeleteButtonListener(task);
             }},
