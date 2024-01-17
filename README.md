@@ -15,9 +15,6 @@ DUPLICATE CODE:
     Radio field generator has heaps of duplicate code
 
     -
-    Code reuse for edit and creation forms
-
-    -
     Both project action button arrays share the same code
     Should be a way to reduce duplicate project action button code
 .

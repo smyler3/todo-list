@@ -43,6 +43,20 @@ function generateFormBase(id, title, formClass) {
     return form;
 }
 
+/* Create the basic create/edit form layout */
+function generateCreateEditFormBase(formFields, formID, formTitle, formType, formClass, organizerType, submitFunction, radioButtons = null) {
+    const form = generateFormBase(formID, formTitle, formClass);
+
+    // Appending elements
+    generateTextFields(formFields, form);
+    if (radioButtons !== null) {
+        form.appendChild(radioButtons);
+    }
+    addFormButtons(organizerType, formType, form, submitFunction);
+
+    renderForm(form);
+}
+
 /* Create the submit and cancel form buttons */
 function addFormButtons(organizerType, actionType, parent, submitFunction) {
     const modal = document.querySelector(".modal");
@@ -71,75 +85,73 @@ function addFormButtons(organizerType, actionType, parent, submitFunction) {
     parent.appendChild(cancelBtn);
 }
 
-/* Create the form for creating a new project */
-function renderCreateProjectForm() {
-    // All form fields for creating a project
+/* Create the form base for edit and create step forms */
+function generateBaseProjectForm(formID, formTitle, formType, submitFunction) {
+    // All form fields for projects
     const projectTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 20},
         {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , maxLength: 80, rows: 40},
     ]
+    const formClass = "create-edit-form";
+    const organizerType = Organizers.PROJECT;
 
-    const form = generateFormBase("project-form-body", "New Project", "form-body");
+    generateCreateEditFormBase(projectTextFormFields, formID, formTitle, formType, formClass, organizerType, submitFunction);
+}
 
-    // Appending elements
-    generateTextFields(projectTextFormFields, form);
-    addFormButtons(Organizers.PROJECT, "Create", form, createProjectFromForm);
-
-    renderForm(form);
+/* Create the form for creating a new project */
+function renderCreateProjectForm() {
+    generateBaseProjectForm("project-creation-form", "New Project", "Create", createProjectFromForm);
 }
 
 /* Create the form for editing a project */
 function renderEditProjectForm() {
-    // All form fields for a project
-    const projectTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 20},
-        {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , maxLength: 80, rows: 40},
-    ]
+    const currentProject = getCurrentProject();
 
-    const form = generateFormBase("project-edit-form", "Edit Project", "form-body");
-
-    // Appending elements
-    generateTextFields(projectTextFormFields, form);
-    addFormButtons(Organizers.PROJECT, "Edit", form, () => {
-        editProjectFromForm(getCurrentProject());
-        editSidebarProjectTitle(getCurrentProject());
+    // Submit function for editing a project
+    const editProjectFunction = () => {
+        editProjectFromForm(currentProject);
+        editSidebarProjectTitle(currentProject);
         // Checking which page is currently displayed
         if (document.querySelector(".project-header-container") !== null) {
-            editProjectPageInformation(getCurrentProject());
+            editProjectPageInformation(currentProject);
         }
         else {
-            editProjectCardInformation(getCurrentProject());
+            editProjectCardInformation(currentProject);
         }
-    });
+    }
 
-    renderForm(form);
+    generateBaseProjectForm("project-edit-form", "Edit Project", "Edit", editProjectFunction);
 
     // Fill the form fields with current information
-    document.querySelector("#project-title").placeholder = document.querySelector("#project-title").value = getCurrentProject().getTitle();
-    document.querySelector("#project-desc").placeholder = document.querySelector("#project-desc").value = getCurrentProject().getDescription();
+    document.querySelector("#project-title").placeholder = document.querySelector("#project-title").value = currentProject.getTitle();
+    document.querySelector("#project-desc").placeholder = document.querySelector("#project-desc").value = currentProject.getDescription();
 }
 
-/* Create the form for creating a new task */
-function renderCreateTaskForm() {
-    // All form fields for creating a task
+/* Create the form base for edit and create step forms */
+function generateBaseTaskForm(formID, formTitle, formType, submitFunction) {
+    // All form fields for tasks
     const taskTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
         {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "task-desc", classes: ["desc-input"], maxLength: 80},
         {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
     ]
+    const formClass = "create-edit-form";
+    const organizerType = Organizers.TASK;
+    const radioButtons = radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK);
 
-    const form = generateFormBase("task-form-body", "New Task", "form-body");
+    generateCreateEditFormBase(taskTextFormFields, formID, formTitle, formType, formClass, organizerType, submitFunction, radioButtons);
+}
 
-    // Appending elements
-    generateTextFields(taskTextFormFields, form);
-    form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
-    addFormButtons(Organizers.TASK, "Edit", form, () => {
+/* Create the form for creating a new task */
+function renderCreateTaskForm() {
+    // Submit function for creating a task
+    const createTaskFunction = () => {
         createTaskFromForm();
         clearPage();
         renderProjectPage(getCurrentProject());
-    });
+    }
 
-    renderForm(form);
+    generateBaseTaskForm("task-creation-form", "New Task", "Create", createTaskFunction);
 
     // Highlight the default priority
     const priorityBtn = document.querySelector(`input[name='priority'][value='${DefaultPriority}']`);
@@ -148,28 +160,18 @@ function renderCreateTaskForm() {
 
 /* Create the form for editing a task */
 function renderEditTaskForm() {
-    // All form fields for a task
-    const taskTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
-        {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "task-desc", classes: ["desc-input"], maxLength: 80},
-        {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
-    ]
-
     const currentTask = getCurrentProject().getCurrentTask();
-    const form = generateFormBase("task-edit-form", "Edit Task", "form-body");
 
-    // Appending elements
-    generateTextFields(taskTextFormFields, form);
-    form.appendChild(radioFieldGenerator.generatePriorityRadioButtons(Organizers.TASK));
-    addFormButtons(Organizers.TASK, "Edit", form, () => {
+    // Submit function for editing a task
+    const editTaskFunction = () => {
         editTaskFromForm(currentTask);
         editTaskCardInformation(currentTask);
         getCurrentProject().sortIncompleteTasks();
         clearPage();
         renderProjectPage(getCurrentProject());
-    });
+    }
 
-    renderForm(form);
+    generateBaseTaskForm("task-edit-form", "Edit Task", "Edit", editTaskFunction);
 
     // Fill the form fields with current information
     document.querySelector("#task-title").placeholder = document.querySelector("#task-title").value = currentTask.getTitle();
@@ -181,40 +183,34 @@ function renderEditTaskForm() {
     priorityBtn.checked = true;
 }
 
+/* Create the form base for edit and create step forms */
+function generateBaseStepForm(formID, formTitle, formType, submitFunction) {
+        // All form fields for steps
+        const stepTextFormFields = [
+            {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
+        ]
+        const formClass = "create-edit-form";
+        const organizerType = Organizers.STEP;
+
+        generateCreateEditFormBase(stepTextFormFields, formID, formTitle, formType, formClass, organizerType, submitFunction);
+}
+
 /* Create the form for creating a new step */
 function renderCreateStepForm() {
-    // All form fields for creating a task
-    const stepTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
-    ]
-
-    const form = generateFormBase("step-form-body", "New Step", "form-body");
-
-    // Appending elements
-    generateTextFields(stepTextFormFields, form);
-    addFormButtons(Organizers.STEP, "Create", form, createStepFromForm);
-
-    renderForm(form);
+    generateBaseStepForm("step-creation-form", "New Step", "Create", createStepFromForm);
 }
 
 /* Create the form for editing a step */
 function renderEditStepForm() {
-    // All form fields for editing a task
-    const stepTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
-    ]
-
     const currentStep = getCurrentProject().getCurrentTask().getCurrentStep();
-    const form = generateFormBase("step-edit-form", "Edit Step", "form-body");
 
-    // Appending elements
-    generateTextFields(stepTextFormFields, form);
-    addFormButtons(Organizers.STEP, "Edit", form, () => {
+    // Submit function for editing a step
+    const editStepFunction = () => {
         editStepFromForm(currentStep);
         editStepCardInformation(currentStep);
-    });
+    }
 
-    renderForm(form);
+    generateBaseStepForm("step-edit-form", "Edit Step", "Edit", editStepFunction);
 
     // Fill the form fields with current information
     document.querySelector("#step-title").placeholder = document.querySelector("#step-title").value = currentStep.getTitle();

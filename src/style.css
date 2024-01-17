@@ -274,7 +274,7 @@ input[type="radio"] {
     box-shadow: 0 10px 15px var(--light-shadow);
 } 
 
-.form-body,
+.create-edit-form,
 .delete-form,
 .colour-form {
     flex: 1;
