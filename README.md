@@ -1,13 +1,23 @@
-Notes:
---------------------------------------------------------------------------
-CODE SYNTAX:
-    -
-    Use consistent index.js layout or switch to something else
+A todo list website built using JS Modules
 
+There are three different ways to organise your todo list:
+    Projects:
+        A project is like a folder, holding a collection of tasks
+        They have a title and a description, and can be organized by colour 
+
+    Tasks:
+        A task is what is says on the tin, a job that needs completing
+        They have a title, a description, a due date, and are organized by priority
+
+    Steps:
+        A Step is a way to futher break down a task into additonal smaller tasks
+        They only have a title
 .
---------------------------------------------------------------------------
+-----------------------------------------------------------------------
 --------------------------------------------------------------------------
 POTENTIAL FUTURE FEATURES:
+
+
     -
     Add code for adding default data
     
@@ -40,65 +50,3 @@ POTENTIAL FUTURE FEATURES:
     Move individual edited/added/marked incomplete task cards to correct place rather than refresh page
 .
 --------------------------------------------------------------------------
-
-todo-list
-|
-├─ .gitignore
-├─ dist
-│  ├─ index.html
-│  └─ main.bundle.js
-├─ package-lock.json
-├─ package.json
-├─ README.md
-├─ src
-│  ├─ assets
-│  │  └─ icons
-│  │     ├─ add.svg
-│  │     ├─ completed.svg
-│  │     ├─ delete.svg
-│  │     ├─ edit.svg
-│  │     ├─ paint.svg
-│  │     ├─ projects.svg
-│  │     ├─ today.svg
-│  │     └─ upcoming.svg
-│  ├─ index.js
-│  ├─ models
-│  │  ├─ enums
-│  │  │  ├─ colours.js
-│  │  │  ├─ organizer.js
-│  │  │  ├─ priority.js
-│  │  │  └─ status.js
-│  │  └─ organizers
-│  │     ├─ factories
-│  │     │  ├─ projectFactory.js
-│  │     │  ├─ stepFactory.js
-│  │     │  └─ taskFactory.js
-│  │     ├─ project.js
-│  │     ├─ step.js
-│  │     └─ task.js
-│  ├─ modules
-│  │  ├─ domInteraction
-│  │  └─ eventListeners
-│  ├─ pages
-│  │  ├─ allProjectsPage
-│  │  │  └─ index.js
-│  │  ├─ display.js
-│  │  ├─ forms
-│  │  │  ├─ formGenerator.js
-│  │  │  ├─ radioFieldGenerator.js
-│  │  │  └─ textFieldGenerator.js
-│  │  ├─ projectPage
-│  │  │  ├─ actionButtons.js
-│  │  │  ├─ index.js
-│  │  │  ├─ stepsGenerator.js
-│  │  │  └─ tasksGenerator.js
-│  │  └─ sidebar
-│  │     ├─ index.js
-│  │     └─ sidebarProjectsGenerator.js
-│  ├─ style.css
-│  └─ template.html
-├─ webpack.common.js
-├─ webpack.dev.js
-└─ webpack.prod.js
-
-```
