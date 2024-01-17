@@ -19,6 +19,9 @@ CODE SYNTAX:
 
     - 
     Assign names to variables like .firstChild.xxx so what they are is clear
+
+    -
+    Add alt text to images
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -88,7 +91,6 @@ VISUALS:
 TODO:
     - 
     Apply visual overhaul
-        - Change add project button
         - Add TODO logo?
 
     -

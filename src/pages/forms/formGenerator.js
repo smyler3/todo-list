@@ -200,7 +200,7 @@ function renderCreateStepForm() {
 
 /* Create the form for editing a step */
 function renderEditStepForm() {
-    // All form fields for creating a task
+    // All form fields for editing a task
     const stepTextFormFields = [
         {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
     ]
@@ -221,8 +221,8 @@ function renderEditStepForm() {
 }
 
 /* Create the form for confirming organizer deletion */
-function renderDeleteForm(deleteFunction) {
-    const form = generateFormBase(("confirm-delete-form"), ("Delete Item?"), "delete-form");
+function renderDeleteForm(deleteFunction, organizerType) {
+    const form = generateFormBase(("confirm-delete-form"), ("Delete " + organizerType + "?"), "delete-form");
 
     // Appending elements
     addFormButtons("Organizer", "Delete", form, deleteFunction);
@@ -234,7 +234,6 @@ function renderDeleteProjectForm() {
     const deleteFunction = () => {
         deleteProject(getCurrentProject());
         removeFromSidebarProjects(getCurrentProject());
-        setCurrentProject(null);
         if (document.querySelector(".project-header-container") !== null) {
             clearPage();
             renderAllProjectsPage(getProjects());
@@ -242,19 +241,21 @@ function renderDeleteProjectForm() {
         else {
             deleteProjectCard(getCurrentProject());
         }
+        setCurrentProject(null);
     }
 
-    renderDeleteForm(deleteFunction);
+    renderDeleteForm(deleteFunction, Organizers.PROJECT);
 }
 
 function renderDeleteTaskForm() {
     const deleteFunction = () => {
         getCurrentProject().removeFromIncompleteTasks(getCurrentProject().getCurrentTask());
+        getCurrentProject().removeFromCompleteTasks(getCurrentProject().getCurrentTask());
         deleteTaskCard(getCurrentProject().getCurrentTask());
         getCurrentProject().setCurrentTask(null);
     }
 
-    renderDeleteForm(deleteFunction);
+    renderDeleteForm(deleteFunction, Organizers.TASK);
 }
 
 function renderDeleteStepForm() {
@@ -264,7 +265,7 @@ function renderDeleteStepForm() {
         getCurrentProject().getCurrentTask().setCurrentStep(null);
     }
 
-    renderDeleteForm(deleteFunction);
+    renderDeleteForm(deleteFunction, Organizers.STEP);
 }
 
 function renderColourPickerForm() {

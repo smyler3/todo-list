@@ -45,6 +45,9 @@ function deleteProject(project) {
             return;
         }
     })
+
+    // Save change locally
+    saveProjectsToLocalStorage(getSerializedProjects());
 }
 
 /* Returns project count and increments it */

@@ -4,11 +4,20 @@ import { Actions } from "../../models/enums/actionButtons.js";
 import * as forms from "../forms/formGenerator.js";
 import { getCurrentProject, setCurrentProject } from "../../models/organizers/project.js";
 import { DefaultColour } from "../../models/enums/colours.js";
+import { createProjectButtonListener } from "../../modules/eventListeners/actionButtonListeners/allProjectsActionButtonListeners.js";
 
 /* Create the page showing all of the current projects */
 function renderAllProjectsPage(projects) {
     /* Create the content for the header section */
     function generateHeader() {
+        // All projects buttons to be created
+        const createProjectButton = [
+            {classNames: [Actions.CREATE, "create-project-header-btn"], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Project",
+            event: () => {
+                createProjectButtonListener();
+            }},
+        ]
+
         const headerContainer = document.createElement("div");
         headerContainer.classList.add("all-projects-header-container");
 
@@ -16,19 +25,9 @@ function renderAllProjectsPage(projects) {
         const heading = document.createElement("h1");
         heading.textContent = "All Projects";
 
-        // Project button
-        const createNewProjectButton = document.createElement("button");
-        createNewProjectButton.textContent = "Create New Project";
-        createNewProjectButton.classList.add("create-project-header-btn");
-
-        // project button event
-        createNewProjectButton.addEventListener("click", () => {
-            forms.renderCreateProjectForm();
-        });
-
         // Appending elements
         headerContainer.appendChild(heading);
-        headerContainer.appendChild(createNewProjectButton);
+        headerContainer.appendChild(generateActionButtons(createProjectButton));
 
         return headerContainer;
     }
@@ -58,7 +57,7 @@ function renderAllProjectsPage(projects) {
 
         /* Creates the logic for the project card action buttons */
         function generateProjectCardButtons(project) {
-            // Project Buttons to be created
+            // Project buttons to be created
             const projectCardButtons = [
                 {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "", title: "Colour Project",
                 event: () => {

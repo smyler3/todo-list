@@ -13,11 +13,11 @@ function generateStepCards(steps, parent) {
 
         // Step buttons to be created
         const stepButtons = [
-            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Task",
+            {classNames: [Actions.EDIT, "edit-step"], src: "../src/assets/icons/edit.svg", alt: "", title: "Edit Step",
             event: () => {
                 stepEditButtonListener(step);
             }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Task",
+            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "", title: "Delete Step",
             event: () => {
                 stepDeleteButtonListener(step)
             }},
