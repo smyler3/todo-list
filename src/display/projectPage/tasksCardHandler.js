@@ -2,8 +2,8 @@ import { generateStepCards } from "./stepsCardHandler.js";
 import { disableActionButtons, enableActionButtons, generateActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
-import { createTaskStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
-import { taskCreateStepButtonListener, taskDeleteButtonListener, taskEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/taskActionButtonListeners.js";
+import { createTaskStatusListener } from "../../common/eventListeners/checkboxListeners.js";
+import { taskCreateStepButtonListener, taskDeleteButtonListener, taskEditButtonListener } from "../../common/eventListeners/actionButtonListeners/taskActionButtonListeners.js";
 
 /* Create a list of tasks for a project */
 function generateTaskCards(tasks, parent) {

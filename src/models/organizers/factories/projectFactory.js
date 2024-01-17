@@ -1,4 +1,4 @@
-import { saveProjectsToLocalStorage } from "../../../modules/localStorage/index.js";
+import { saveProjectsToLocalStorage } from "../../../common/localStorage/index.js";
 import { DefaultColour, isValidColour } from "../../enums/colours.js";
 import { prioritySort } from "../../enums/priority.js";
 import { Status } from "../../enums/status.js";

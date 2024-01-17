@@ -1,5 +1,5 @@
 import { getProjects } from "../../models/organizers/project.js";
-import { addProjectNavigationListener } from "../../modules/eventListeners/projectNavigationListeners.js";
+import { addProjectNavigationListener } from "../../common/eventListeners/projectNavigationListeners.js";
 
 /* Create a sidebar menu item */
 function generateSidebarItem(title, iconFunction) {

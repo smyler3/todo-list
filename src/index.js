@@ -2,9 +2,9 @@ import "./style.css";
 import { createDefaultProject, createProject, deserializeProject, getCurrentProject, getProjects, setProjects } from "./models/organizers/project.js";
 import { createTask } from "./models/organizers/task";
 import { createStep } from "./models/organizers/step";
-import * as display from "./pages/display.js";
-import { createSidebarListeners } from "./modules/eventListeners/index.js";
-import { loadProjectsFromLocalStorage } from "./modules/localStorage/index.js";
+import * as display from "./display/display.js";
+import { createSidebarListeners } from "./common/eventListeners/index.js";
+import { loadProjectsFromLocalStorage } from "./common/localStorage/index.js";
 
 // Importing local storage
 const storageData = loadProjectsFromLocalStorage();

@@ -1,4 +1,4 @@
-import { renderAllProjectsPage, clearPage } from "../../pages/display.js";
+import { renderAllProjectsPage, clearPage } from "../../display/display.js";
 import { createProjectPageNavigationListeners } from "./projectNavigationListeners.js";
 
 /* Make the all projects sidebar button link to the all projects page */

@@ -11,7 +11,7 @@ import { removeFromSidebarProjects } from "../sidebar/sidebarProjectsGenerator.j
 import { deleteTaskCard } from "../projectPage/tasksCardHandler.js";
 import { deleteStepCard } from "../projectPage/stepsCardHandler.js";
 import { DefaultPriority } from "../../models/enums/priority.js";
-import { createFormCancelButtonListener, createFormSubmitButtonListener } from "../../modules/eventListeners/formButtonListeners.js";
+import { createFormCancelButtonListener, createFormSubmitButtonListener } from "../../common/eventListeners/formButtonListeners.js";
 
 /* Create the modal which will store all forms */
 function generateFormModal(parent) {

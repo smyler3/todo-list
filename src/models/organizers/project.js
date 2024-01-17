@@ -1,7 +1,7 @@
 import projectFactory from "./factories/projectFactory.js";
-import { renderAllProjectsPage, clearPage } from "../../pages/display.js";
-import { addToSidebarProjects } from "../../pages/sidebar/sidebarProjectsGenerator.js";
-import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
+import { renderAllProjectsPage, clearPage } from "../../display/display.js";
+import { addToSidebarProjects } from "../../display/sidebar/sidebarProjectsGenerator.js";
+import { saveProjectsToLocalStorage } from "../../common/localStorage/index.js";
 import { deserializeTask } from "./task.js";
 
 /* Creates the default project that stores all unassigned tasks */

@@ -1,7 +1,7 @@
 import taskFactory from "./factories/taskFactory.js";
 import { Status } from "../enums/status.js";
 import { getCurrentProject, getSerializedProjects } from "./project.js";
-import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
+import { saveProjectsToLocalStorage } from "../../common/localStorage/index.js";
 import { deserializeStep } from "./step.js";
 
 /* Create a new task and adds to a project */

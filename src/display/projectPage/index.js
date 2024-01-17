@@ -2,7 +2,7 @@ import { generateTaskCards, editTaskCardInformation, setTaskCardCompleted } from
 import { editStepCardInformation, setStepCardCompleted } from "./stepsCardHandler.js";
 import { generateActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
-import { projectColourButtonListener, projectCreateTaskButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
+import { projectColourButtonListener, projectCreateTaskButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../common/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
 
 /* Create the page showing all info for a selected project */
 function renderProjectPage(project) {

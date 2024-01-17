@@ -1,8 +1,8 @@
 import { generateActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
-import { createProjectButtonListener } from "../../modules/eventListeners/actionButtonListeners/allProjectsActionButtonListeners.js";
-import { createProjectPageNavigationListeners } from "../../modules/eventListeners/projectNavigationListeners.js";
-import { projectColourButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
+import { createProjectButtonListener } from "../../common/eventListeners/actionButtonListeners/allProjectsActionButtonListeners.js";
+import { createProjectPageNavigationListeners } from "../../common/eventListeners/projectNavigationListeners.js";
+import { projectColourButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../common/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
 
 /* Create the page showing all of the current projects */
 function renderAllProjectsPage(projects) {

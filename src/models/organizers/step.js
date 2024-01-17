@@ -1,7 +1,7 @@
 import stepFactory from "./factories/stepFactory.js";
-import { clearPage, renderProjectPage } from "../../pages/display.js";
+import { clearPage, renderProjectPage } from "../../display/display.js";
 import { getCurrentProject, getSerializedProjects } from "./project.js";
-import { saveProjectsToLocalStorage } from "../../modules/localStorage/index.js";
+import { saveProjectsToLocalStorage } from "../../common/localStorage/index.js";
 import { Status } from "../enums/status.js";
 
 /* Create a new step and adds to a task */

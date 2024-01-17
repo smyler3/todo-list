@@ -1,4 +1,4 @@
-import { saveProjectsToLocalStorage } from "../../../modules/localStorage/index.js";
+import { saveProjectsToLocalStorage } from "../../../common/localStorage/index.js";
 import { isValidPriority } from "../../enums/priority.js";
 import { Status, isValidStatus } from "../../enums/status.js";
 import { getSerializedProjects } from "../project.js";

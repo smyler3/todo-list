@@ -1,8 +1,8 @@
 import { generateActionButtons, disableActionButtons, enableActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
-import { createStepStatusListener } from "../../modules/eventListeners/checkboxListeners.js";
-import { stepDeleteButtonListener, stepEditButtonListener } from "../../modules/eventListeners/actionButtonListeners/stepActionButtonListeners.js";
+import { createStepStatusListener } from "../../common/eventListeners/checkboxListeners.js";
+import { stepDeleteButtonListener, stepEditButtonListener } from "../../common/eventListeners/actionButtonListeners/stepActionButtonListeners.js";
 
 /* Create a list of steps for a task */
 function generateStepCards(steps, parent) {

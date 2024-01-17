@@ -1,8 +1,8 @@
 import { Status } from "../../models/enums/status.js";
 import { getCurrentProject } from "../../models/organizers/project.js";
 import { completeTask } from "../../models/organizers/task.js";
-import { clearPage, renderProjectPage } from "../../pages/display.js";
-import { setStepCardCompleted, setStepCardIncomplete } from "../../pages/projectPage/stepsCardHandler.js";
+import { clearPage, renderProjectPage } from "../../display/display.js";
+import { setStepCardCompleted, setStepCardIncomplete } from "../../display/projectPage/stepsCardHandler.js";
 import { setCurrentTaskFromID, setCurrentStepFromID } from "./utility";
 
 /* Handles toggling the completion status logic for a task */

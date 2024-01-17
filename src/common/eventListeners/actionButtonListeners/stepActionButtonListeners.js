@@ -1,5 +1,5 @@
 import { getCurrentProject } from "../../../models/organizers/project.js";
-import * as forms from "../../../pages/forms/formGenerator.js";
+import * as forms from "../../../display/forms/formGenerator.js";
 import { setCurrentTaskFromID } from "../utility/index.js";
 
 /* Create the edit step button listener */

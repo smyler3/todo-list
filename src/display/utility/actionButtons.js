@@ -1,4 +1,4 @@
-import { createActionButtonListener } from "../../modules/eventListeners/actionButtonListeners/index.js";
+import { createActionButtonListener } from "../../common/eventListeners/actionButtonListeners/index.js";
 
 /* Creates the action buttons for a organizer */
 function generateActionButtons(buttons) {

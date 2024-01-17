@@ -1,5 +1,5 @@
 import { setCurrentProject } from "../../../models/organizers/project.js";
-import * as forms from "../../../pages/forms/formGenerator.js";
+import * as forms from "../../../display/forms/formGenerator.js";
 
 /* Create the project create task button listener */
 function projectCreateTaskButtonListener(project) {

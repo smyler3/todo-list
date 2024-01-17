@@ -1,4 +1,4 @@
-import { forms } from "../../../pages/display";
+import { forms } from "../../../display/display";
 
 /* Create the create project button listener */
 function createProjectButtonListener() {
