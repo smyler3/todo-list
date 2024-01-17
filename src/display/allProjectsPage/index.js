@@ -4,6 +4,7 @@ import { createProjectButtonListener } from "../../common/eventListeners/actionB
 import { createProjectPageNavigationListeners } from "../../common/eventListeners/projectNavigationListeners.js";
 import { setCurrentProject } from "../../models/organizers/project.js";
 import { forms } from "../display.js";
+import CreateButtonIcon from "../../assets/icons/add.svg";
 import ColourButtonIcon from "../../assets/icons/paint.svg";
 import EditButtonIcon from "../../assets/icons/edit.svg";
 import DeleteButtonIcon from "../../assets/icons/delete.svg";
@@ -14,7 +15,7 @@ function renderAllProjectsPage(projects) {
     function generateHeader() {
         // All projects buttons to be created
         const createProjectButton = [
-            {classNames: [Actions.CREATE, "create-project-header-btn"], src: "../src/assets/icons/add.svg", alt: "", title: "Add New Project",
+            {classNames: [Actions.CREATE, "create-project-header-btn"], src: CreateButtonIcon, alt: "", title: "Add New Project",
             event: () => {
                 createProjectButtonListener();
             }},
