@@ -89,8 +89,8 @@ function addFormButtons(organizerType, actionType, parent, submitFunction) {
 function generateBaseProjectForm(formID, formTitle, formType, submitFunction) {
     // All form fields for projects
     const projectTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], maxLength: 20},
-        {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , maxLength: 80, rows: 40},
+        {labelText: "Title:", inputName: "title", inputType: "text", id: "project-title", classes: ["title-input"], minlength: 1, maxLength: 20},
+        {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "project-desc", classes: ["desc-input"] , minlength: 1, maxLength: 80, rows: 40},
     ]
     const formClass = "create-edit-form";
     const organizerType = Organizers.PROJECT;
@@ -131,8 +131,8 @@ function renderEditProjectForm() {
 function generateBaseTaskForm(formID, formTitle, formType, submitFunction) {
     // All form fields for tasks
     const taskTextFormFields = [
-        {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], maxLength: 40},
-        {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "task-desc", classes: ["desc-input"], maxLength: 80},
+        {labelText: "Title:", inputName: "title", inputType: "text", id: "task-title", classes: ["title-input"], minlength: 1, maxLength: 40},
+        {labelText: "Description:", inputName: "desc", inputType: "textarea", id: "task-desc", classes: ["desc-input"], minlength: 1, maxLength: 80},
         {labelText: "Due Date:", inputName: "date", inputType: "date", id: "task-date", classes: ["date-input"]},
     ]
     const formClass = "create-edit-form";
@@ -187,7 +187,7 @@ function renderEditTaskForm() {
 function generateBaseStepForm(formID, formTitle, formType, submitFunction) {
         // All form fields for steps
         const stepTextFormFields = [
-            {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], maxLength: 40},
+            {labelText: "Title:", inputName: "title", inputType: "text", id: "step-title", classes: ["title-input"], minlength: 1, maxLength: 40},
         ]
         const formClass = "create-edit-form";
         const organizerType = Organizers.STEP;

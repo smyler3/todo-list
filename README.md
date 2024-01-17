@@ -7,40 +7,13 @@ CODE SYNTAX:
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-DUPLICATE CODE:
-    -
-    Radio field generator has heaps of duplicate code
-.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-CODE LOGIC:
-    -
-    Can use a function to call all action buttons on loading
-
-    - 
-    Add max and min values to form fields (or just required)
-
-    -
-    Font in textarea is weird
-.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-VISUALS:
-    -
-    Wrap project desc text on too long
-
-    -
-    Make checkboxes bigger?
-.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-TODO:
-    -
-    Add code for adding default data?
-.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
 POTENTIAL FUTURE FEATURES:
+    -
+    Add code for adding default data
+    
+    -
+    Force minlength on forms
+
     -
     Allow different sorting of tasks
 

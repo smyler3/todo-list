@@ -18,6 +18,7 @@ function generateTitleField(formField) {
         fieldInput.classList.add(className);
     });
     fieldInput.name = formField.inputName;
+    fieldInput.minLength = formField.minLength;
     fieldInput.maxLength = formField.maxLength;
 
     return fieldInput;
@@ -31,6 +32,7 @@ function generateDescriptionField(formField) {
         fieldInput.classList.add(className);
     });
     fieldInput.name = formField.inputName;
+    fieldInput.minLength = formField.minLength;
     fieldInput.maxLength = formField.maxLength;
     
     return fieldInput;
@@ -55,7 +57,7 @@ export default function generateTextFields(fields, parent) {
         const fieldContainer = document.createElement("div");
         fieldContainer.classList.add("field-container");
     
-        // Appending elements
+        // Appending elementsrequired
         fieldContainer.appendChild(generateLabel(formField));
         if (formField.inputName ===  "title") {
             fieldContainer.appendChild(generateTitleField(formField));
@@ -66,6 +68,10 @@ export default function generateTextFields(fields, parent) {
         else if (formField.inputName ===  "date") {
             fieldContainer.appendChild(generateDateField(formField));
         }
+
+        // Adding required status
+        fieldContainer.required = formField.required;
+
         parent.appendChild(fieldContainer);
     })
 }
