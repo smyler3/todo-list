@@ -2,7 +2,7 @@ import { generateActionButtons } from "../utility/actionButtons.js";
 import { Actions } from "../../models/enums/actionButtons.js";
 import { createProjectButtonListener } from "../../common/eventListeners/actionButtonListeners/allProjectsActionButtonListeners.js";
 import { createProjectPageNavigationListeners } from "../../common/eventListeners/projectNavigationListeners.js";
-import { projectColourButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../common/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
+import { generateProjectCardButtons } from "../utility/projectCardButtons.js";
 
 /* Create the page showing all of the current projects */
 function renderAllProjectsPage(projects) {
@@ -51,27 +51,6 @@ function renderAllProjectsPage(projects) {
             projectCardDetails.appendChild(projectDescription);
 
             return projectCardDetails;
-        }
-
-        /* Creates the logic for the project card action buttons */
-        function generateProjectCardButtons(project) {
-            // Project buttons to be created
-            const projectCardButtons = [
-                {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "Colour Project Button", title: "Colour Project",
-                event: () => {
-                    projectColourButtonListener(project);
-                }},
-                {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "Edit Project Button", title: "Edit Project",
-                event: () => {
-                    projectEditButtonListener(project);
-                }},
-                {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "Delete Project Button", title: "Delete Project",
-                event: () => {
-                    projectDeleteButtonListener(project);
-                }},
-            ]
-
-            return projectCardButtons;
         }
 
         const projectCardGrid = document.createElement("div");

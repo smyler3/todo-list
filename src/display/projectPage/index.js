@@ -1,8 +1,7 @@
 import { generateTaskCards, editTaskCardInformation, setTaskCardCompleted } from "./tasksCardHandler.js";
 import { editStepCardInformation, setStepCardCompleted } from "./stepsCardHandler.js";
 import { generateActionButtons } from "../utility/actionButtons.js";
-import { Actions } from "../../models/enums/actionButtons.js";
-import { projectColourButtonListener, projectCreateTaskButtonListener, projectDeleteButtonListener, projectEditButtonListener } from "../../common/eventListeners/actionButtonListeners/projectActionButtonListeners.js";
+import { generateProjectCardButtons } from "../utility/projectCardButtons.js";
 
 /* Create the page showing all info for a selected project */
 function renderProjectPage(project) {
@@ -30,26 +29,6 @@ function renderProjectPage(project) {
             return projectHeaderInfo;
         }
 
-        // Project Buttons to be created
-        const projectButtons = [
-            {classNames: [Actions.CREATE], src: "../src/assets/icons/add.svg", alt: "Create Task Button", title: "Add New Task",
-            event: () => {
-                projectCreateTaskButtonListener(project);
-            }},
-            {classNames: [Actions.COLOUR], src: "../src/assets/icons/paint.svg", alt: "Colour Project Button", title: "Colour Project",
-            event: () => {
-                projectColourButtonListener(project);
-            }},
-            {classNames: [Actions.EDIT, "edit-project"], src: "../src/assets/icons/edit.svg", alt: "Edit Project Button", title: "Edit Project",
-            event: () => {
-                projectEditButtonListener(project);
-            }},
-            {classNames: [Actions.DELETE], src: "../src/assets/icons/delete.svg", alt: "Delete Project Button", title: "Delete Project",
-            event: () => {
-                projectDeleteButtonListener(project);
-            }},
-        ]
-
         const projectHeader = document.createElement("div");
         projectHeader.classList.add("project-header-container");
         // Link to project
@@ -58,7 +37,7 @@ function renderProjectPage(project) {
 
         // Append Elements
         projectHeader.appendChild(generateProjectDetails(project));
-        projectHeader.appendChild(generateActionButtons(projectButtons));
+        projectHeader.appendChild(generateActionButtons(generateProjectCardButtons(project)));
 
         return projectHeader;
     }

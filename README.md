@@ -9,14 +9,7 @@ CODE SYNTAX:
 --------------------------------------------------------------------------
 DUPLICATE CODE:
     -
-    The action buttons can have duplicate code removed into another function
-
-    -
     Radio field generator has heaps of duplicate code
-
-    -
-    Both project action button arrays share the same code
-    Should be a way to reduce duplicate project action button code
 .
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
